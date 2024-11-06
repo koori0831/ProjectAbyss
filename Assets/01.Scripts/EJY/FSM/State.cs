@@ -1,0 +1,48 @@
+using System;
+using UnityEngine;
+
+public abstract class State<T> where T : Enum
+{
+    protected Entity _entity;
+    protected StateMachine<T> _stateMachine;
+    protected int _animaHash;
+
+    #region EntityComponent
+    protected EntityRenderer _renderer;
+    protected EntityMover _entityMover;
+    #endregion
+
+    public State(Entity entity, string animaName, StateMachine<T> stateMachine)
+    {
+        _entity = entity;
+        _stateMachine = stateMachine;
+        _animaHash = Animator.StringToHash(animaName);
+
+        _renderer = _entity.GetCompo<EntityRenderer>();
+        _entityMover = _entity.GetCompo<EntityMover>();
+    }
+
+    private void HandleChangeJumpState()
+    {
+        if (_entityMover.isGround.Value)
+            return;
+            //_stateMachine.ChageState(PlayerStateEnum.Jump);
+    }
+
+    public virtual void Enter()
+    {
+        _renderer.PlayAnimation(_animaHash);
+    }
+
+    public virtual void StateUpdate()
+    {
+    }
+
+    public virtual void StateFixedUpdate()
+    {
+    }
+
+    public virtual void Exit()
+    {
+    }
+}
