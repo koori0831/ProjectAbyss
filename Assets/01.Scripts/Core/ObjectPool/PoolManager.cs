@@ -10,15 +10,15 @@ public class PoolManager : MonoSingleton<PoolManager>
     private void Awake()
     {
         _pools = new Dictionary<string, Pool>();
-        foreach (PoolItemSo pair in _poolList.list)
+        foreach (PoolItemSO pair in _poolList.list)
         {
             CreatPool(pair);
         }
     }
 
-    private void CreatPool(PoolItemSo pair)
+    private void CreatPool(PoolItemSO pair)
     {
-        Ipoolable poolable = pair.prefab.GetComponent<Ipoolable>();
+        IPoolable poolable = pair.prefab.GetComponent<IPoolable>();
         if (poolable == null)
         {
             Debug.LogWarning($"GameObject {pair.prefab.name} has no Ipoolabale Script");
@@ -29,11 +29,11 @@ public class PoolManager : MonoSingleton<PoolManager>
         _pools.Add(poolable.PoolName, pool);
     }
 
-    public Ipoolable Pop(string itemName)
+    public IPoolable Pop(string itemName)
     {
         if (_pools.ContainsKey(itemName))
         {
-            Ipoolable item = _pools[itemName].Pop();
+            IPoolable item = _pools[itemName].Pop();
             item.ResetItem();
             return item;
         }
@@ -41,7 +41,7 @@ public class PoolManager : MonoSingleton<PoolManager>
         return null;
     }
 
-    public void Push(Ipoolable item)
+    public void Push(IPoolable item)
     {
         if (_pools.ContainsKey(item.PoolName))
         {

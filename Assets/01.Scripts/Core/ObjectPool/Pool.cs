@@ -3,15 +3,15 @@ using UnityEngine;
 
 public class Pool
 {
-    private Stack<Ipoolable> _pool;
+    private Stack<IPoolable> _pool;
     private Transform _parentTrm;
-    private Ipoolable _poolable;
+    private IPoolable _poolable;
     private GameObject _prefab;
 
 
-    public Pool(Ipoolable poolable, Transform parent, int count)
+    public Pool(IPoolable poolable, Transform parent, int count)
     {
-        _pool = new Stack<Ipoolable>(count);
+        _pool = new Stack<IPoolable>(count);
         _parentTrm = parent;
         _poolable = poolable;
         _prefab = poolable.ObjectPrefab;
@@ -21,20 +21,20 @@ public class Pool
             GameObject gameObj = GameObject.Instantiate(_prefab, _parentTrm);
             gameObj.SetActive(false);
             gameObj.name = _poolable.PoolName;
-            Ipoolable item = gameObj.GetComponent<Ipoolable>();
+            IPoolable item = gameObj.GetComponent<IPoolable>();
             _pool.Push(item);
         }
     }
 
-    public Ipoolable Pop()
+    public IPoolable Pop()
     {
-        Ipoolable item = null;
+        IPoolable item = null;
 
         if (_pool.Count == 0)
         {
             GameObject gameObj = GameObject.Instantiate(_prefab, _parentTrm);
             gameObj.name = _poolable.PoolName;
-            item = gameObj.GetComponent<Ipoolable>();
+            item = gameObj.GetComponent<IPoolable>();
         }
         else
         {
@@ -44,7 +44,7 @@ public class Pool
         return item;
     }
 
-    public void Push(Ipoolable item)
+    public void Push(IPoolable item)
     {
         item.ObjectPrefab.SetActive(false);
         _pool.Push(item);
