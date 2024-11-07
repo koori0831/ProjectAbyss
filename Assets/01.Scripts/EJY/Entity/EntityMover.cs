@@ -14,7 +14,7 @@ public class EntityMover : MonoBehaviour, IEntityComponent
 
     public event Action<bool> OnGroundStateChange;
 
-    public NotifyValue<bool> isGround = new NotifyValue<bool>();
+    public NotifyValue<bool> isGround = new();
 
     private Entity _entity;
     private EntityRenderer _renderer;
@@ -56,7 +56,6 @@ public class EntityMover : MonoBehaviour, IEntityComponent
 
     private void CheckGround()
     {
-        bool before = isGround.Value;
         isGround.Value = Physics2D.OverlapBox(_groundTrm.position, _groundCheckSize, 0, _whatIsGround);
     }
 

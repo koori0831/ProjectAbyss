@@ -22,13 +22,6 @@ public abstract class State<T> where T : Enum
         _entityMover = _entity.GetCompo<EntityMover>();
     }
 
-    private void HandleChangeJumpState()
-    {
-        if (_entityMover.isGround.Value)
-            return;
-            //_stateMachine.ChageState(PlayerStateEnum.Jump);
-    }
-
     public virtual void Enter()
     {
         _renderer.PlayAnimation(_animaHash);
