@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface Ipoolable
+public interface IPoolable
 {
     public string PoolName { get; }
     public GameObject ObjectPrefab { get; }

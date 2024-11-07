@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Plugins/Sirenix/Odin Inspector/Config/Resources/Sirenix.meta
+guid: 3afcd191a0c7f324cbc9cc133c27b0cc
+========
+guid: dd969c24884e26c4183bd0b074477461
+>>>>>>>> base:Assets/01.Scripts/Chipmunk.meta
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

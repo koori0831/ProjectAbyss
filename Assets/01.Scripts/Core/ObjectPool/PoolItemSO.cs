@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName ="SO/Pool/Item")]
-public class PoolItemSo : ScriptableObject
+public class PoolItemSO : ScriptableObject
 {
     public string poolName;
     public GameObject prefab;
@@ -13,7 +13,7 @@ public class PoolItemSo : ScriptableObject
     {
         if(prefab != null)
         {
-            Ipoolable item  = prefab.GetComponent<Ipoolable>();
+            IPoolable item  = prefab.GetComponent<IPoolable>();
             if(item == null)
             {
                 Debug.LogWarning($"Cant find Ipoolable script on prefabs : check!");
