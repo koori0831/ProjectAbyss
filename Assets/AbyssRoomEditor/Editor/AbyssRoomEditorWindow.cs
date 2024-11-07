@@ -1,30 +1,43 @@
+using ProjectAbyss.RoomEditor;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class AbyssRoomEditorWindow : EditorWindow
+namespace ProjectAbyss.RoomEditor
 {
-    [SerializeField]
-    private VisualTreeAsset m_VisualTreeAsset = default;
-
-    [MenuItem("Window/UI Toolkit/AbyssRoomEditorWindow")]
-    public static void ShowExample()
+    public class AbyssRoomEditorWindow : EditorWindow
     {
-        AbyssRoomEditorWindow wnd = GetWindow<AbyssRoomEditorWindow>();
-        wnd.titleContent = new GUIContent("AbyssRoomEditorWindow");
-    }
+        [SerializeField]
+        private VisualTreeAsset m_VisualTreeAsset = default;
 
-    public void CreateGUI()
-    {
-        // Each editor window contains a root VisualElement object
-        VisualElement root = rootVisualElement;
+        AbyssRoomInspectorView inspectorView;
+        AbyssRoomListView listView;
+        AbyssRoomCreateToolsView createToolsView;
 
-        // VisualElements objects can contain other VisualElement following a tree hierarchy.
-        VisualElement label = new Label("Hello World! From C#");
-        root.Add(label);
 
-        // Instantiate UXML
-        VisualElement labelFromUXML = m_VisualTreeAsset.Instantiate();
-        root.Add(labelFromUXML);
+        [MenuItem("Editor/AbyssRoomEditor")]
+        public static void OpenWindow()
+        {
+            AbyssRoomEditorWindow wnd = GetWindow<AbyssRoomEditorWindow>();
+            wnd.titleContent = new GUIContent("AbyssRoomEditor");
+        }
+
+        public void CreateGUI()
+        {
+            VisualElement root = rootVisualElement;
+            m_VisualTreeAsset.CloneTree(root);
+            
+            inspectorView = root.Q<AbyssRoomInspectorView>("inspector-view");
+            listView = root.Q<AbyssRoomListView>("list-view");
+            createToolsView = root.Q<AbyssRoomCreateToolsView>("create-tools-view");
+
+            listView.OnRoomSelected = (roomSO) =>
+            {
+                inspectorView.DrawView(roomSO);
+            };
+
+            listView.DrawView();
+            createToolsView.DrawView();
+        }
     }
 }

@@ -1,5 +1,43 @@
-.custom-label {
-    font-size: 20px;
-    -unity-font-style: bold;
-    color: rgb(68, 138, 255);
+#Header {
+    height: 20px;
+    width: 100%;
+    background-color: rgb(37, 37, 37);
+    -unity-text-align: middle-left;
+    flex-direction: row;
+}
+
+#Header > #Name {
+    margin-top: auto;
+    margin-right: 0;
+    margin-bottom: auto;
+    margin-left: 8px;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    -unity-text-align: middle-left;
+}
+
+.View {
+    height: 100%;
+}
+
+AbyssRoomInspectorView {
+    height: 100%;
+}
+
+AbyssRoomListView {
+    background-color: rgb(51, 51, 51);
+    height: 100%;
+}
+
+AbyssRoomCreateToolsView {
+}
+
+AbyssRoomListView TextField {
+    flex-grow: 1;
+}
+
+AbyssRoomListView #unity-text-input {
+    width: 100%;
 }

@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace ProjectAbyss.RoomEditor
 {
-    public class SplitView
+    [UxmlElement()]
+    public partial class SplitView : TwoPaneSplitView
     {
 
     }
