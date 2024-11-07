@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class StateMachine<T> : IEntityComponent where T : Enum
 {
@@ -9,12 +8,12 @@ public class StateMachine<T> : IEntityComponent where T : Enum
     private T _currentState;
     private Dictionary<T, State<T>> _entityState;
 
-    private void Update()
+    public void StateUpdate()
     {
         _entityState[_currentState].StateUpdate();
     }
 
-    private void FixedUpdate()
+    public void StateFixedUpdate()
     {
         _entityState[_currentState].StateFixedUpdate();
     }
@@ -31,7 +30,7 @@ public class StateMachine<T> : IEntityComponent where T : Enum
         foreach (T state in Enum.GetValues(typeof(T)))
         {
             string enumName = state.ToString();
-            Type t = Type.GetType(enumName + "State");
+            Type t = Type.GetType( enumName + "State");
 
             State<T> playerState = Activator.CreateInstance(t, _entity, enumName, this) as State<T>;
 

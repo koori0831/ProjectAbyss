@@ -400,7 +400,7 @@ MonoBehaviour:
   _groundTrm: {fileID: 232912732}
   _whatIsGround:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 55
   _groundCheckSize: {x: 1, y: 1}
   isGround:
     _value: 0
