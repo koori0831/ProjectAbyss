@@ -14,5 +14,27 @@ public enum PlayerState
 
 public class Player : Entity
 {
-   public StateMachine<PlayerState> StateMachine { get; private set; }
+    [field : SerializeField]
+    public PlayerInputSO InputCompo { get; private set; }
+    public StateMachine<PlayerState> StateMachine { get; private set; }
+
+    private Dictionary<Type, IPlayerComponent> _playerComponents = new Dictionary<Type, IPlayerComponent>();
+
+    protected override void Awake()
+    {
+    }
+
+    private void InitPlayerCompo()
+    {
+    }
+
+    private void Update()
+    {
+        StateMachine.StateUpdate();
+    }
+
+    private void FixedUpdate()
+    {
+        StateMachine.StateFixedUpdate();
+    }
 }
