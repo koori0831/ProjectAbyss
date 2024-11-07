@@ -5,7 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(CinemachineImpulseSource))]
 public class ImpulseFeedback : Feedback
 {
-    [SerializeField] private Gun _gun;
     [SerializeField] private float _impulsePower = 0.3f;
     private CinemachineImpulseSource _source;
 
@@ -16,10 +15,7 @@ public class ImpulseFeedback : Feedback
 
     public override void PlayFeedback()
     {
-        if(_gun != null)
-            _source.GenerateImpulse(_gun.gunData.impulsePower);
-        else
-            _source.GenerateImpulse(_impulsePower);
+        _source.GenerateImpulse(_impulsePower);
     }
 
     public override void StopFeedback()

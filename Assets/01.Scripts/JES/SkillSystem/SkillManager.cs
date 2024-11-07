@@ -18,7 +18,7 @@ public class SkillManager : MonoSingleton<SkillManager>
 
     private void Start()
     {
-        _player = GameManager.Instance.Player;
+        //_player = GameManager.Instance.Player; 플레이어 찾아와야함
         foreach (SkillType skillType in Enum.GetValues(typeof(SkillType)))
         {
             Skill skillCompo = GetComponent($"{skillType.ToString()}Skill") as Skill;

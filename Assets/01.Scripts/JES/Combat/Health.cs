@@ -12,9 +12,9 @@ public class Health : MonoBehaviour
     [SerializeField] private int _maxHealth = 150;
 
     private int _currentHealth;
-    private Agent _owner;
+    private Entity _owner;
 
-    public void Initialize(Agent owner)
+    public void Initialize(Entity owner)
     {
         _owner = owner;
         ResetHealth();
@@ -32,7 +32,7 @@ public class Health : MonoBehaviour
         //normal과 point, 넉백 등은 차후에 여기서 사용합니다.
 
         if(knockbackPower > 0)
-            _owner.MovementCompo.GetKnockback(normal * -1, knockbackPower);
+           // _owner.MovementCompo.GetKnockback(normal * -1, knockbackPower);
 
         if(_currentHealth <= 0)
         {
