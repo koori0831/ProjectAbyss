@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/04.Sprites/JES.meta
+guid: 2d183e0c8892f1840a4502b8c0e02e5d
+folderAsset: yes
+========
 guid: dded98fbbd76e5b4ea535d2170edf63a
+>>>>>>>> base:Assets/00.Scenes/Chipmunk/MapScene.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
