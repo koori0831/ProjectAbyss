@@ -11,7 +11,6 @@ public class EntityMover : MonoBehaviour, IEntityComponent
     [SerializeField] private LayerMask _whatIsGround;
     [SerializeField] private Vector2 _groundCheckSize;
 
-
     public event Action<bool> OnGroundStateChange;
 
     public NotifyValue<bool> isGround = new();
@@ -56,7 +55,11 @@ public class EntityMover : MonoBehaviour, IEntityComponent
 
     private void CheckGround()
     {
+        bool before = isGround.Value;
         isGround.Value = Physics2D.OverlapBox(_groundTrm.position, _groundCheckSize, 0, _whatIsGround);
+
+        if(before != isGround.Value)
+            OnGroundStateChange?.Invoke(isGround.Value);
     }
 
     private void MoveCharacter()

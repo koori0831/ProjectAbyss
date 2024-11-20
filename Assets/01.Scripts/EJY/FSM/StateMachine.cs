@@ -1,12 +1,24 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
-public class StateMachine<T> : IEntityComponent where T : Enum
+public class StateMachine<T> where T : Enum
 {
     private Entity _entity;
 
     private T _currentState;
-    private Dictionary<T, State<T>> _entityState;
+    private Dictionary<T, State<T>> _entityState = new Dictionary<T, State<T>>();
+
+    public StateMachine(Entity entity)
+    {
+        _entity = entity;
+        CreateState();
+    }
+
+    public void InitState(T state)
+    {
+        _currentState = state;
+    }
 
     public void StateUpdate()
     {
@@ -18,7 +30,7 @@ public class StateMachine<T> : IEntityComponent where T : Enum
         _entityState[_currentState].StateFixedUpdate();
     }
 
-    public void ChageState(T state)
+    public void ChangeState(T state)
     {
         _entityState[_currentState].Exit();
         _currentState = state;
@@ -27,21 +39,14 @@ public class StateMachine<T> : IEntityComponent where T : Enum
 
     private void CreateState()
     {
-        foreach (T state in Enum.GetValues(typeof(T)))
+        foreach (T stateEnum in Enum.GetValues(typeof(T)))
         {
-            string enumName = state.ToString();
-            Type t = Type.GetType( enumName + "State");
+            string enumName = stateEnum.ToString();
+            Type t = Type.GetType(enumName + "State");
 
-            State<T> playerState = Activator.CreateInstance(t, _entity, enumName, this) as State<T>;
+            State<T> state = Activator.CreateInstance(t, _entity, enumName, this) as State<T>;
 
-            _entityState.Add(state, playerState);
+            _entityState.Add(stateEnum, state);
         }
-    }
-
-    public void Initialize(Entity entity)
-    {
-        _entity = entity;
-        _entityState = new Dictionary<T, State<T>>();
-        CreateState();
     }
 }
