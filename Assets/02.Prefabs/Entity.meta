@@ -1,10 +1,16 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 <<<<<<<< HEAD:Assets/01.Scripts/JES/Agent/Enemy/State.meta
 guid: f60ae6bca38a1cb43af06e71346b027c
+=======
+<<<<<<<< HEAD:Assets/Plugins/Febucci/Text Animator/Extra/Typewriter Sound - Package.unitypackage.meta
+guid: 560a88da2bbc70140bed167f0ba7fe37
+>>>>>>> base
 ========
 guid: 398c27b9c10cf764196ad70e8f99265f
 >>>>>>>> base:Assets/02.Prefabs/Entity.meta
 folderAsset: yes
+>>>>>>>> origin/EJY:Assets/02.Prefabs/Entity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
