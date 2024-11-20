@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [CreateAssetMenu(fileName = "PlayerInputSO", menuName = "SO/PlayerInputSO")]
-public class PlayerInputSO : ScriptableObject, Controls.IPlayerActions
+public class PlayerInputSO : ScriptableObject, Controls.IPlayerActions, IPlayerComponent
 {
     public event Action JumpEvent;
     public event Action AttackEvent;
@@ -11,6 +11,8 @@ public class PlayerInputSO : ScriptableObject, Controls.IPlayerActions
     public Vector2 InputDirection { get; private set; }
 
     private Controls _controls;
+
+    private Player _player;
 
     private void OnEnable()
     {
@@ -47,5 +49,10 @@ public class PlayerInputSO : ScriptableObject, Controls.IPlayerActions
     public void OnInteract(InputAction.CallbackContext context)
     {
         throw new NotImplementedException();
+    }
+
+    public void Initialize(Player player)
+    {
+        _player = player;
     }
 }
