@@ -19,7 +19,8 @@ public class Enemy : Entity
     protected override void Awake()
     {
         base.Awake();
-        stateMachine.Initialize(this);
+        stateMachine = new StateMachine<EnemyStateType>(this);
+        stateMachine.InitState(EnemyStateType.EnemyIdle);
     }
 
     private void Update()
