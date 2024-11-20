@@ -1,6 +1,6 @@
-using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Enemy : Entity
 {
@@ -40,6 +40,7 @@ public class Enemy : Entity
         var target = Physics2D.OverlapCircle(transform.position, ditectRange, _whatIsTarget);
         if (target != null&&target.TryGetComponent(out Player player))
         {
+            Debug.Log("감지함");
             Target = player;
             return true;
         }
