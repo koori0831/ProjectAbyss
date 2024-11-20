@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Enemy : Entity
 {
@@ -7,7 +8,7 @@ public class Enemy : Entity
 
     [Header("Direct")] 
     public float ditectRange;
-    [SerializeField] private LayerMask _whatIsTaget;
+    [SerializeField] private LayerMask _whatIsTarget;
 
     [Header("Combat")] 
     public int damage;
@@ -15,9 +16,34 @@ public class Enemy : Entity
     public float attackRange;
     public Player Target { get; private set; }
 
+    protected override void Awake()
+    {
+        base.Awake();
+        stateMachine.Initialize(this);
+    }
+
+    private void Update()
+    {
+        stateMachine.StateUpdate();
+    }
+    private void FixedUpdate()
+    {
+        stateMachine.StateFixedUpdate();
+    }
+
+    /// <summary>
+    /// 타겟 감지하는 함수 감지하면 true, 아니면 false를 반환함. 감지하면 Target에 넣어줌
+    /// </summary>
+    /// <returns></returns>
     public bool DitectTarget()
     {
-        return true;
+        var target = Physics2D.OverlapCircle(transform.position, ditectRange, _whatIsTarget);
+        if (target != null&&target.TryGetComponent(out Player player))
+        {
+            Target = player;
+            return true;
+        }
+        return false;
     }
     
     #if UNITY_EDITOR
@@ -35,5 +61,5 @@ public class Enemy : Entity
 
 public enum EnemyStateType
 {
-    Idle,Run
+    EnemyIdle,EnemyChase,EnemyHit,EnemyDeath,EnemyAttack
 }
