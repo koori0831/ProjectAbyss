@@ -36,8 +36,9 @@ public class NpcInteract : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E)) //&& _isActive)
         { 
             if (!ChatManager.Instance.endText)
-
-            ChatManager.Instance.StartChat(_baseNpcText, GetDialog(_baseNpcDialog.JobDialogList), 0.2f);
+            
+                
+            ChatManager.Instance.StartChat(_baseNpcText, GetDialog(_baseNpcDialog.JobDialogList), 0.08f);
             NpcInteracted.Invoke();
         }
     }
