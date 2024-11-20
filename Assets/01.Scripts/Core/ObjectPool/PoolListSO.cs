@@ -8,5 +8,5 @@ using UnityEngine;
 [CreateAssetMenu(menuName ="SO/Pool/List")]
 public class PoolListSO : ScriptableObject
 {
-    public List<PoolItemSo> list; 
+    public List<PoolItemSO> list; 
 }

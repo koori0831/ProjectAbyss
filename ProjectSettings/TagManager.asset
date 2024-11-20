@@ -11,10 +11,10 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - Projectile
+  - Ground
   - 
   - 
   - 
@@ -40,6 +40,24 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BackGround
+    uniqueID: 467544211
+    locked: 0
+  - name: Ground
+    uniqueID: 3103953687
+    locked: 0
+  - name: Agent
+    uniqueID: 2650035285
+    locked: 0
+  - name: Object
+    uniqueID: 2568169121
+    locked: 0
+  - name: Effect
+    uniqueID: 4274122505
+    locked: 0
+  - name: UI
+    uniqueID: 1226605939
     locked: 0
   m_RenderingLayers:
   - Default
