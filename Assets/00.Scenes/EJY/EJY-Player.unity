@@ -462,6 +462,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <InputCompo>k__BackingField: {fileID: 11400000, guid: 19854cb7859149a4eaed6bf36b6c2e49, type: 2}
+  jumpPower: 5
 --- !u!61 &1850274218
 BoxCollider2D:
   m_ObjectHideFlags: 0

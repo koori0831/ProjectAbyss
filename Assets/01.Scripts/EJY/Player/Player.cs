@@ -18,11 +18,14 @@ public class Player : Entity
 {
     [field : SerializeField]
     public PlayerInputSO InputCompo { get; private set; }
-    public StateMachine<PlayerStateEnum> StateMachine { get; private set; }
+    private StateMachine<PlayerStateEnum> _stateMachine;
 
     private Dictionary<Type, IPlayerComponent> _playerComponents = new Dictionary<Type, IPlayerComponent>();
 
     public EntityMover MoveCompo { get; private set; }
+
+    [Header("JumpInfo")]
+    public float jumpPower;
 
     protected override void Awake()
     {
@@ -35,17 +38,17 @@ public class Player : Entity
 
         InitPlayerCompo();
 
-        StateMachine = new StateMachine<PlayerStateEnum>(this);
-        StateMachine.InitState(PlayerStateEnum.PlayerIdle);
+        _stateMachine = new StateMachine<PlayerStateEnum>(this);
+        _stateMachine.InitState(PlayerStateEnum.PlayerIdle);
     }
     private void Update()
     {
-        StateMachine.StateUpdate();
+        _stateMachine.StateUpdate();
     }
 
     private void FixedUpdate()
     {
-        StateMachine.StateFixedUpdate();
+        _stateMachine.StateFixedUpdate();
     }
 
     protected override void AfterInit()

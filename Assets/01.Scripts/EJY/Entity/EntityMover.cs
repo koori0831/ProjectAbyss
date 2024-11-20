@@ -15,6 +15,8 @@ public class EntityMover : MonoBehaviour, IEntityComponent
 
     public NotifyValue<bool> isGround = new();
 
+    public Vector2 YVelocity => _rbCompo.linearVelocity;
+
     private Entity _entity;
     private EntityRenderer _renderer;
     private Rigidbody2D _rbCompo;
