@@ -4,16 +4,22 @@ using System.Collections.Generic;
 using UnityEngine.Events;
 using TMPro;
 
+
 public class NpcInteract : MonoBehaviour
 {
 
-    [SerializeField] private TMP_Text _baseNpcText;
+    
     [SerializeField] private DialogSO _baseNpcDialog;
 
+    
+    
     private bool _isActive;
     private bool _isChatting;
 
     public UnityEvent NpcInteracted;
+
+   
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -34,11 +40,9 @@ public class NpcInteract : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E)) //&& _isActive)
-        { 
+        {
             if (!ChatManager.Instance.endText)
-            
-                
-            ChatManager.Instance.StartChat(_baseNpcText, GetDialog(_baseNpcDialog.JobDialogList), 0.08f);
+            ChatManager.Instance.StartChat(GetDialog(_baseNpcDialog.JobDialogList), 0.08f);
             NpcInteracted.Invoke();
         }
     }
