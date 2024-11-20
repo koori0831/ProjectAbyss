@@ -16,4 +16,5 @@ public abstract class ArtifactData : MonoBehaviour
     public ArtifactRank artifactRank;
     public int ResaleValue;
     public int SaleValue;
+    public Sprite ItemImage;
 }
