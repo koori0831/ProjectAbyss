@@ -53,7 +53,10 @@ TagManager:
   - name: Object
     uniqueID: 2568169121
     locked: 0
-  - name: New Layer 5
+  - name: Effect
+    uniqueID: 4274122505
+    locked: 0
+  - name: UI
     uniqueID: 1226605939
     locked: 0
   m_RenderingLayers:
