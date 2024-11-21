@@ -63,6 +63,8 @@ public class Player : Entity
         _playerComponents.Values.ToList().ForEach(component => component.Initialize(this));
     }
 
+    
+
     public T GetPlayerCompo<T>(bool isDerived = false) where T : IPlayerComponent
     {
         if (_playerComponents.TryGetValue(typeof(T), out var component))
