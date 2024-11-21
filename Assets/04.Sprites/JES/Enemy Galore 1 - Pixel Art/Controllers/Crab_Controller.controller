@@ -33,7 +33,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: EnemyHit
+  m_Name: RangeGroundEnemyHit
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -136,13 +136,13 @@ AnimatorStateMachine:
     m_Position: {x: 310, y: 270, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6772530499960635188}
-    m_Position: {x: 310, y: 90, z: 0}
+    m_Position: {x: 310, y: 150, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1106238801473080805}
     m_Position: {x: 310, y: 210, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1644191535427459282}
-    m_Position: {x: 310, y: 150, z: 0}
+    m_Position: {x: 310, y: 90, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -714106324535960226}
     m_Position: {x: 310, y: 330, z: 0}
@@ -164,7 +164,7 @@ AnimatorStateMachine:
   m_EntryPosition: {x: 80, y: 90, z: 0}
   m_ExitPosition: {x: 40, y: -100, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: 6772530499960635188}
+  m_DefaultState: {fileID: 1644191535427459282}
 --- !u!1102 &-1106238801473080805
 AnimatorState:
   serializedVersion: 6
@@ -172,7 +172,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: EnemyDeath
+  m_Name: RangeGroundEnemyDeath
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -198,7 +198,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: EnemyAttack
+  m_Name: RangeGroundEnemyAttack
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -342,7 +342,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: EnemyChase
+  m_Name: RangeGroundEnemyFind
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -419,7 +419,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: EnemyIdle
+  m_Name: RangeGroundEnemyWait
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
