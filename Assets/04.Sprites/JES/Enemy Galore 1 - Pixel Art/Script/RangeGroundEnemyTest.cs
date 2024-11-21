@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyTest : MonoBehaviour
+public class RangeGroundEnemyTest : MonoBehaviour
 {
     [SerializeField] private Animator[] EnemyAnims;
 
