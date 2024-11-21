@@ -1,3 +1,4 @@
+using System;
 using ProjectAbyss.RoomEditor;
 using UnityEditor;
 using UnityEngine;
@@ -10,34 +11,53 @@ namespace ProjectAbyss.RoomEditor
         [SerializeField]
         private VisualTreeAsset m_VisualTreeAsset = default;
 
-        AbyssRoomInspectorView inspectorView;
-        AbyssRoomListView listView;
-        AbyssRoomCreateToolsView createToolsView;
+        public AbyssRoomInspectorView InspectorView { get; private set; }
+        public AbyssRoomListView RoomListView { get; private set; }
+        public AbyssRoomCreateToolsView CreateToolsView { get; private set; }
+        public AbyssRoomPaletteView PaletteView { get; private set; }
 
 
+        private AbyssRoomSO selectedRoomSO;
+        public AbyssRoomSO SelectedRoomSO
+        {
+            get
+            {
+                return selectedRoomSO;
+            }
+            set
+            {
+                selectedRoomSO = value;
+                InspectorView.DrawInspector(selectedRoomSO);
+            }
+        }
         [MenuItem("Editor/AbyssRoomEditor")]
         public static void OpenWindow()
         {
+            // Selection.selectionChanged += OnSelectionChanged;
+        
             AbyssRoomEditorWindow wnd = GetWindow<AbyssRoomEditorWindow>();
             wnd.titleContent = new GUIContent("AbyssRoomEditor");
         }
+
+        // private static void OnSelectionChanged()
+        // {
+        //     Selection.activeObject
+        // }
 
         public void CreateGUI()
         {
             VisualElement root = rootVisualElement;
             m_VisualTreeAsset.CloneTree(root);
-            
-            inspectorView = root.Q<AbyssRoomInspectorView>("inspector-view");
-            listView = root.Q<AbyssRoomListView>("list-view");
-            createToolsView = root.Q<AbyssRoomCreateToolsView>("create-tools-view");
 
-            listView.OnRoomSelected = (roomSO) =>
-            {
-                inspectorView.DrawView(roomSO);
-            };
+            InspectorView = root.Q<AbyssRoomInspectorView>();
+            RoomListView = root.Q<AbyssRoomListView>();
+            CreateToolsView = root.Q<AbyssRoomCreateToolsView>();
+            PaletteView = root.Q<AbyssRoomPaletteView>();
 
-            listView.DrawView();
-            createToolsView.DrawView();
+            RoomListView.DrawView(this);
+            RoomListView.OnRoomSelected?.Invoke(null);
+            CreateToolsView.DrawView(this);
+            PaletteView.DrawView(this);
         }
     }
 }

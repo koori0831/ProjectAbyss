@@ -1,11 +1,14 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
     <Style src="project://database/Assets/AbyssRoomEditor/Editor/AbyssRoomEditorWindow.uss?fileID=7433441132597879392&amp;guid=1a21cb1bfae4c5d4f91611d6ac49d7d3&amp;type=3#AbyssRoomEditorWindow" />
+    <editor:ObjectField label="Object Field" />
     <ProjectAbyss.RoomEditor.SplitView name="SplitView" fixed-pane-initial-dimension="250" style="width: 100%; height: auto;">
         <engine:VisualElement name="LeftView" class="View" style="min-width: 250px;">
             <engine:VisualElement name="Header">
                 <engine:Label text="Inspecter" name="Name" />
             </engine:VisualElement>
-            <ProjectAbyss.RoomEditor.AbyssRoomInspectorView />
+            <engine:ScrollView>
+                <ProjectAbyss.RoomEditor.AbyssRoomInspectorView />
+            </engine:ScrollView>
         </engine:VisualElement>
         <engine:VisualElement name="RightView" class="View" style="flex-grow: 1;">
             <ProjectAbyss.RoomEditor.SplitView fixed-pane-initial-dimension="420">
@@ -13,13 +16,24 @@
                     <engine:VisualElement name="Header">
                         <engine:Label text="AbyssRoomList" name="Name" />
                     </engine:VisualElement>
-                    <ProjectAbyss.RoomEditor.AbyssRoomListView name="AbyssRoomListView" />
+                    <ProjectAbyss.RoomEditor.AbyssRoomListView />
                 </engine:VisualElement>
                 <engine:VisualElement name="RightView" class="View" style="min-width: 110px;">
                     <engine:VisualElement name="Header">
                         <engine:Label name="Name" text="Room Create Tools" />
                     </engine:VisualElement>
-                    <ProjectAbyss.RoomEditor.AbyssRoomCreateToolsView />
+                    <ProjectAbyss.RoomEditor.SplitView fixed-pane-initial-dimension="150" orientation="Vertical">
+                        <engine:VisualElement name="LeftView" class="View" style="width: 350px; min-width: 410px;">
+                            <ProjectAbyss.RoomEditor.AbyssRoomCreateToolsView />
+                            <editor:PropertyField />
+                        </engine:VisualElement>
+                        <engine:VisualElement name="RightView" class="View" style="min-width: 110px;">
+                            <engine:VisualElement name="Header">
+                                <engine:Label text="Palette" name="Name" />
+                            </engine:VisualElement>
+                            <ProjectAbyss.RoomEditor.AbyssRoomPaletteView />
+                        </engine:VisualElement>
+                    </ProjectAbyss.RoomEditor.SplitView>
                 </engine:VisualElement>
             </ProjectAbyss.RoomEditor.SplitView>
         </engine:VisualElement>
