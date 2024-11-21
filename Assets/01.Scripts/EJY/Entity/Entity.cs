@@ -22,7 +22,7 @@ public class Entity : MonoBehaviour
         _components.Values.ToList().ForEach(component => component.Initialize(this));
     }
 
-    private void AfterInit()
+    protected virtual void AfterInit()
     {
         _components.Values.ToList().ForEach(component =>
         {
@@ -32,7 +32,6 @@ public class Entity : MonoBehaviour
 
             }
         });
-
     }
 
     public T GetCompo<T>(bool isDerived = false) where T : IEntityComponent
