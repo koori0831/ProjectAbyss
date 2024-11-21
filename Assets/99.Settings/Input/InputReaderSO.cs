@@ -1,16 +1,20 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static Controls;
 
 [CreateAssetMenu(fileName = "PlayerInputSO", menuName = "SO/PlayerInputSO")]
-public class PlayerInputSO : ScriptableObject, Controls.IPlayerActions
+public class PlayerInputSO : ScriptableObject, IPlayerActions, IPlayerComponent
 {
     public event Action JumpEvent;
     public event Action AttackEvent;
+    public event Action ZipShootEvent;
 
     public Vector2 InputDirection { get; private set; }
 
     private Controls _controls;
+
+    private Player _player;
 
     private void OnEnable()
     {
@@ -47,5 +51,16 @@ public class PlayerInputSO : ScriptableObject, Controls.IPlayerActions
     public void OnInteract(InputAction.CallbackContext context)
     {
         throw new NotImplementedException();
+    }
+
+    public void Initialize(Player player)
+    {
+        _player = player;
+    }
+
+    public void OnZipLineShooter(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+            ZipShootEvent?.Invoke();
     }
 }
