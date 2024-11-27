@@ -21,6 +21,7 @@ public class EntityMover : MonoBehaviour, IEntityComponent
     private EntityRenderer _renderer;
     private Rigidbody2D _rbCompo;
 
+    public LayerMask WhatIsGround => _whatIsGround;
     private float _xMovement;
 
     public void Initialize(Entity entity)
