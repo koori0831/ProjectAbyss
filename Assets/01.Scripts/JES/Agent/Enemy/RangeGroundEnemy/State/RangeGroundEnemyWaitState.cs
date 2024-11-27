@@ -11,14 +11,13 @@ public class RangeGroundEnemyWaitState : State<RangeGroundEnemyStateType>
     public override void StateUpdate()
     {
         base.StateUpdate();
-        if (_enemy.lastAttackTime + _enemy.attackCooldown <= Time.time)
-        {
-            float distance =Vector3.Distance(_entity.transform.position, _enemy.Target.transform.position);
+        if (!(_enemy.lastAttackTime + _enemy.attackCooldown <= Time.time)) return;
+        
+        float distance =Vector3.Distance(_entity.transform.position, _enemy.Target.transform.position);
 
-            if (_enemy.attackRange < distance)
-            {
-                _stateMachine.ChangeState(RangeGroundEnemyStateType.RangeGroundEnemyAttack);
-            }
+        if (_enemy.attackRange < distance)
+        {
+            _stateMachine.ChangeState(RangeGroundEnemyStateType.RangeGroundEnemyAttack);
         }
     }
 }
