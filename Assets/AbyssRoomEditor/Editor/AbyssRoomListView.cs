@@ -11,7 +11,6 @@ namespace ProjectAbyss.RoomEditor
     public partial class AbyssRoomListView : VisualElement
     {
         public AbyssRoomEditorWindow Window { get; private set; }
-        [UxmlAttribute("Folder Field")]
         public TextField locationTextField;
         public Button locateButton;
         public Action<AbyssRoomSO> OnRoomSelected;
