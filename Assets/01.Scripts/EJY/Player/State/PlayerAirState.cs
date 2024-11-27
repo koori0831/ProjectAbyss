@@ -8,10 +8,12 @@ public class PlayerAirState : PlayerState
 
     public override void StateFixedUpdate()
     {
-        
-
         float x = _playerInput.InputDirection.x;
+
         if(Mathf.Abs(x) > 0)
         _entityMover.SetXMovement(x);
+
+        else
+            _entityMover.StopImmediately();
     }
 }
