@@ -4,8 +4,8 @@ public abstract class Projectile : MonoBehaviour
 {
     [SerializeField] private LayerMask _targetLayer;
 
-    protected bool _isDead = false; //ÃÑ¾ËÀÌ ÀÌ¹Ì Æø¹ßµÇ¾î ¼Ò¸ğµÇ¾ú´Â°¡?
-    protected float _timer = 0; //»ıÁ¸½Ã°£
+    protected bool _isDead = false; //ì´ì•Œì´ ì´ë¯¸ í­ë°œë˜ì–´ ì†Œëª¨ë˜ì—ˆëŠ”ê°€?
+    protected float _timer = 0; //ìƒì¡´ì‹œê°„
 
     protected Rigidbody2D _rigidBody;
 
@@ -14,7 +14,7 @@ public abstract class Projectile : MonoBehaviour
         _rigidBody = GetComponent<Rigidbody2D>();
     }
 
-    public void ResetItem()  //Ç®¸Å´ÏÂ¡ ÇÒ ¶§ »ç¿ëÇÒ ¸Å¼­µå
+    public void ResetItem()  //í’€ë§¤ë‹ˆì§• í•  ë•Œ ì‚¬ìš©í•  ë§¤ì„œë“œ
     {
         _isDead = false;
         _timer = 0;
