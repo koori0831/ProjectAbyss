@@ -5,7 +5,7 @@ public enum ArtifactRank
     None,
     Special,
     High,
-    normal,
+    Normal,
     Low
 }
 
@@ -13,7 +13,7 @@ public abstract class ArtifactData : MonoBehaviour
 {
     public string ArtifactName;
     public string ArtifactDesc;
-    public ArtifactRank artifactRank;
+    public ArtifactRankDataSO ArtifactRank;
     public int ResaleValue;
     public int SaleValue;
     public Sprite ItemImage;
