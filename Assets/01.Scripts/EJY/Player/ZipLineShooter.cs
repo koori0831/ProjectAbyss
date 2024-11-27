@@ -25,7 +25,6 @@ public class ZipLineShooter : MonoBehaviour, IPlayerComponent
     private void HandleZipLineShootEvent()
     {
         Vector2 mousePos = _player.transform.InverseTransformPoint(_mousePos);
-        Debug.Log($"mouse X : {mousePos.x}, facing dir : {_renderer.FacingDirection} ");
         _renderer.FlipController(MathF.Sign(mousePos.x * _renderer.FacingDirection));
     }
 
