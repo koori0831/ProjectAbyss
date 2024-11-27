@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/AbyssRoomEditor/Script/AbyssRoomData.meta
+guid: 1280788a930fff74a97a59ccb8535b01
+folderAsset: yes
+========
 guid: 6eaf322d703d50146afecde586026f57
+>>>>>>>> base:Assets/Plugins/Febucci/Text Animator/Example/00 - Welcome.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
