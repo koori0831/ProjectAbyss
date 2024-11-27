@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Plugins/Febucci/Text Animator/Integrations/PlayMaker - Integration.unitypackage.meta
+guid: 8c4dd3f85b0e5064d87a3628b677e5bc
+========
 guid: 784b1b4c44ae9fb4691f828acf9f22f2
 folderAsset: yes
+>>>>>>>> origin/EJY:Assets/02.Prefabs/Player.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

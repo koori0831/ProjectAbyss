@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/02.Prefabs/Tild.meta
+guid: 9ec5f0f1d3f98194e983cf02e3f8baf1
+folderAsset: yes
+DefaultImporter:
+========
 guid: 2aceb4b19c6caf54c9801a9ec2fc4061
 PrefabImporter:
+>>>>>>>> origin/EJY:Assets/02.Prefabs/Entity/EntityMover.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
