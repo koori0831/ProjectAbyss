@@ -39,11 +39,11 @@ public class NpcInteract : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) //&& _isActive)
+        if (Input.GetKeyDown(KeyCode.E) && _isActive)
         {
             if (!ChatManager.Instance.endText)
             ChatManager.Instance.StartChat(GetDialog(_baseNpcDialog.JobDialogList), 0.08f);
-            NpcInteracted.Invoke();
+            NpcInteracted?.Invoke();
         }
     }
 

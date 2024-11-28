@@ -2,19 +2,21 @@ using UnityEngine;
 
 public class ShopItemInfoTrigger : MonoBehaviour
 {
-    public Weapon weapon;
+    public ArtifactData artifact;
     private Vector2 uiTargetPos;
+    public SpriteRenderer itemSprite;
 
     private void Awake()
     {
-        weapon = GetComponentInChildren<Weapon>();
+        artifact = GetComponentInChildren<ArtifactData>();
         uiTargetPos = transform.Find("UITargetPos").GetComponent<Transform>().position;
+        itemSprite = GetComponent<SpriteRenderer>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("¿­¸²");    
-        ShopItemInfoManager.Instance.OpenInfo(weapon, uiTargetPos);
+        ShopItemInfoManager.Instance.OpenInfo(artifact, uiTargetPos);
 
         LayerMask collisionLayerMask = 1 << collision.gameObject.layer;
         Debug.Log(collisionLayerMask.value);
@@ -29,6 +31,8 @@ public class ShopItemInfoTrigger : MonoBehaviour
        // if ((collisionLayerMask & climbingLayerMask) != 0)
             
     }
+
+    
 
 
 }
