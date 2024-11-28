@@ -64,7 +64,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ZipLineShooter"",
+                    ""name"": ""ZipLineGun"",
                     ""type"": ""Button"",
                     ""id"": ""59ccc32f-c5d9-4aef-89bb-a8c43beb6b8e"",
                     ""expectedControlType"": """",
@@ -290,7 +290,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ZipLineShooter"",
+                    ""action"": ""ZipLineGun"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -366,7 +366,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_ZipLineShooter = m_Player.FindAction("ZipLineShooter", throwIfNotFound: true);
+        m_Player_ZipLineShooter = m_Player.FindAction("ZipLineGun", throwIfNotFound: true);
     }
 
     ~@Controls()
