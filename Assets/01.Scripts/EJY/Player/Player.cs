@@ -24,7 +24,7 @@ public class Player : Entity
 
     public EntityMover MoveCompo { get; private set; }
 
-    [Header("JumpInfo")]
+    [Header("Jump Info")]
     public float jumpPower;
 
     protected override void Awake()
