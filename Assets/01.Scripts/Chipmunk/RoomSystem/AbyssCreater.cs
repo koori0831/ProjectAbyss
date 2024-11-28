@@ -6,6 +6,8 @@ public class AbyssCreater : MonoBehaviour
     [SerializeField] AbyssRoomCreater roomCreater;
     [SerializeField] int abyssWidth = 100;
     [SerializeField] int abyssHoleWidth = 10;
+
+    [SerializeField] int abyssHeight = 1000;
     [SerializeField] TileBase abyssTile;
     [field: SerializeField] Tilemap AbyssTilemap { get; set; }
 
@@ -16,7 +18,11 @@ public class AbyssCreater : MonoBehaviour
     }
     public void Update()
     {
-        CreateAbyss(lastGeneratedY - 1);
+    }
+    void FixedUpdate()
+    {
+        if (lastGeneratedY > -abyssHeight)
+            CreateAbyss(lastGeneratedY - 1);
     }
     public void CreateAbyss(int yPos)
     {
@@ -32,7 +38,7 @@ public class AbyssCreater : MonoBehaviour
             AbyssTilemap.SetTile(new Vector3Int(x, yPos, 0), abyssTile);
         }
         lastGeneratedY = yPos;
-        
+
         roomCreater.CreateRoom(yPos, abyssHoleWidth);
     }
     public bool IsHole(int x)

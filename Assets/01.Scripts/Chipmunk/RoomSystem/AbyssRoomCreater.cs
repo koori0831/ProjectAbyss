@@ -13,7 +13,7 @@ public class AbyssRoomCreater : MonoBehaviour
         if (yPos >= lastGeneratedY - roomsBetweenSpace)
             return;
 
-        AbyssRoomSO room = abyssRooms[Random.Range(0, abyssRooms.Count - 1)];
+        AbyssRoomSO room = abyssRooms[Random.Range(0, abyssRooms.Count)];
         bool isLeft = Random.Range(0, 2) == 0;
 
         for (int x = 0; x < room.mapSize.x; x++)
@@ -23,7 +23,7 @@ public class AbyssRoomCreater : MonoBehaviour
                 {
                     int xPos = x + holeWidth / 2;
 
-                    AbyssTilemap.SetTile(new Vector3Int(isLeft ? -xPos : xPos, y + yPos, 0), null);;
+                    AbyssTilemap.SetTile(new Vector3Int(isLeft ? -xPos : xPos, y + yPos, 0), null); ;
                 }
                 Vector2Int pos = new Vector2Int(x, room.mapSize.y - y);
                 if (room.blockDatas.TryGetValue(pos, out AbyssRoomBlockData blockData))
@@ -40,4 +40,19 @@ public class AbyssRoomCreater : MonoBehaviour
         }
         lastGeneratedY = yPos;
     }
+
+#if UNITY_EDITOR
+    [ContextMenu("AutoSetRooms")]
+    public void AutoSetRooms()
+    {
+        abyssRooms = new List<AbyssRoomSO>();
+        string[] guids = UnityEditor.AssetDatabase.FindAssets("t:AbyssRoomSO");
+        foreach (var guid in guids)
+        {
+            string path = UnityEditor.AssetDatabase.GUIDToAssetPath(guid);
+            AbyssRoomSO room = UnityEditor.AssetDatabase.LoadAssetAtPath<AbyssRoomSO>(path);
+            abyssRooms.Add(room);
+        }
+    }
+#endif
 }
