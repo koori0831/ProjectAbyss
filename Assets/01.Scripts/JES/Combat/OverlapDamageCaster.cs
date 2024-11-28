@@ -5,9 +5,9 @@ public class OverlapDamageCaster : DamageCaster
     [SerializeField] private Vector2 _castSize;
     private Collider2D[] _colliders;
 
-    public override void InitCaster(Entity owner)
+    public override void Initialize(Entity owner)
     {
-        base.InitCaster(owner);
+        base.Initialize(owner);
         _colliders = new Collider2D[_maxAvailableCount];
     }
 

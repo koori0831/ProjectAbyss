@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class DamageCaster : MonoBehaviour
+public abstract class DamageCaster : MonoBehaviour,IEntityComponent
 {
     [SerializeField] protected ContactFilter2D _contactFilter;
     [SerializeField] protected int _maxAvailableCount = 4;
@@ -9,11 +9,11 @@ public abstract class DamageCaster : MonoBehaviour
 
     protected Entity _owner;
 
-    public virtual void InitCaster(Entity owner)
-    {
-        _owner = owner;
-    }
 
     public abstract void CastDamage();
 
+    public virtual void Initialize(Entity entity)
+    {
+        _owner = entity;
+    }
 }
