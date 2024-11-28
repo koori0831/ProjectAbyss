@@ -21,6 +21,7 @@ public class RangeGroundEnemyFindState : State<RangeGroundEnemyStateType>
         if (_rangeGroundEnemy.DitectTarget())
         {
             _stateMachine.ChangeState(RangeGroundEnemyStateType.RangeGroundEnemyWait);
+            return; 
         }
         var ray = Physics2D.Raycast(new Vector3(_entity.transform.position.x,_entity.transform.position.y+0.2f,0), 
             _entity.transform.right, 0.6f,_entityMover._whatIsGround);

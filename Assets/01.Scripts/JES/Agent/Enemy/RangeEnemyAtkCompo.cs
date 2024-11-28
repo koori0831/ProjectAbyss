@@ -4,11 +4,12 @@ public class RangeEnemyAtkCompo : MonoBehaviour,IEntityComponent
 {
     [SerializeField] private float _cooldown;
     [SerializeField] private float _fireAngle = 45f;
+    [SerializeField] private string _bulletName = "ParabolaBullet";
     
     private RangeGroundEnemy _enemy;
     private float _lastAtkTime;
     private EntityRenderer _animator;
-
+    
     
     public void Initialize(Entity entity)
     {
@@ -50,9 +51,9 @@ public class RangeEnemyAtkCompo : MonoBehaviour,IEntityComponent
         
         Vector2 velocity = new Vector2(xDirection * vZero * cos, vZero * sin);
 
-        //Bomb bomb = Instantiate(_bombPrefab, transform.position, Quaternion.identity);
-        //bomb.ThrowBomb(velocity, 4f);
-
+        ParabolaBullet bullet = PoolManager.Instance.Pop(_bulletName) as ParabolaBullet;
+        bullet.InitAndFire(transform);
+        bullet.FireParabola(velocity);
         _animator.OnAttackTryEvent -= Attack;
     }
 }
