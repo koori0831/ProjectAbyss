@@ -8,11 +8,7 @@ public abstract class Enemy : Entity
     [SerializeField] protected LayerMask _whatIsTarget;
     
     [Header("Combat")] 
-    public int damage;
-    public float knockPower;
     public float attackRange;
-    public float lastAttackTime=0;
-    public float attackCooldown=1.0f;
     public Player Target { get; protected set; }
 
     /// <summary>
