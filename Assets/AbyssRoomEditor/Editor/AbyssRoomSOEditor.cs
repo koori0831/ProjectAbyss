@@ -34,12 +34,12 @@ public class AbyssRoomSOEditor : Editor
         VisualElement roomView = root.Q<VisualElement>("RoomView");
         roomView.Clear();
         cells.Clear();
-        for (int y = 0; y < roomSO.mapSize.y; y++)
+        for (int x = 0; x < roomSO.mapSize.x; x++)
         {
             VisualElement rowContainer = new VisualElement();
             rowContainer.name = "RowContainer";
             rowContainer.style.flexDirection = FlexDirection.Row;
-            for (int x = 0; x < roomSO.mapSize.x; x++)
+            for (int y = 0; y < roomSO.mapSize.y; y++)
             {
                 Vector2Int position = new Vector2Int(x, y);
                 AbyssRoomSOEditorCell cell = new AbyssRoomSOEditorCell(position);
