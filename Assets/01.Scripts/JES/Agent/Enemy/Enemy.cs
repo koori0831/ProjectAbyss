@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public abstract class Enemy : Entity
@@ -19,4 +20,6 @@ public abstract class Enemy : Entity
     /// </summary>
     /// <returns></returns>
     public abstract bool DitectTarget();
+
+    
 }
