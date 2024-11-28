@@ -29,7 +29,6 @@ public class RangeEnemyAtkCompo : MonoBehaviour,IEntityComponent
     {
         _lastAtkTime = Time.time;
         
-
         float angle = _fireAngle * Mathf.Deg2Rad;
         float cos = Mathf.Cos(angle);
         float tan = Mathf.Tan(angle);
