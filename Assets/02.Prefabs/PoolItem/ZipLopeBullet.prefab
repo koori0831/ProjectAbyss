@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 723152347941310824}
   - component: {fileID: 829599645126348524}
   - component: {fileID: 1907276712007844710}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ZipLopeBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,6 +111,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _poolName: ZipLineBullet
+  _lifeTime: 15
+  linkedBullet: {fileID: 0}
+  zipLineMat: {fileID: 2100000, guid: 6b84c5c5b0a47ab4a8d7ebe61250c3cc, type: 2}
+  isLinked: 0
 --- !u!1 &7650455657276026853
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,7 +125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4026878654830787620}
   - component: {fileID: 3121948848127500007}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
