@@ -11,6 +11,21 @@ public class RangeGroundEnemy : Enemy
         base.Awake();
         _stateMachine = new StateMachine<RangeGroundEnemyStateType>(this);
         _stateMachine.InitState(RangeGroundEnemyStateType.RangeGroundEnemyFind);
+    }protected override void AfterInit()
+    {
+        base.AfterInit();
+
+        GetCompo<EntityRenderer>().OnAnimationEnd += HandleAnimationEnd;
+    }
+
+    private void HandleAnimationEnd()
+    {
+        _stateMachine.CurrentState().AnimationEndTrigger();
+    }
+
+    private void OnDestroy()
+    {
+        GetCompo<EntityRenderer>().OnAnimationEnd -= HandleAnimationEnd;
     }
 
     private void Update()

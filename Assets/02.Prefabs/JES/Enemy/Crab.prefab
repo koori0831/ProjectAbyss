@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2531004554072868531}
   - component: {fileID: 7436009740928184858}
   - component: {fileID: 7990552723488848748}
+  - component: {fileID: 7076789344709527601}
   m_Layer: 0
   m_Name: Crab
   m_TagString: Untagged
@@ -122,6 +123,21 @@ CapsuleCollider2D:
   m_Offset: {x: 0.022226598, y: 0.20099853}
   m_Size: {x: 0.6104398, y: 0.38884836}
   m_Direction: 1
+--- !u!114 &7076789344709527601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254210265011049464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 211e2961d6fad1b4d82a8e02a87e0f4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 50
+  _currentHealth: 0
+  _knockbackTime: 0.5
 --- !u!1 &3876396393929425914
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,6 +307,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cooldown: 2
   _fireAngle: 45
+  _bulletName: Spit
 --- !u!1001 &3754431568107036388
 PrefabInstance:
   m_ObjectHideFlags: 0
