@@ -8,15 +8,14 @@ public abstract class Shooter : MonoBehaviour, IPlayerComponent
     [SerializeField] protected Transform _firePosTrm;
 
     [SerializeField] private float _availableFireTime = 0.2f;
-
+    [SerializeField] private float _rotateLimitMinValue = -30;
+    [SerializeField] private float _rotateLimitMaxValue = 50;
     [SerializeField] protected float _shootPoewr = 15;
 
     protected PlayerInputSO _input;
     protected EntityRenderer _renderer;
 
     protected Player _player;
-
-    protected Vector2 _mousePos;
 
     public event Action OnFireEvent;
 
@@ -27,7 +26,6 @@ public abstract class Shooter : MonoBehaviour, IPlayerComponent
         _input = _player.GetPlayerCompo<PlayerInputSO>();
         _renderer = _player.GetCompo<EntityRenderer>();
 
-        _input.AttackEvent += HandleGunFlipShootEvent;
         _input.AttackEvent += TryShooting;
     }
 
@@ -36,20 +34,17 @@ public abstract class Shooter : MonoBehaviour, IPlayerComponent
         RotateGun();
     }
 
-    private void HandleGunFlipShootEvent()
-    {
-        Vector2 mousePos = _player.transform.InverseTransformPoint(_mousePos);
-        _renderer.FlipController(MathF.Sign(mousePos.x * _renderer.FacingDirection));
-    }
-
     private void RotateGun()
     {
-        _mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.value);
-        Vector2 mouseDirection = _player.transform.InverseTransformPoint(_mousePos);
+        /// clamp 거니까 그런 듯 어카지? 총의 회전은 무조건적으로 필요하다고 봄
+        /// 전방 외에 입력을 아예 무시/
+
+        
+        Vector2 mouseDirection = _player.transform.InverseTransformPoint(_input.MousePos);
 
         float currentAngle = Mathf.Atan2(mouseDirection.y, mouseDirection.x) * Mathf.Rad2Deg;
 
-        transform.localRotation = Quaternion.Euler(0, 0, Mathf.Clamp(currentAngle, -30, 50));
+        transform.localRotation = Quaternion.Euler(0, 0, Mathf.Clamp(currentAngle, _rotateLimitMinValue, _rotateLimitMaxValue));
     }
 
 
@@ -65,7 +60,6 @@ public abstract class Shooter : MonoBehaviour, IPlayerComponent
 
     protected virtual void OnDestroy()
     {
-        _input.AttackEvent -= HandleGunFlipShootEvent;
         _input.AttackEvent -= TryShooting;
     }
 }
