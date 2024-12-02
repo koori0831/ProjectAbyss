@@ -15,6 +15,11 @@ public class StateMachine<T> where T : Enum
         CreateState();
     }
 
+    public State<T> CurrentState()
+    {
+        return _entityState[_currentState];
+    }
+
     public void InitState(T state)
     {
         _currentState = state;
