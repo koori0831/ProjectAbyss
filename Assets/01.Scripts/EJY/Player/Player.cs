@@ -60,8 +60,7 @@ public class Player : Entity
 
     private void PlayerFlip()
     {
-        if (InputCompo.MousePos.x < transform.position.x)
-            RenderCompo.Flip();
+        RenderCompo.FlipController(InputCompo.MousePos.x - transform.position.x);
     }
 
     private void FixedUpdate()

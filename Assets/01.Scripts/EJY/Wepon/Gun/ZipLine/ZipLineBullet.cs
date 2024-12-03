@@ -4,39 +4,49 @@ using UnityEngine;
 public class ZipLineBullet : MonoBehaviour, IPoolable, IInteractionable
 {
     private Player _player;
+    private ZipLine _zipLine;
 
     [SerializeField] private string _poolName = "ZipLineBullet";
 
     [SerializeField] private float _moveSpeed = 5;
-    [SerializeField] private float _lifeTime = 15;
-    private float _currentLifeTime = 0;
+
+    [SerializeField] private float _placeLifeTime = 20;
+    [SerializeField] private float _actLifeTime = 30;
+
+    private float LifeTime => _isPlaced ? isLinked ? _actLifeTime : _placeLifeTime : 15;
+
+    public float currentLifeTime = 0;
+
     private bool _isPlaced = false;
 
     public ZipLineBullet linkedBullet;
+    public bool isLinked = false;
 
     private Rigidbody2D _rigidBody;
 
     public string PoolName => _poolName;
-    [SerializeField] Material zipLineMat;
 
     public GameObject ObjectPrefab => gameObject;
-    public bool isLinked = false;
 
     private void Awake()
     {
         _player = FindAnyObjectByType<Player>();
+        _zipLine = FindAnyObjectByType<ZipLine>().GetComponent<ZipLine>();
         _rigidBody = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
-        _currentLifeTime += Time.deltaTime;
+        Debug.Log(LifeTime);
 
-        if (_currentLifeTime >= _lifeTime)
+        currentLifeTime += Time.deltaTime;
+
+        if (currentLifeTime >= LifeTime)
         {
-            _isPlaced = true;
             PoolManager.Instance.Push(this);
+            _zipLine.ResetLineRenderer();
         }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -44,6 +54,8 @@ public class ZipLineBullet : MonoBehaviour, IPoolable, IInteractionable
         if (_isPlaced) return;
 
         _isPlaced = true;
+        currentLifeTime = 0;
+
         _rigidBody.linearVelocity = Vector2.zero;
 
         TryLink();
@@ -55,10 +67,7 @@ public class ZipLineBullet : MonoBehaviour, IPoolable, IInteractionable
         {
             if (linkedBullet._isPlaced)
             {
-                GameObject gameObject = new GameObject("Line");
-                ZipLine zipLine = gameObject.AddComponent<ZipLine>();
-                zipLine.Initialize(zipLineMat);
-                zipLine.Link(this, linkedBullet);
+                _zipLine.Link(this, linkedBullet);
             }
         }
     }
@@ -83,6 +92,8 @@ public class ZipLineBullet : MonoBehaviour, IPoolable, IInteractionable
 
         while (time < moveTime)
         {
+            if (linkedBullet == null) break;
+
             time += Time.deltaTime;
 
             _player.transform.position = Vector2.Lerp(startPos, endPos, time / moveTime);
@@ -91,20 +102,15 @@ public class ZipLineBullet : MonoBehaviour, IPoolable, IInteractionable
         _player.StateMachine.ChangeState(PlayerStateEnum.PlayerIdle);
     }
 
-    public void Fire(Vector3 firePos, Vector3 velocity)
+    public void Fire(Transform firePos, float velocity)
     {
-        transform.position = firePos;
-        transform.right = velocity.normalized;
-        _rigidBody.linearVelocity = velocity;
-    }
-
-    public Vector3 ReturnBulletPosition()
-    {
-        return transform.position;
+        transform.SetPositionAndRotation(firePos.position, firePos.rotation);
+        _rigidBody.linearVelocity = firePos.right * _player.transform.localScale.x * velocity;
     }
 
     public void ResetItem()
     {
         _isPlaced = false;
+        isLinked = false;
     }
 }
