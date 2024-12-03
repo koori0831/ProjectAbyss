@@ -27,6 +27,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a09506035576f24685f40b84056bfde, type: 3}
   m_Name: AbyssRoomTileSO
   m_EditorClassIdentifier: 
+  PaletteColor: {r: 1, g: 1, b: 1, a: 0.5}
   blockName: 
   <TileBase>k__BackingField: {fileID: 11400000, guid: 575d89afd85e53d46aaaab24edaba334, type: 2}
 --- !u!114 &4682833007050178416
@@ -38,7 +39,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d68a6b3b105209438f2caf3a41ffd20, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a09506035576f24685f40b84056bfde, type: 3}
   m_Name: AbyssRoomGameobjectSO
   m_EditorClassIdentifier: 
+  PaletteColor: {r: 1, g: 1, b: 1, a: 0.5}
   blockName: 
+  <TileBase>k__BackingField: {fileID: 11400000, guid: 575d89afd85e53d46aaaab24edaba334, type: 2}
