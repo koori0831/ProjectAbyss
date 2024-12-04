@@ -37,6 +37,7 @@ public class StateMachine<T> where T : Enum
 
     public void ChangeState(T state)
     {
+        if(_entity.IsDead) return;
         _entityState[_currentState].Exit();
         _currentState = state;
         _entityState[_currentState].Enter();
