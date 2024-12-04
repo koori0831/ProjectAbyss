@@ -13,7 +13,7 @@ public class AbyssRoomSOEditor : Editor
 
     VisualElement root;
     AbyssRoomSO roomSO;
-
+    IntegerField cellSizeField;
     AbyssRoomPaletteView palette;
     Dictionary<Vector2Int, AbyssRoomSOEditorCell> cells = new Dictionary<Vector2Int, AbyssRoomSOEditorCell>();
     public override VisualElement CreateInspectorGUI()
@@ -23,10 +23,21 @@ public class AbyssRoomSOEditor : Editor
 
         roomSO = target as AbyssRoomSO;
 
+        QuearyElement();
         DrawRoom(roomSO);
         Initailize(roomSO);
 
         return root;
+    }
+
+    private void QuearyElement()
+    {
+        cellSizeField = root.Q<IntegerField>("CellSize");
+        cellSizeField.value = 50;
+        cellSizeField.RegisterValueChangedCallback((evt) =>
+        {
+            DrawRoom(roomSO);
+        });
     }
 
     private void DrawRoom(AbyssRoomSO roomSO)
@@ -42,7 +53,7 @@ public class AbyssRoomSOEditor : Editor
             for (int x = 0; x < roomSO.mapSize.x; x++)
             {
                 Vector2Int position = new Vector2Int(x, y);
-                AbyssRoomSOEditorCell cell = new AbyssRoomSOEditorCell(position);
+                AbyssRoomSOEditorCell cell = new AbyssRoomSOEditorCell(position, cellSizeField.value);
                 cell.RegisterCallback<MouseDownEvent>(MouseDownHandler);
                 cell.name = "Block";
                 rowContainer.Add(cell);

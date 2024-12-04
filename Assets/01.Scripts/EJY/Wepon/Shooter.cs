@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public abstract class Shooter : MonoBehaviour, IPlayerComponent
 {
@@ -36,10 +35,6 @@ public abstract class Shooter : MonoBehaviour, IPlayerComponent
 
     private void RotateGun()
     {
-        /// clamp 거니까 그런 듯 어카지? 총의 회전은 무조건적으로 필요하다고 봄
-        /// 전방 외에 입력을 아예 무시/
-
-        
         Vector2 mouseDirection = _player.transform.InverseTransformPoint(_input.MousePos);
 
         float currentAngle = Mathf.Atan2(mouseDirection.y, mouseDirection.x) * Mathf.Rad2Deg;
@@ -48,9 +43,9 @@ public abstract class Shooter : MonoBehaviour, IPlayerComponent
     }
 
 
-    protected virtual void TryShooting()
+    public virtual void TryShooting()
     {
-        if (_availableFireTime < Time.time)
+        if (_availableFireTime < Time.time && _player.canFire)
         {
             FireBullet();
         }

@@ -9,6 +9,7 @@ public class PlayerJumpState : PlayerAirState
     public override void Enter()
     {
         base.Enter();
+
         _entityMover.AddForceToEntity(new Vector2(0, _player.jumpPower));
     }
 

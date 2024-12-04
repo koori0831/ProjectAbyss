@@ -8,6 +8,9 @@ public class PlayerAirState : PlayerState
 
     public override void StateFixedUpdate()
     {
+        if (_entityMover.isGround.Value)
+            _stateMachine.ChangeState(PlayerStateEnum.PlayerIdle);
+
         float x = _playerInput.InputDirection.x;
 
         if(Mathf.Abs(x) > 0)

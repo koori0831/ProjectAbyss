@@ -25,6 +25,8 @@ public class Player : Entity
     public EntityMover MoveCompo { get; private set; }
     public EntityRenderer RenderCompo { get; private set; }
 
+    public bool canFire;
+
     [field : Header("Interaction Catch")]
 
     [field : SerializeField]
@@ -50,6 +52,8 @@ public class Player : Entity
 
         StateMachine = new StateMachine<PlayerStateEnum>(this);
         StateMachine.InitState(PlayerStateEnum.PlayerIdle);
+
+        canFire = true;
     } 
 
     private void Update()
@@ -60,8 +64,7 @@ public class Player : Entity
 
     private void PlayerFlip()
     {
-        if (InputCompo.MousePos.x < transform.position.x)
-            RenderCompo.Flip();
+        RenderCompo.FlipController(InputCompo.MousePos.x - transform.position.x);
     }
 
     private void FixedUpdate()
