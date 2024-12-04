@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e37a69fa03b436241b1d50c34bbc7ebb, type: 3}
+  m_Name: "\uBCD1\uC2E0"
+  m_EditorClassIdentifier: 
+  <ArtifactName>k__BackingField: "\uBCD1\uC2E0"
+  <ArtifactDesc>k__BackingField: "\uB098\uB294 \uBCD1\uC2E0\uC774\uB2E4"
+  <ArtifactRank>k__BackingField: {fileID: 11400000, guid: 80bc15aeed10fe14e90cafc3cde9d611, type: 2}
+  <ItemImage>k__BackingField: {fileID: 935848093, guid: 65a46ad6e9bad884c8d55bc7756b5099, type: 3}
+  <ResaleValue>k__BackingField: 424
+  <SaleValue>k__BackingField: 1151

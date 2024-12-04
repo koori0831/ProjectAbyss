@@ -18,7 +18,8 @@ public class EntityRenderer : MonoBehaviour, IEntityComponent
     }
 
     public void PlayAnimation(int animHash) => _animator.Play(animHash);
-
+    public void AnimationSpeedSetting(int speed) => _animator.speed = speed;
+    
     public void AnimationToEnd()
     {
         OnAnimationEnd?.Invoke();

@@ -15,7 +15,7 @@ TagManager:
   - Enemy
   - Projectile
   - Ground
-  - 
+  - AirEnemy
   - 
   - 
   - 
@@ -38,11 +38,11 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: BackGround
     uniqueID: 467544211
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
   - name: Ground
     uniqueID: 3103953687
