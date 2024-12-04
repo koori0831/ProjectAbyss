@@ -18,6 +18,11 @@ public class Entity : MonoBehaviour
         AfterInit();
     }
 
+    protected virtual void OnDestroy()
+    {
+        //그냥 만들어둠 혹시 모르니까
+    }
+
     private void InitComponents()
     {
         _components.Values.ToList().ForEach(component => component.Initialize(this));
