@@ -11,8 +11,6 @@ public class RangeGroundEnemy : Enemy
         
         _stateMachine = new StateMachine<RangeGroundEnemyStateType>(this);
         _stateMachine.InitState(RangeGroundEnemyStateType.RangeGroundEnemyFind);
-        
-        
     }
 
 
@@ -31,11 +29,6 @@ public class RangeGroundEnemy : Enemy
     protected override void HandleAnimationEnd()
     {
         _stateMachine.CurrentState().AnimationEndTrigger();
-    }
-
-    private void OnDestroy()
-    {
-        
     }
 
     private void Update()
