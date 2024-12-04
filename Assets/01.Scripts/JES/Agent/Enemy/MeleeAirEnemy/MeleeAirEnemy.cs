@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class MeleeAirEnemy : Enemy
@@ -5,6 +6,7 @@ public class MeleeAirEnemy : Enemy
     public bool IsAttacking { get; set; } = false;
 
     private StateMachine<MeleeAirEnemyStateType> _stateMachine;
+    
 
     protected override void AfterInit()
     {
@@ -55,6 +57,13 @@ public class MeleeAirEnemy : Enemy
     private void FixedUpdate()
     {
         _stateMachine.StateFixedUpdate();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(IsAttacking==false) return;
+
+        IsAttacking = false;
     }
 }
 
