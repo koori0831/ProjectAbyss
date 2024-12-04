@@ -15,7 +15,7 @@ public class ShopItemInfoManager : MonoSingleton<ShopItemInfoManager>
     [SerializeField] private TMP_Text _sellPrice;
     [SerializeField] private TMP_Text _itemDesc;
     [SerializeField] private Image _rankDeco;
-
+    
 
     private bool _isOpen;
 
@@ -26,42 +26,36 @@ public class ShopItemInfoManager : MonoSingleton<ShopItemInfoManager>
         _decoFrame = _rankDeco.GetComponentInChildren<CanvasGroup>();
     }
 
-    public void OpenInfo(ArtifactData artifact, Vector2 uiTargetPos)
+    public void OpenInfo(Weapon weapon, Vector2 uiTargetPos)
     {
-
+        
 
         Debug.Log("¿­¸²");
         _infoFrame.DOFade(1, 0.5f);
         _decoFrame.DOFade(1, 0.1f).SetDelay(0.1f);
         _infoFramePos.position = uiTargetPos;
+            
+        InitializeUI(weapon);
 
-        InitializeUI(artifact);
-
-
+        
 
     }
 
-    public void InitializeUI(ArtifactData artifact)
+    public void InitializeUI(Weapon weapon)
     {
-        _itemName.SetText(artifact.ArtifactName);
-        _itemDesc.SetText(artifact.ArtifactDesc);
+        _itemName.SetText(weapon.ArtifactName);
+        _itemDesc.SetText(weapon.ArtifactDesc);
+        _price.SetText("$"+ weapon.SaleValue.ToString());
+        _sellPrice.SetText("$" + weapon.ResaleValue.ToString());
 
-        _price.SetText("$" + artifact.SaleValue.ToString());
-        _sellPrice.SetText("$" + artifact.ResaleValue.ToString());
+        
 
-        _itemRank.SetText(artifact.ArtifactRank.RankName);
-        _itemRank.DOColor(artifact.ArtifactRank.RankColor, 0.1f);
-        _rankDeco.DOColor(artifact.ArtifactRank.RankColor, 0.1f);
     }
 
     public void CloseInfo()
     {
         _decoFrame.DOFade(0, 0.1f);
         _infoFrame.DOFade(0, 0.2f).SetDelay(0.1f);
-
-        _itemRank.DOColor(new Color32(255, 255, 255, 255), 0.1f);
-
-        _rankDeco.DOColor(new Color32(255, 255, 255, 255), 0.1f);
     }
 
 
