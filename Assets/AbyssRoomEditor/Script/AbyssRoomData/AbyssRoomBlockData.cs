@@ -1,4 +1,5 @@
 using System;
+using UnityEditor;
 using UnityEngine;
 
 public abstract class AbyssRoomBlockData : ScriptableObject
@@ -17,12 +18,15 @@ public abstract class AbyssRoomBlockData : ScriptableObject
         }
 
         target.blockDatas.Add(position, this);
+
+        EditorUtility.SetDirty(target);
     }
     public virtual void OnRemove(AbyssRoomSO target, Vector2Int localPos)
     {
         Vector2Int position = localPos;
 
         target.blockDatas.Remove(position);
+        EditorUtility.SetDirty(target);
     }
     public abstract void OnTiled(AbyssRoomCreater roomCreater, Vector2Int worldPos);
 
