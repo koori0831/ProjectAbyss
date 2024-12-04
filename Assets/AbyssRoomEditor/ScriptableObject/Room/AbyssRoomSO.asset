@@ -12,11 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7778e78c4f9005848874f98be2a43b18, type: 3}
   m_Name: AbyssRoomSO
   m_EditorClassIdentifier: 
-  mapSize: {x: 14, y: 7}
+  mapSize: {x: 7, y: 7}
   blockDatas:
     serializableItems:
     - key: {x: 3, y: 0}
-      value: {fileID: 4682833007050178416, guid: 97928d38a2d5a2742b71e0b0e22b5e14, type: 2}
+      value: {fileID: -4683007610851702972, guid: 1e080a0d566ae154e9e0c5e63936c51c, type: 2}
     - key: {x: 5, y: 0}
       value: {fileID: 1238465565052819480, guid: 97928d38a2d5a2742b71e0b0e22b5e14, type: 2}
+    - key: {x: 5, y: 1}
+      value: {fileID: -5305738406222640774, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 1, y: 6}
+      value: {fileID: 8700108314049232941, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 2, y: 6}
+      value: {fileID: 8700108314049232941, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 3, y: 6}
+      value: {fileID: 8700108314049232941, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 4, y: 6}
+      value: {fileID: 8700108314049232941, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 5, y: 5}
+      value: {fileID: 8700108314049232941, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
   childRoomDatas: []
