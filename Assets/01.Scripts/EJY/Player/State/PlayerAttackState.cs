@@ -11,5 +11,13 @@ public class PlayerAttackState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        _player.OnAttackEvent?.Invoke();
+    }
+
+    public override void StateFixedUpdate()
+    {
+        /*float x = 
+
+        _entityMover.SetXMovement(0);*/
     }
 }
