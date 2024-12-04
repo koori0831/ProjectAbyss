@@ -42,5 +42,10 @@ public class EntityRenderer : MonoBehaviour, IEntityComponent
         if (Mathf.Abs(FacingDirection + xMove) < 0.5f)
             Flip();
     }
+
+    public bool isFacingRight()
+    {
+        return Mathf.Sign(_entity.transform.localScale.x) > 0;
+    }
     #endregion
 }
