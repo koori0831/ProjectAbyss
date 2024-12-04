@@ -30,6 +30,7 @@ public class RangeGroundEnemyFindState : State<RangeGroundEnemyStateType>
             _renderer.Flip();
         }
         _entityMover.SetXMovement(_renderer.FacingDirection);
+        _entityMover.MoveCharacter();
     }
     
 }
