@@ -22,7 +22,9 @@ public class PlayerInputSO : ScriptableObject, IPlayerActions, IPlayerComponent
     {
         get
         {
-            return _mousePos;
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(_mousePos);
+            worldPos.z = 0;
+            return worldPos;
         }
     }
 

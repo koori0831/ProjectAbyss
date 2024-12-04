@@ -4,39 +4,50 @@ using UnityEngine;
 public class ZipLineBullet : MonoBehaviour, IPoolable, IInteractionable
 {
     private Player _player;
-
-    [SerializeField] private string _poolName = "ZipLineBullet";
-
-    [SerializeField] private float _moveSpeed = 5;
-    [SerializeField] private float _lifeTime = 15;
-    private float _currentLifeTime = 0;
-    private bool _isPlaced = false;
+    private ZipLine _zipLine;
+    private ZipLineGun _zipLineGun;
+    private Rigidbody2D _rigidBody;
 
     public ZipLineBullet linkedBullet;
 
-    private Rigidbody2D _rigidBody;
+    [SerializeField] private float _moveSpeed = 5;
+
+    [SerializeField] private float _placeLifeTime = 20;
+    [SerializeField] private float _actLifeTime = 30;
+
+    private float LifeTime => _isPlaced ? isLinked ? _actLifeTime : _placeLifeTime : 15;
+
+    public float currentLifeTime = 0;
+
+    [HideInInspector]
+    public bool _isPlaced = false;
+    [HideInInspector]
+    public bool isLinked = false;
+
 
     public string PoolName => _poolName;
-    [SerializeField] Material zipLineMat;
-
+    [SerializeField] private string _poolName = "ZipLineBullet";
     public GameObject ObjectPrefab => gameObject;
-    public bool isLinked = false;
 
     private void Awake()
     {
         _player = FindAnyObjectByType<Player>();
+        _zipLine = FindAnyObjectByType<ZipLine>();
+        _zipLineGun = FindAnyObjectByType<ZipLineGun>();
         _rigidBody = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
-        _currentLifeTime += Time.deltaTime;
+        currentLifeTime += Time.deltaTime;
 
-        if (_currentLifeTime >= _lifeTime)
+        if (currentLifeTime >= LifeTime)
         {
-            _isPlaced = true;
             PoolManager.Instance.Push(this);
+            if (isLinked)
+                _zipLine.ResetLineRenderer();
         }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -44,6 +55,8 @@ public class ZipLineBullet : MonoBehaviour, IPoolable, IInteractionable
         if (_isPlaced) return;
 
         _isPlaced = true;
+        currentLifeTime = 0;
+
         _rigidBody.linearVelocity = Vector2.zero;
 
         TryLink();
@@ -51,16 +64,21 @@ public class ZipLineBullet : MonoBehaviour, IPoolable, IInteractionable
 
     private void TryLink()
     {
-        if (linkedBullet != null)
+        if (_zipLineGun.beforeShootedBullet == null)
         {
-            if (linkedBullet._isPlaced)
-            {
-                GameObject gameObject = new GameObject("Line");
-                ZipLine zipLine = gameObject.AddComponent<ZipLine>();
-                zipLine.Initialize(zipLineMat);
-                zipLine.Link(this, linkedBullet);
-            }
+            _zipLineGun.beforeShootedBullet = this;
         }
+        else
+        {
+            SetLinkBullet();
+        }
+    }
+
+    public void SetLinkBullet()
+    {
+        _zipLineGun.LinkBullet(this, _zipLineGun.beforeShootedBullet);
+        _zipLine.Link(this, linkedBullet);
+        _zipLineGun.ResetBefore();
     }
 
     public void Interaction()
@@ -70,41 +88,47 @@ public class ZipLineBullet : MonoBehaviour, IPoolable, IInteractionable
 
     private IEnumerator ZipLineInteractionCoroutine()
     {
-        float time = 0;
-
-        Vector2 startPos = transform.position;
-        Vector2 endPos = linkedBullet.transform.position;
-
-        float dis = Vector2.Distance(startPos, endPos);
-
-        float moveTime = dis / _moveSpeed;
-
-        _player.StateMachine.ChangeState(PlayerStateEnum.PlayerZipLine);
-
-        while (time < moveTime)
+        if (linkedBullet != null)
         {
-            time += Time.deltaTime;
+            float time = 0;
 
-            _player.transform.position = Vector2.Lerp(startPos, endPos, time / moveTime);
-            yield return null;
+            Vector2 startPos = transform.position;
+            Vector2 endPos = linkedBullet.transform.position;
+
+            float dis = Vector2.Distance(startPos, endPos);
+
+            //float offset = new Vector2(); 
+
+            float moveTime = dis / _moveSpeed;
+
+            _player.StateMachine.ChangeState(PlayerStateEnum.PlayerZipLine);
+            _player.canFire = false;
+
+            while (time < moveTime)
+            {
+                if (linkedBullet == null) break;
+
+                time += Time.deltaTime;
+
+                _player.transform.position = Vector2.Lerp(startPos, endPos, time / moveTime);
+                yield return null;
+            }
+            _player.StateMachine.ChangeState(PlayerStateEnum.PlayerIdle);
+            _player.canFire = true;
         }
-        _player.StateMachine.ChangeState(PlayerStateEnum.PlayerIdle);
     }
 
-    public void Fire(Vector3 firePos, Vector3 velocity)
+    public void Fire(Transform firePos, float velocity)
     {
-        transform.position = firePos;
-        transform.right = velocity.normalized;
-        _rigidBody.linearVelocity = velocity;
-    }
-
-    public Vector3 ReturnBulletPosition()
-    {
-        return transform.position;
+        transform.SetPositionAndRotation(firePos.position, firePos.rotation);
+        _rigidBody.linearVelocity = firePos.right * _player.transform.localScale.x * velocity;
     }
 
     public void ResetItem()
     {
         _isPlaced = false;
+        isLinked = false;
+        linkedBullet = null;
+        currentLifeTime = 0;
     }
 }
