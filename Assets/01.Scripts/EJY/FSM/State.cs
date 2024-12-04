@@ -6,7 +6,8 @@ public abstract class State<T> where T : Enum
     protected Entity _entity;
     protected StateMachine<T> _stateMachine;
     protected int _animaHash;
-
+    protected bool _isTriggerCall;
+    
     #region EntityComponent
     protected EntityRenderer _renderer;
     protected EntityMover _entityMover;
@@ -37,5 +38,11 @@ public abstract class State<T> where T : Enum
 
     public virtual void Exit()
     {
+        _isTriggerCall = false;
+    }
+
+    public virtual void AnimationEndTrigger()
+    {
+        _isTriggerCall = true;
     }
 }

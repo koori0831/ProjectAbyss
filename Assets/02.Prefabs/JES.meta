@@ -1,6 +1,10 @@
 fileFormatVersion: 2
-guid: 7a146898a8f8e344faa807b1059daa77
+<<<<<<<< HEAD:Assets/02.Prefabs/JES.meta
+guid: a5831a44822301047a0284b72b0140f1
 folderAsset: yes
+========
+guid: 560a88da2bbc70140bed167f0ba7fe37
+>>>>>>>> Wan:Assets/Plugins/Febucci/Text Animator/Extra/Typewriter Sound - Package.unitypackage.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

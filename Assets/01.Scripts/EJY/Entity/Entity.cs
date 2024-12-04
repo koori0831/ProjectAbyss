@@ -6,6 +6,7 @@ using UnityEngine;
 public class Entity : MonoBehaviour
 {
     protected Dictionary<Type, IEntityComponent> _components;
+    public bool IsDead { get; set; }
 
     protected virtual void Awake()
     {
@@ -15,6 +16,11 @@ public class Entity : MonoBehaviour
 
         InitComponents();
         AfterInit();
+    }
+
+    protected virtual void OnDestroy()
+    {
+        //그냥 만들어둠 혹시 모르니까
     }
 
     private void InitComponents()

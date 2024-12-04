@@ -9,6 +9,7 @@ public class PlayerJumpState : PlayerAirState
     public override void Enter()
     {
         base.Enter();
+
         _entityMover.AddForceToEntity(new Vector2(0, _player.jumpPower));
     }
 
@@ -16,7 +17,7 @@ public class PlayerJumpState : PlayerAirState
     {
         base.StateFixedUpdate();
 
-        if (_entityMover.YVelocity.y < 0)
+        if (_entityMover.Velocity.y < 0)
             _stateMachine.ChangeState(PlayerStateEnum.PlayerFall);
     }
 }

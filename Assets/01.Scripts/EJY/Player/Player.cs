@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public enum PlayerStateEnum
 {
@@ -10,21 +11,32 @@ public enum PlayerStateEnum
     PlayerJump,
     PlayerFall,
     PlayerZipLine,
-    PlayerInteraction,
     PlayerAttack
 }
 
 public class Player : Entity
 {
-    [field : SerializeField]
+    [field: SerializeField]
     public PlayerInputSO InputCompo { get; private set; }
-    private StateMachine<PlayerStateEnum> _stateMachine;
+    public StateMachine<PlayerStateEnum> StateMachine{ get; private set; }
 
     private Dictionary<Type, IPlayerComponent> _playerComponents = new Dictionary<Type, IPlayerComponent>();
 
     public EntityMover MoveCompo { get; private set; }
+    public EntityRenderer RenderCompo { get; private set; }
 
-    [Header("JumpInfo")]
+    public bool canFire;
+
+    [field : Header("Interaction Catch")]
+
+    [field : SerializeField]
+    public bool CanInteraction { get; private set; } = false;
+
+    [SerializeField] private Transform _interactionCheckTrm; 
+    [SerializeField] private Vector2 _interactionCheckSize;
+    [SerializeField] private LayerMask _whatIsInteraction;
+
+    [Header("Jump Info")]
     public float jumpPower;
 
     protected override void Awake()
@@ -38,17 +50,48 @@ public class Player : Entity
 
         InitPlayerCompo();
 
-        _stateMachine = new StateMachine<PlayerStateEnum>(this);
-        _stateMachine.InitState(PlayerStateEnum.PlayerIdle);
-    }
+        StateMachine = new StateMachine<PlayerStateEnum>(this);
+        StateMachine.InitState(PlayerStateEnum.PlayerIdle);
+
+        canFire = true;
+    } 
+
     private void Update()
     {
-        _stateMachine.StateUpdate();
+        PlayerFlip();
+        StateMachine.StateUpdate();
+    }
+
+    private void PlayerFlip()
+    {
+        RenderCompo.FlipController(InputCompo.MousePos.x - transform.position.x);
     }
 
     private void FixedUpdate()
     {
-        _stateMachine.StateFixedUpdate();
+
+        MoveCompo.MoveCharacter(true);
+
+        StateMachine.StateFixedUpdate();
+    }
+
+    private void OnDisable()
+    {
+        InputCompo.InteractionEvent -= Interaction;
+    }
+
+    private void Interaction()
+    {
+        Collider2D interactionObj = Physics2D.OverlapBox(_interactionCheckTrm.position, _interactionCheckSize, 0, _whatIsInteraction);
+
+        CanInteraction = interactionObj;
+
+        if (interactionObj == null) return;
+
+        if (interactionObj.TryGetComponent(out IInteractionable interaction))
+        {
+            interaction.Interaction();
+        }
     }
 
     protected override void AfterInit()
@@ -56,6 +99,9 @@ public class Player : Entity
         base.AfterInit();
 
         MoveCompo = GetCompo<EntityMover>();
+        RenderCompo = GetCompo<EntityRenderer>();
+
+        InputCompo.InteractionEvent += Interaction;
     }
 
     private void InitPlayerCompo()
@@ -63,7 +109,7 @@ public class Player : Entity
         _playerComponents.Values.ToList().ForEach(component => component.Initialize(this));
     }
 
-    
+
 
     public T GetPlayerCompo<T>(bool isDerived = false) where T : IPlayerComponent
     {
@@ -80,5 +126,11 @@ public class Player : Entity
         }
 
         return default;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(_interactionCheckTrm.position, _interactionCheckSize);
     }
 }

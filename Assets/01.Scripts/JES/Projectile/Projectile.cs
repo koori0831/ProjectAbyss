@@ -1,25 +1,30 @@
+using System;
 using UnityEngine;
 
-public abstract class Projectile : MonoBehaviour
+public abstract class Projectile : Entity
 {
-    [SerializeField] private LayerMask _targetLayer;
-
-    protected bool _isDead = false; //ÃÑ¾ËÀÌ ÀÌ¹Ì Æø¹ßµÇ¾î ¼Ò¸ğµÇ¾ú´Â°¡?
-    protected float _timer = 0; //»ıÁ¸½Ã°£
+    protected bool _isDead = false; //ì´ì•Œì´ ì´ë¯¸ í­ë°œë˜ì–´ ì†Œëª¨ë˜ì—ˆëŠ”ê°€?
+    protected float _timer = 0; //ìƒì¡´ì‹œê°„
+    [SerializeField] protected float _lifeTime;
 
     protected Rigidbody2D _rigidBody;
 
-    protected virtual void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _rigidBody = GetComponent<Rigidbody2D>();
     }
-
-    public void ResetItem()  //Ç®¸Å´ÏÂ¡ ÇÒ ¶§ »ç¿ëÇÒ ¸Å¼­µå
+    
+    public void ResetItem()  //í’€ë§¤ë‹ˆì§• í•  ë•Œ ì‚¬ìš©í•  ë§¤ì„œë“œ
     {
         _isDead = false;
         _timer = 0;
     }
 
-    public abstract void InitAndFire(Transform firePosTrm, int damage, float knockBackPower);
-
+    public virtual void InitAndFire(Transform firePosTrm)
+    {
+        transform.position = firePosTrm.position;
+        transform.rotation = firePosTrm.rotation;
+        _timer = _lifeTime;
+    }
 }

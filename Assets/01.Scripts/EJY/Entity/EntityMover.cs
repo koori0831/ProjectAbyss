@@ -4,32 +4,39 @@ using Chipmunk.Library;
 
 public class EntityMover : MonoBehaviour, IEntityComponent
 {
-    [Header("MoveCharacter values")]
+    [Header("Move values")]
     [SerializeField] private float _moveSpeed = 5f;
 
     [SerializeField] private Transform _groundTrm;
-    [SerializeField] private LayerMask _whatIsGround;
+    public LayerMask _whatIsGround;
     [SerializeField] private Vector2 _groundCheckSize;
 
-    public event Action<bool> OnGroundStateChange;
 
     public NotifyValue<bool> isGround = new();
+    public Vector2 Velocity => _rbCompo.linearVelocity;
 
-    public Vector2 YVelocity => _rbCompo.linearVelocity;
+    public float SpeedMultiplier { get; set; } = 1f;
+    public bool CanManualMove { get; set; } = true;
+
+    private float _originalGravityScale;
 
     private Entity _entity;
     private EntityRenderer _renderer;
     private Rigidbody2D _rbCompo;
 
-    public LayerMask WhatIsGround => _whatIsGround;
-    private float _xMovement;
+    private float _xMovement; //????? ?��???? ????
 
     public void Initialize(Entity entity)
     {
         _entity = entity;
         _renderer = _entity.GetCompo<EntityRenderer>();
-        _rbCompo = GetComponentInParent<Rigidbody2D>();
+        _rbCompo = _entity.GetComponent<Rigidbody2D>();
+
+        _originalGravityScale = _rbCompo.gravityScale;
     }
+
+    public void SetGravityScale(float value) 
+            => _rbCompo.gravityScale = _originalGravityScale * value;
 
     public void AddForceToEntity(Vector2 force, ForceMode2D mode = ForceMode2D.Impulse)
     {
@@ -53,27 +60,29 @@ public class EntityMover : MonoBehaviour, IEntityComponent
     private void FixedUpdate()
     {
         CheckGround();
-        MoveCharacter();
     }
 
     private void CheckGround()
     {
-        bool before = isGround.Value;
-        isGround.Value = Physics2D.OverlapBox(_groundTrm.position, _groundCheckSize, 0, _whatIsGround);
-
-        if(before != isGround.Value)
-            OnGroundStateChange?.Invoke(isGround.Value);
+        bool before =isGround.Value ;
+        isGround.Value = Physics2D.OverlapBox(
+            _groundTrm.position, _groundCheckSize, 0, _whatIsGround);
     }
 
-    private void MoveCharacter()
+    public void MoveCharacter(bool isFlipwithMouse = false)
     {
-        _rbCompo.linearVelocityX = _xMovement * _moveSpeed;
-        _renderer.FlipController(_xMovement);
+        if (CanManualMove)
+        {
+            _rbCompo.linearVelocityX = _xMovement * _moveSpeed * SpeedMultiplier;
+            if (!isFlipwithMouse)
+            _renderer.FlipController(_xMovement);
+        }
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.yellow;
+        if (_groundTrm == null) return;
+        Gizmos.color = Color.red;
         Gizmos.DrawWireCube(_groundTrm.position, _groundCheckSize);
     }
 
