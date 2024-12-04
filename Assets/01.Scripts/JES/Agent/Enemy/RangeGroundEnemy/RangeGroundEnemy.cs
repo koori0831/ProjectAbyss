@@ -1,21 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RangeGroundEnemy : Enemy
 {
     private StateMachine<RangeGroundEnemyStateType> _stateMachine;
     
-    protected override void Awake()
-    {
-        base.Awake();
-        _stateMachine = new StateMachine<RangeGroundEnemyStateType>(this);
-        _stateMachine.InitState(RangeGroundEnemyStateType.RangeGroundEnemyFind);
-    }protected override void AfterInit()
+
+    protected override void AfterInit()
     {
         base.AfterInit();
-
+        
+        _stateMachine = new StateMachine<RangeGroundEnemyStateType>(this);
+        _stateMachine.InitState(RangeGroundEnemyStateType.RangeGroundEnemyFind);
+        
         GetCompo<EntityRenderer>().OnAnimationEnd += HandleAnimationEnd;
+        var health = GetCompo<EntityHealth>();
+        health.OnHitEvent += HandleHit;
+        health.OnDeathEvent += HandleDead;
+    }
+
+
+    private void HandleDead()
+    {
+        _stateMachine.ChangeState(RangeGroundEnemyStateType.RangeGroundEnemyDeath);
+    }
+
+    private void HandleHit(Entity dealer)
+    {
+        if (IsDead) return;
+        Target = dealer as Player;
+        _stateMachine.ChangeState(RangeGroundEnemyStateType.RangeGroundEnemyHit);
     }
 
     private void HandleAnimationEnd()
@@ -26,6 +39,10 @@ public class RangeGroundEnemy : Enemy
     private void OnDestroy()
     {
         GetCompo<EntityRenderer>().OnAnimationEnd -= HandleAnimationEnd;
+            
+        var health = GetCompo<EntityHealth>();
+        health.OnHitEvent -= HandleHit;
+        health.OnDeathEvent -= HandleDead;
     }
 
     private void Update()
