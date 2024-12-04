@@ -1206,7 +1206,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 367563404045651758, guid: 340afe36323072e4c92d455c1b5599b9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.618
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 794612113437296623, guid: 340afe36323072e4c92d455c1b5599b9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1238,7 +1238,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5330061064786909561, guid: 340afe36323072e4c92d455c1b5599b9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.63
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5753716166844297686, guid: 340afe36323072e4c92d455c1b5599b9, type: 3}
       propertyPath: m_Enabled
@@ -1262,7 +1262,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7215810120085688937, guid: 340afe36323072e4c92d455c1b5599b9, type: 3}
       propertyPath: m_Offset.y
-      value: -0.64
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7234822644632717853, guid: 340afe36323072e4c92d455c1b5599b9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1270,7 +1270,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7234822644632717853, guid: 340afe36323072e4c92d455c1b5599b9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7234822644632717853, guid: 340afe36323072e4c92d455c1b5599b9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1311,6 +1311,10 @@ PrefabInstance:
     - target: {fileID: 7797236876660383194, guid: 340afe36323072e4c92d455c1b5599b9, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8190482782381773643, guid: 340afe36323072e4c92d455c1b5599b9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8806349674974210632, guid: 340afe36323072e4c92d455c1b5599b9, type: 3}
       propertyPath: m_Controller

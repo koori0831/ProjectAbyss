@@ -19,7 +19,6 @@ public class MeleeWeapon : MonoBehaviour, IPlayerComponent
     {
         if (_availableFireTime < Time.time && _player.canFire)
         {
-            Debug.Log(1);
             _player.StateMachine.ChangeState(PlayerStateEnum.PlayerAttack);
         }
     }

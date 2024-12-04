@@ -7,7 +7,6 @@ public class PlayerAttackState : PlayerState
     {
     }
 
-
     public override void Enter()
     {
         base.Enter();
@@ -16,8 +15,8 @@ public class PlayerAttackState : PlayerState
 
     public override void StateFixedUpdate()
     {
-        /*float x = 
+        float movementX = _playerInput.InputDirection.x;
 
-        _entityMover.SetXMovement(0);*/
+        _entityMover.SetXMovement(movementX);
     }
 }
