@@ -1,17 +1,19 @@
 using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
-public class ZipLine : MonoBehaviour
+public class ZipLineManager : MonoSingleton<ZipLineManager>
 {
     [SerializeField] private Material _lineMaterial;
+    [SerializeField] private LayerMask _whatIsObstacle;
 
     private LineRenderer lineRenderer;
 
     private ZipLineBullet _startLinkBullet = null;
     private ZipLineBullet _endLinkBullet = null;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.material = _lineMaterial;
     }
@@ -47,5 +49,22 @@ public class ZipLine : MonoBehaviour
     {
         lineRenderer.SetPosition(0, new Vector3(0,0,0));
         lineRenderer.SetPosition(1, new Vector3(0,0,0));
+    }
+
+    public void LinkBullet(ZipLineBullet bullet1, ZipLineBullet bullet2)
+    {
+        bullet1.linkedBullet = bullet2;
+        bullet2.linkedBullet = bullet1;
+    }
+
+    public void UnlinkBullet(ZipLineBullet bullet1, ZipLineBullet bullet2)
+    {
+        bullet1.linkedBullet = null;
+        bullet2.linkedBullet = null;
+    }
+
+    public bool CheckPathBetweenBullets(Vector2 startPos, Vector2 endPos)
+    {
+        return Physics2D.Raycast(startPos, (endPos - startPos).normalized, (endPos - startPos).magnitude, _whatIsObstacle);
     }
 }

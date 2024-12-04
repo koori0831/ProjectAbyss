@@ -15,6 +15,7 @@ MonoBehaviour:
   PaletteColor: {r: 0.21987364, g: 0.23438212, b: 0.254717, a: 0.5}
   blockName: MineWallTile
   <TileBase>k__BackingField: {fileID: 11400000, guid: 575d89afd85e53d46aaaab24edaba334, type: 2}
+  isPlatform: 0
 --- !u!114 &-3212949813244073371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30,6 +31,7 @@ MonoBehaviour:
   PaletteColor: {r: 1, g: 1, b: 1, a: 0.5}
   blockName: 
   <TileBase>k__BackingField: {fileID: 0}
+  isPlatform: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,6 +65,7 @@ MonoBehaviour:
   PaletteColor: {r: 1, g: 0, b: 0, a: 0.5}
   blockName: test
   <TileBase>k__BackingField: {fileID: 11400000, guid: 575d89afd85e53d46aaaab24edaba334, type: 2}
+  isPlatform: 0
 --- !u!114 &7430963717068574213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,6 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a09506035576f24685f40b84056bfde, type: 3}
   m_Name: AbyssRoomTileSO
   m_EditorClassIdentifier: 
-  PaletteColor: {r: 1, g: 1, b: 1, a: 0.5}
-  blockName: 
-  <TileBase>k__BackingField: {fileID: 0}
+  PaletteColor: {r: 1, g: 0.9709013, b: 0.3254717, a: 0.5}
+  blockName: PlatformTile
+  <TileBase>k__BackingField: {fileID: 11400000, guid: 575d89afd85e53d46aaaab24edaba334, type: 2}
+  isPlatform: 1

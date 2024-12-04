@@ -16,6 +16,8 @@ public enum PlayerStateEnum
 
 public class Player : Entity
 {
+    private Action OnAttackEvent;
+
     [field: SerializeField]
     public PlayerInputSO InputCompo { get; private set; }
     public StateMachine<PlayerStateEnum> StateMachine{ get; private set; }

@@ -9,7 +9,8 @@ public class AbyssCreater : MonoBehaviour
 
     [SerializeField] int abyssHeight = 1000;
     [SerializeField] TileBase abyssTile;
-    [field: SerializeField] Tilemap AbyssTilemap { get; set; }
+    [field: SerializeField] public Tilemap AbyssTilemap { get; private set; }
+    [field: SerializeField] public Tilemap AbyssPlatformTilemap { get; private set; }
 
 
     private int lastGeneratedY = 0;
