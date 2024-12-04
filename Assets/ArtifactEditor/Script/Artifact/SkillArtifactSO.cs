@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SkillArtifactSO : ArtifactSO
+public class SkillArtifactSO : ArtifactSO, ISkillable
 {
-    public ArtifactSkillSO artifactSkillSO;
+    [field: SerializeField] public SkillSO SkillSO { get; private set; }
 }

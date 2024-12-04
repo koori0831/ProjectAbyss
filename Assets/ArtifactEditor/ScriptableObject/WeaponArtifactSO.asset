@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ArtifactName>k__BackingField: 
   <ArtifactDesc>k__BackingField: 
-  <ArtifactRank>k__BackingField: {fileID: 0}
+  <ArtifactRank>k__BackingField: {fileID: 11400000, guid: 330e71d12c796574cb29231dd99cdc94, type: 2}
   <ItemImage>k__BackingField: {fileID: 0}
   <ResaleValue>k__BackingField: 0
   <SaleValue>k__BackingField: 0
