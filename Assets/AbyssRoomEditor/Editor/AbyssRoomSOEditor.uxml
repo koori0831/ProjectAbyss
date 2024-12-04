@@ -1,5 +1,7 @@
-<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
     <Style src="project://database/Assets/AbyssRoomEditor/Editor/AbyssRoomSOEditor.uss?fileID=7433441132597879392&amp;guid=2ac22502a29b8524d8681e4de6c88755&amp;type=3#AbyssRoomSOEditor" />
+    <engine:Label text="Editor" style="font-size: 18px;" />
+    <engine:IntegerField label="Cell Size" value="10" name="CellSize" />
     <engine:Button text="Reload" name="Reload" />
     <engine:VisualElement name="RoomView" style="flex-shrink: 0; align-self: center; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px;" />
     <ProjectAbyss.RoomEditor.AbyssRoomInspectorView is-draw-default="true" />
