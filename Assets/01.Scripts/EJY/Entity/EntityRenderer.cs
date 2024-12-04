@@ -18,7 +18,8 @@ public class EntityRenderer : MonoBehaviour, IEntityComponent
     }
 
     public void PlayAnimation(int animHash) => _animator.Play(animHash);
-
+    public void AnimationSpeedSetting(int speed) => _animator.speed = speed;
+    
     public void AnimationToEnd()
     {
         OnAnimationEnd?.Invoke();
@@ -40,6 +41,11 @@ public class EntityRenderer : MonoBehaviour, IEntityComponent
     {
         if (Mathf.Abs(FacingDirection + xMove) < 0.5f)
             Flip();
+    }
+
+    public bool isFacingRight()
+    {
+        return Mathf.Sign(_entity.transform.localScale.x) > 0;
     }
     #endregion
 }
