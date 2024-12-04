@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e37a69fa03b436241b1d50c34bbc7ebb, type: 3}
-  m_Name: test
+  m_Script: {fileID: 11500000, guid: 01674f4c514b9984eb4728f555449595, type: 3}
+  m_Name: WeaponArtifactSO
   m_EditorClassIdentifier: 
-  <ArtifactName>k__BackingField: test
+  <ArtifactName>k__BackingField: 
   <ArtifactDesc>k__BackingField: 
-  <ArtifactRank>k__BackingField: {fileID: 11400000, guid: 330e71d12c796574cb29231dd99cdc94, type: 2}
-  <ItemImage>k__BackingField: {fileID: 7416376365268680862, guid: 4c92fdf190c298f43a958ea64410319e, type: 3}
+  <ArtifactRank>k__BackingField: {fileID: 0}
+  <ItemImage>k__BackingField: {fileID: 0}
   <ResaleValue>k__BackingField: 0
   <SaleValue>k__BackingField: 0

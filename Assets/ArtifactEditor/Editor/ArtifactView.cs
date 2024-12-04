@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.DemiEditor;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -44,12 +45,18 @@ namespace Chipmunk.ArtifactEditor
                 itemSpriteElement.style.backgroundImage = img;
             }
             {
-                itemName.text = itemSO.ArtifactName;
+                itemName.text = itemSO.ArtifactName.IsNullOrEmpty() ? "None" : itemSO.ArtifactName;
             }
             {
-                string rarity = itemSO.ArtifactRank == null ? "None" : itemSO.ArtifactRank.name;
-                itemRarity.text = rarity;
-                rootElement.AddToClassList(rarity);
+
+                if (itemSO.ArtifactRank != null)
+                {
+                    string rarity = itemSO.ArtifactRank == null ? "None" : itemSO.ArtifactRank.name;
+                    itemRarity.text = rarity;
+                    itemRarity.style.color = itemSO.ArtifactRank == null ? Color.gray : itemSO.ArtifactRank.RankColor;
+
+                    rootElement.AddToClassList(rarity);
+                }
             }
             {
                 itemType.text = itemSO.GetType().Name;
