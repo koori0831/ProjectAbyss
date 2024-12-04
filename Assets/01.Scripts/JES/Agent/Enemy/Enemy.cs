@@ -68,4 +68,15 @@ public abstract class Enemy : Entity,IPoolable
         IsDead = false;
         Target = null;
     }
+    
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, ditectRange);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position,attackRange);
+        Gizmos.color = Color.white;
+    }
+#endif
 }
