@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerState : State<PlayerStateEnum>
@@ -9,4 +10,5 @@ public class PlayerState : State<PlayerStateEnum>
         _player = entity as Player;
         _playerInput = _player.GetPlayerCompo<PlayerInputSO>();
     }
+
 }
