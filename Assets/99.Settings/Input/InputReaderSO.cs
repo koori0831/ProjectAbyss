@@ -8,6 +8,7 @@ public class PlayerInputSO : ScriptableObject, IPlayerActions, IPlayerComponent
 {
     public event Action JumpEvent;
     public event Action AttackEvent;
+    public event Action InteractionEvent;
     public event Action ZipShootEvent;
 
     public Vector2 InputDirection { get; private set; }
@@ -15,6 +16,15 @@ public class PlayerInputSO : ScriptableObject, IPlayerActions, IPlayerComponent
     private Controls _controls;
 
     private Player _player;
+
+    private Vector2 _mousePos;
+    public Vector2 MousePos
+    {
+        get
+        {
+            return _mousePos;
+        }
+    }
 
     private void OnEnable()
     {
@@ -50,7 +60,8 @@ public class PlayerInputSO : ScriptableObject, IPlayerActions, IPlayerComponent
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        throw new NotImplementedException();
+        if(context.performed)
+            InteractionEvent?.Invoke();
     }
 
     public void Initialize(Player player)
@@ -62,5 +73,10 @@ public class PlayerInputSO : ScriptableObject, IPlayerActions, IPlayerComponent
     {
         if(context.performed)
             ZipShootEvent?.Invoke();
+    }
+
+    public void OnMouse(InputAction.CallbackContext context)
+    {
+        _mousePos = context.ReadValue<Vector2>();
     }
 }

@@ -60,7 +60,6 @@ public class EntityMover : MonoBehaviour, IEntityComponent
     private void FixedUpdate()
     {
         CheckGround();
-        MoveCharacter();
     }
 
     private void CheckGround()
@@ -70,11 +69,12 @@ public class EntityMover : MonoBehaviour, IEntityComponent
             _groundTrm.position, _groundCheckSize, 0, _whatIsGround);
     }
 
-    private void MoveCharacter()
+    public void MoveCharacter(bool isFlipwithMouse = false)
     {
         if (CanManualMove)
         {
             _rbCompo.linearVelocityX = _xMovement * _moveSpeed * SpeedMultiplier;
+            if (!isFlipwithMouse)
             _renderer.FlipController(_xMovement);
         }
     }

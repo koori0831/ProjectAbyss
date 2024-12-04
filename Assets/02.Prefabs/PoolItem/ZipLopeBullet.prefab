@@ -111,6 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _poolName: ZipLineBullet
+  _moveSpeed: 6
   _lifeTime: 15
   linkedBullet: {fileID: 0}
   zipLineMat: {fileID: 2100000, guid: 6b84c5c5b0a47ab4a8d7ebe61250c3cc, type: 2}

@@ -1,11 +1,13 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
-public class ZipLineBullet : MonoBehaviour, IPoolable, IInterationable
+public class ZipLineBullet : MonoBehaviour, IPoolable, IInteractionable
 {
+    private Player _player;
+
     [SerializeField] private string _poolName = "ZipLineBullet";
 
+    [SerializeField] private float _moveSpeed = 5;
     [SerializeField] private float _lifeTime = 15;
     private float _currentLifeTime = 0;
     private bool _isPlaced = false;
@@ -19,8 +21,10 @@ public class ZipLineBullet : MonoBehaviour, IPoolable, IInterationable
 
     public GameObject ObjectPrefab => gameObject;
     public bool isLinked = false;
+
     private void Awake()
     {
+        _player = FindAnyObjectByType<Player>();
         _rigidBody = GetComponent<Rigidbody2D>();
     }
 
@@ -30,7 +34,7 @@ public class ZipLineBullet : MonoBehaviour, IPoolable, IInterationable
 
         if (_currentLifeTime >= _lifeTime)
         {
-            //_isDead = true;
+            _isPlaced = true;
             PoolManager.Instance.Push(this);
         }
     }
@@ -43,7 +47,6 @@ public class ZipLineBullet : MonoBehaviour, IPoolable, IInterationable
         _rigidBody.linearVelocity = Vector2.zero;
 
         TryLink();
-        Debug.Log(1);
     }
 
     private void TryLink()
@@ -67,7 +70,25 @@ public class ZipLineBullet : MonoBehaviour, IPoolable, IInterationable
 
     private IEnumerator ZipLineInteractionCoroutine()
     {
-        yield return null;
+        float time = 0;
+
+        Vector2 startPos = transform.position;
+        Vector2 endPos = linkedBullet.transform.position;
+
+        float dis = Vector2.Distance(startPos, endPos);
+
+        float moveTime = dis / _moveSpeed;
+
+        _player.StateMachine.ChangeState(PlayerStateEnum.PlayerZipLine);
+
+        while (time < moveTime)
+        {
+            time += Time.deltaTime;
+
+            _player.transform.position = Vector2.Lerp(startPos, endPos, time / moveTime);
+            yield return null;
+        }
+        _player.StateMachine.ChangeState(PlayerStateEnum.PlayerIdle);
     }
 
     public void Fire(Vector3 firePos, Vector3 velocity)
