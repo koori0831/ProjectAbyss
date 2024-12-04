@@ -5,8 +5,10 @@ public class ZipLineBullet : MonoBehaviour, IPoolable, IInteractionable
 {
     private Player _player;
     private ZipLine _zipLine;
+    private ZipLineGun _zipLineGun;
+    private Rigidbody2D _rigidBody;
 
-    [SerializeField] private string _poolName = "ZipLineBullet";
+    public ZipLineBullet linkedBullet;
 
     [SerializeField] private float _moveSpeed = 5;
 
@@ -17,34 +19,33 @@ public class ZipLineBullet : MonoBehaviour, IPoolable, IInteractionable
 
     public float currentLifeTime = 0;
 
-    private bool _isPlaced = false;
-
-    public ZipLineBullet linkedBullet;
+    [HideInInspector]
+    public bool _isPlaced = false;
+    [HideInInspector]
     public bool isLinked = false;
 
-    private Rigidbody2D _rigidBody;
 
     public string PoolName => _poolName;
-
+    [SerializeField] private string _poolName = "ZipLineBullet";
     public GameObject ObjectPrefab => gameObject;
 
     private void Awake()
     {
         _player = FindAnyObjectByType<Player>();
-        _zipLine = FindAnyObjectByType<ZipLine>().GetComponent<ZipLine>();
+        _zipLine = FindAnyObjectByType<ZipLine>();
+        _zipLineGun = FindAnyObjectByType<ZipLineGun>();
         _rigidBody = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
-        Debug.Log(LifeTime);
-
         currentLifeTime += Time.deltaTime;
 
         if (currentLifeTime >= LifeTime)
         {
             PoolManager.Instance.Push(this);
-            _zipLine.ResetLineRenderer();
+            if (isLinked)
+                _zipLine.ResetLineRenderer();
         }
 
     }
@@ -63,13 +64,21 @@ public class ZipLineBullet : MonoBehaviour, IPoolable, IInteractionable
 
     private void TryLink()
     {
-        if (linkedBullet != null)
+        if (_zipLineGun.beforeShootedBullet == null)
         {
-            if (linkedBullet._isPlaced)
-            {
-                _zipLine.Link(this, linkedBullet);
-            }
+            _zipLineGun.beforeShootedBullet = this;
         }
+        else
+        {
+            SetLinkBullet();
+        }
+    }
+
+    public void SetLinkBullet()
+    {
+        _zipLineGun.LinkBullet(this, _zipLineGun.beforeShootedBullet);
+        _zipLine.Link(this, linkedBullet);
+        _zipLineGun.ResetBefore();
     }
 
     public void Interaction()
@@ -79,27 +88,34 @@ public class ZipLineBullet : MonoBehaviour, IPoolable, IInteractionable
 
     private IEnumerator ZipLineInteractionCoroutine()
     {
-        float time = 0;
-
-        Vector2 startPos = transform.position;
-        Vector2 endPos = linkedBullet.transform.position;
-
-        float dis = Vector2.Distance(startPos, endPos);
-
-        float moveTime = dis / _moveSpeed;
-
-        _player.StateMachine.ChangeState(PlayerStateEnum.PlayerZipLine);
-
-        while (time < moveTime)
+        if (linkedBullet != null)
         {
-            if (linkedBullet == null) break;
+            float time = 0;
 
-            time += Time.deltaTime;
+            Vector2 startPos = transform.position;
+            Vector2 endPos = linkedBullet.transform.position;
 
-            _player.transform.position = Vector2.Lerp(startPos, endPos, time / moveTime);
-            yield return null;
+            float dis = Vector2.Distance(startPos, endPos);
+
+            //float offset = new Vector2(); 
+
+            float moveTime = dis / _moveSpeed;
+
+            _player.StateMachine.ChangeState(PlayerStateEnum.PlayerZipLine);
+            _player.canFire = false;
+
+            while (time < moveTime)
+            {
+                if (linkedBullet == null) break;
+
+                time += Time.deltaTime;
+
+                _player.transform.position = Vector2.Lerp(startPos, endPos, time / moveTime);
+                yield return null;
+            }
+            _player.StateMachine.ChangeState(PlayerStateEnum.PlayerIdle);
+            _player.canFire = true;
         }
-        _player.StateMachine.ChangeState(PlayerStateEnum.PlayerIdle);
     }
 
     public void Fire(Transform firePos, float velocity)
@@ -112,5 +128,7 @@ public class ZipLineBullet : MonoBehaviour, IPoolable, IInteractionable
     {
         _isPlaced = false;
         isLinked = false;
+        linkedBullet = null;
+        currentLifeTime = 0;
     }
 }

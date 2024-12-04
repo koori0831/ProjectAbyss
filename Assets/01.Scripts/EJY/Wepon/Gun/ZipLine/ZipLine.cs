@@ -45,6 +45,7 @@ public class ZipLine : MonoBehaviour
 
     public void ResetLineRenderer()
     {
-        lineRenderer.positionCount = 0;
+        lineRenderer.SetPosition(0, new Vector3(0,0,0));
+        lineRenderer.SetPosition(1, new Vector3(0,0,0));
     }
 }
