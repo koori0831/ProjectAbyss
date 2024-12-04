@@ -77,7 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PaletteColor: {r: 1, g: 0, b: 0, a: 0.5}
   blockName: test
-  <TileBase>k__BackingField: {fileID: 0}
+  <TileBase>k__BackingField: {fileID: 11400000, guid: 575d89afd85e53d46aaaab24edaba334, type: 2}
 --- !u!114 &7430963717068574213
 MonoBehaviour:
   m_ObjectHideFlags: 0

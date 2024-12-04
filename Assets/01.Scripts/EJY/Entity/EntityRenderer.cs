@@ -3,7 +3,12 @@ using UnityEngine;
 
 public class EntityRenderer : MonoBehaviour, IEntityComponent
 {
+    public event Action OnAnimationEnd;
+    public event Action OnAttackTryEvent;
+
+
     public float FacingDirection { get; private set; } = 1;
+
     private Entity _entity;
     private Animator _animator;
     public void Initialize(Entity entity)
@@ -13,12 +18,23 @@ public class EntityRenderer : MonoBehaviour, IEntityComponent
     }
 
     public void PlayAnimation(int animHash) => _animator.Play(animHash);
+    public void AnimationSpeedSetting(int speed) => _animator.speed = speed;
+    
+    public void AnimationToEnd()
+    {
+        OnAnimationEnd?.Invoke();
+    }
+
+    public void AttackTry()
+    {
+        OnAttackTryEvent?.Invoke();
+    }
 
     #region Flip Controller
     public void Flip()
     {
         FacingDirection *= -1;
-        _entity.transform.Rotate(0, 180f, 0);
+        _entity.transform.localScale = new Vector3(_entity.transform.localScale.x * -1 ,1,1);
     }
 
     public void FlipController(float xMove)
