@@ -18,14 +18,7 @@ public class MeleeGroundEnemyFindState : State<MeleeGroundEnemyStateType>
         base.StateUpdate();
         if (_enemy.DitectTarget())
         {
-            if (Mathf.Abs(_enemy.Target.transform.position.y - _enemy.transform.position.y) > 2.3f)
-            {
-                _enemy.Target = null;
-            }
-            else
-            {
-                _stateMachine.ChangeState(MeleeGroundEnemyStateType.MeleeGroundEnemyWait);
-            }
+            _stateMachine.ChangeState(MeleeGroundEnemyStateType.MeleeGroundEnemyWait);
             return; 
         }
         var ray = Physics2D.Raycast(new Vector3(_entity.transform.position.x,_entity.transform.position.y+0.2f,0), 

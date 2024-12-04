@@ -3,12 +3,13 @@ using UnityEngine;
 public class MeleeGroundEnemy : Enemy
 {
     private StateMachine<MeleeGroundEnemyStateType> _stateMachine;
-
+    private EntityRenderer _renderer;
     protected override void AfterInit()
     {
         base.AfterInit();
         _stateMachine = new StateMachine<MeleeGroundEnemyStateType>(this);
         _stateMachine.InitState(MeleeGroundEnemyStateType.MeleeGroundEnemyFind);
+        _renderer = GetCompo<EntityRenderer>();
     }
 
     protected override void HandleDead()
@@ -39,8 +40,9 @@ public class MeleeGroundEnemy : Enemy
     
     public override bool DitectTarget()
     {
-        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x,transform.position.y+0.2f), Vector2.right, ditectRange,_whatIsTarget);
-
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x,transform.position.y+0.2f), 
+            new Vector2(_renderer.FacingDirection,0), ditectRange,_whatIsTarget);
+    
         if (hit.collider != null && hit.collider.TryGetComponent(out Player player))
         {
             Target = player;

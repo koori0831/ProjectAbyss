@@ -7,6 +7,7 @@ public class MeleeGroundEnemyAtkCompo : MonoBehaviour,IEntityComponent
     private MeleeGroundEnemy _enemy;
     private float _lastAtkTime;
     private EntityRenderer _animator;
+    private EntityMover _mover;
     
     public void Initialize(Entity entity)
     {
@@ -14,6 +15,7 @@ public class MeleeGroundEnemyAtkCompo : MonoBehaviour,IEntityComponent
         Debug.Assert(_enemy != null, "Check!, Bomber attack component attached wrong!");
         
         _animator = _enemy.GetCompo<EntityRenderer>();
+        _mover = _enemy.GetCompo<EntityMover>();
     }
     
     public bool CanAttack() => _lastAtkTime + _cooldown < Time.time;
@@ -25,8 +27,14 @@ public class MeleeGroundEnemyAtkCompo : MonoBehaviour,IEntityComponent
     
     public void Attack()
     {
+        _mover.StopImmediately();
         _lastAtkTime = Time.time;
+        Vector2 direction = _enemy.Target.transform.position - _enemy.transform.position;
+        
+        _mover.AddForceToEntity(direction.normalized*4);
         _enemy.GetCompo<OverlapDamageCaster>().CastDamage();
+        
+        
         _animator.OnAttackTryEvent -= Attack;
     }
 }

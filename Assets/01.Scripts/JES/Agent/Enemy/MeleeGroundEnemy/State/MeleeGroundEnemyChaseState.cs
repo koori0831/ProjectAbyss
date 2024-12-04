@@ -11,13 +11,21 @@ public class MeleeGroundEnemyChaseState : State<MeleeGroundEnemyStateType>
     public override void StateUpdate()
     {
         base.StateUpdate();
-        
+        var ray = Physics2D.Raycast(new Vector3(_entity.transform.position.x,_entity.transform.position.y+0.2f,0), 
+            _entity.transform.right, 0.6f,_entityMover._whatIsGround);
+        if (ray.collider != null || !_entityMover.isGround.Value)
+        {
+            _enemy.Target = null;
+            _stateMachine.ChangeState(MeleeGroundEnemyStateType.MeleeGroundEnemyFind);
+            return;
+        }
+
         float distance =Vector3.Distance(_entity.transform.position, _enemy.Target.transform.position);
         if (_enemy.attackRange > distance)
         {
             _stateMachine.ChangeState(MeleeGroundEnemyStateType.MeleeGroundEnemyWait);
             return;
-        }
+        }   
         
         Vector2 direction = _enemy.Target.transform.position - _entity.transform.position;
         
