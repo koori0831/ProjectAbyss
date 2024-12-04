@@ -11,14 +11,8 @@ public class ZipLineGun : Shooter
         zipLineBullet.Fire(_firePosTrm, _shootPoewr);
     }
 
-    public void LinkBullet(ZipLineBullet bullet1, ZipLineBullet bullet2)
+    public void ResetBefore(ZipLineBullet bullet = null)
     {
-        bullet1.linkedBullet = bullet2;
-        bullet2.linkedBullet = bullet1;
-    }
-
-    public void ResetBefore()
-    {
-        beforeShootedBullet = null;
+        beforeShootedBullet = bullet;
     }
 }
