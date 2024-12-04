@@ -16,7 +16,7 @@ public enum PlayerStateEnum
 
 public class Player : Entity
 {
-    private Action OnAttackEvent;
+    public Action OnAttackEvent;
 
     [field: SerializeField]
     public PlayerInputSO InputCompo { get; private set; }
@@ -110,8 +110,6 @@ public class Player : Entity
     {
         _playerComponents.Values.ToList().ForEach(component => component.Initialize(this));
     }
-
-
 
     public T GetPlayerCompo<T>(bool isDerived = false) where T : IPlayerComponent
     {
