@@ -5,6 +5,10 @@ public class InventoryManager : MonoSingleton<InventoryManager>
     public List<WeaponArtifactSO> HaveWeaponList { get; private set; }
     public List<SkillArtifactSO> HaveSkillArtifactList { get; private set; }
     public List<StatsArtifactSO> HaveStatArtifactList { get; private set; }
+
+    public WeaponArtifactSO CurrentWeapon { get; private set; }
+    public SkillArtifactSO CurrentSkillArtifact { get; private set; }
+    public StatsArtifactSO CurrentStatArtifact { get; private set; }
     public int HaveMagicStoneCount { get; private set; }
 
     public void AddWeapon(WeaponArtifactSO item) { HaveWeaponList.Add(item); }
