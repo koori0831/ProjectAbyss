@@ -583,6 +583,7 @@ MonoBehaviour:
   _whatIsObstacle:
     serializedVersion: 2
     m_Bits: 512
+  beforeShootedBullet: {fileID: 0}
 --- !u!120 &1653877960
 LineRenderer:
   serializedVersion: 2
@@ -1242,6 +1243,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1813146446410702513, guid: 340afe36323072e4c92d455c1b5599b9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7234822644632717853, guid: 340afe36323072e4c92d455c1b5599b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
