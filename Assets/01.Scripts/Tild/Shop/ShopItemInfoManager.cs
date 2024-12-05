@@ -26,7 +26,7 @@ public class ShopItemInfoManager : MonoSingleton<ShopItemInfoManager>
         _decoFrame = _rankDeco.GetComponentInChildren<CanvasGroup>();
     }
 
-    public void OpenInfo(ArtifactData artifact, Vector2 uiTargetPos)
+    public void OpenInfo(ArtifactSO artifact, Vector2 uiTargetPos)
     {
 
 
@@ -41,7 +41,7 @@ public class ShopItemInfoManager : MonoSingleton<ShopItemInfoManager>
 
     }
 
-    public void InitializeUI(ArtifactData artifact)
+    public void InitializeUI(ArtifactSO artifact)
     {
         _itemName.SetText(artifact.ArtifactName);
         _itemDesc.SetText(artifact.ArtifactDesc);
