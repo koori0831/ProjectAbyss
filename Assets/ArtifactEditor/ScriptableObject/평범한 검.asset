@@ -17,7 +17,7 @@ MonoBehaviour:
     \uBBFF\uAE30\uC9C0 \uC54A\uC740 \uC815\uB3C4\uB85C \uC5B4\uB514\uC11C\uB098 \uAD6C\uD560
     \uC218 \uC788\uC744 \uBC95\uD55C \uD3C9\uBC94\uD55C \uAC80."
   <ArtifactRank>k__BackingField: {fileID: 11400000, guid: 330e71d12c796574cb29231dd99cdc94, type: 2}
-  <ItemImage>k__BackingField: {fileID: -5971942374765049077, guid: b2966ba035ea3d34297787fd6f381dc0, type: 3}
+  <ItemImage>k__BackingField: {fileID: 1559682758, guid: b2966ba035ea3d34297787fd6f381dc0, type: 3}
   <ResaleValue>k__BackingField: 30
   <SaleValue>k__BackingField: 50
   WeaponType: 1
