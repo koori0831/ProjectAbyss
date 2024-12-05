@@ -244,9 +244,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ed440359ea97a347bcd0243a138c0ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <IdData>k__BackingField: {fileID: 0}
-  _currentCoin: 0
+  <IdData>k__BackingField: {fileID: 11400000, guid: 609ce12fdf3070347956bce28d8dfc6a, type: 2}
+  _currentCoin:
+    _value: 0
   _killCount: 0
+  _killEventChannel: {fileID: 11400000, guid: 9af87049df279714fa5fe8cdacdccaf0, type: 2}
 --- !u!1 &1830453695495224503
 GameObject:
   m_ObjectHideFlags: 0
