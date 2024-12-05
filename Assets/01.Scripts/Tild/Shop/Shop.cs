@@ -44,11 +44,11 @@ public class Shop : MonoBehaviour
             if (MoneySample.Instance.Money >= artifact.SaleValue)
             {
                 MoneySample.Instance.ChangeMoney(-artifact.SaleValue);
-                ChatManager.Instance.StartChat($"${artifact.SaleValue}으로 {artifact.ArtifactName}을(를) 구매했습니다.",0.1f);
+                ChatManager.Instance.StartChat($"${artifact.SaleValue}으로 {artifact.ArtifactName}을(를) 구매했습니다.",2f);
             }
             else
             {   
-                ChatManager.Instance.StartChat($"{artifact.ArtifactName}을(를) 구매하려면 ${MoneySample.Instance.Money - artifact.SaleValue}가 더 필요합니다. ",0.1f);
+                ChatManager.Instance.StartChat($"{artifact.ArtifactName}을(를) 구매하려면 ${MoneySample.Instance.Money - artifact.SaleValue}가 더 필요합니다. ",3f);
             }
         }
     }

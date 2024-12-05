@@ -7,12 +7,6 @@ using TMPro;
 
 public class NpcInteract : MonoBehaviour
 {
-
-    
-    [SerializeField] private DialogSO _baseNpcDialog;
-
-    
-    
     private bool _isActive;
     private bool _isChatting;
 
@@ -40,16 +34,10 @@ public class NpcInteract : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && _isActive)
-        {
-            if (!ChatManager.Instance.endText)
-            ChatManager.Instance.StartChat(GetDialog(   _baseNpcDialog.JobDialogList), 0.08f);
+        { 
             NpcInteracted?.Invoke();
         }
     }
 
-    public string GetDialog(List<string> dialogs)
-    {
-        string dialog = dialogs[Random.Range(0, dialogs.Count)];
-        return dialog;
-    }
+    
 }

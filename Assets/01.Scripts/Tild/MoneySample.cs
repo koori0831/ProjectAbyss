@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -7,63 +6,47 @@ public class MoneySample : MonoSingleton<MoneySample>
 {
     public int Money;
 
-    [SerializeField] TMP_Text currencyText;
+    [SerializeField] private TMP_Text currencyText;
 
-    private int m_UiValue = 0;
-    private Queue<int> moneyChangeQueue = new Queue<int>(); // 요청을 저장할 큐
-    private bool isAnimating = false; // 애니메이션 실행 상태 확인
-
-    private float baseDelay = 0.01f;
+    private int currentUiValue = 0;
+    private Coroutine animationCoroutine;
 
     public void ChangeMoney(int value)
     {
-        moneyChangeQueue.Enqueue(value); // 요청을 큐에 추가
+        int targetValue = Money + value;
+        Money = targetValue;
 
-        if (!isAnimating)
-            StartCoroutine(ProcessQueue());
-    }
-
-    private IEnumerator ProcessQueue()
-    {
-        isAnimating = true;
-
-        while (moneyChangeQueue.Count > 0)
+        // 기존 애니메이션이 진행 중이면 중단
+        if (animationCoroutine != null)
         {
-            int value = moneyChangeQueue.Dequeue(); // 큐에서 요청을 꺼냄
-            int startValue = m_UiValue; // 현재 UI 값
-            int targetValue = Money + value;
-
-            Money = targetValue; // Money 업데이트
-            yield return StartCoroutine(Counting(startValue, targetValue)); // 애니메이션 실행
+            StopCoroutine(animationCoroutine);
         }
 
-        isAnimating = false; // 큐가 비었으면 애니메이션 상태 해제
+        // 새로운 애니메이션 시작
+        animationCoroutine = StartCoroutine(AnimateMoney(currentUiValue, targetValue));
     }
 
-    private IEnumerator Counting(int startValue, int targetValue)
+    private IEnumerator AnimateMoney(int startValue, int targetValue)
     {
-        int currentValue = startValue;
-        int step = Mathf.Max(1, Mathf.Abs(targetValue - startValue) / 100);
-        float delay = Mathf.Clamp(baseDelay, 0.01f, 0.05f);
+        float duration = 0.5f; // 애니메이션 지속 시간
+        float elapsedTime = 0f;
 
-        while (currentValue != targetValue)
+        while (elapsedTime < duration)
         {
-            if (currentValue < targetValue)
-                currentValue += step;
-            else
-                currentValue -= step;
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / duration;
 
-            if ((currentValue > targetValue && step > 0) || (currentValue < targetValue && step < 0))
-                currentValue = targetValue;
+            // `Lerp`로 현재 값을 계산
+            currentUiValue = Mathf.RoundToInt(Mathf.Lerp(startValue, targetValue, t));
+            currencyText.text = $"${currentUiValue:N0}";
 
-            m_UiValue = currentValue;
-            currencyText.text = $"${m_UiValue:N0}";
-
-            yield return new WaitForSeconds(delay);
+            yield return null;
         }
 
-        m_UiValue = targetValue;
-        currencyText.text = $"${m_UiValue:N0}";
+        // 최종 값 설정
+        currentUiValue = targetValue;
+        currencyText.text = $"${currentUiValue:N0}";
+
+        animationCoroutine = null; // 애니메이션 완료
     }
 }
-    

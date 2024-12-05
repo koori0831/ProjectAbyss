@@ -7,25 +7,40 @@ public class BaseNpc : MonoBehaviour
 {
     [SerializeField] private ShopItemStorage shopItemStorage;
     [SerializeField] private List<Shop> shopItemInfoTriggers;
+    [SerializeField] private DialogSO _baseNpcDialog;
 
-    public void Refill()
+    public void Refill(int price)
     {
         print("gg");
-        // 필요한 artifact 데이터의 개수를 가져옴
+      
         ArtifactData[] artifacts = shopItemStorage.GetArtifactDatasRandom(shopItemInfoTriggers.Count);
 
-        // shopItemInfoTriggers와 artifacts를 1:1로 매핑하여 설정
-        for (int i = 0; i < shopItemInfoTriggers.Count; i++)
+        if(MoneySample.Instance.Money >= price)
         {
-            Shop itemInfo = shopItemInfoTriggers[i];
-            ArtifactData artifact = artifacts[i];
+            MoneySample.Instance.ChangeMoney(-price);
+            ChatManager.Instance.StartChat(GetDialog(_baseNpcDialog.JobDialogList), 2f);
+            for (int i = 0; i < shopItemInfoTriggers.Count; i++)
+            {
+                Shop itemInfo = shopItemInfoTriggers[i];
+                ArtifactData artifact = artifacts[i];
 
-            itemInfo.artifact = artifact;
-            itemInfo.itemSprite.sprite = artifact.ItemImage;
-            print($"이름 {artifact.ArtifactName}, 등급 {artifact.ArtifactRank.RankName}");
+                itemInfo.artifact = artifact;
+                itemInfo.itemSprite.sprite = artifact.ItemImage;
+                print($"이름 {artifact.ArtifactName}, 등급 {artifact.ArtifactRank.RankName}");
+            }
         }
+        else
+        {
+            ChatManager.Instance.StartChat("돈이 부족해요", 2f);
+        }
+        
+       
     }
-
+    public string GetDialog(List<string> dialogs)
+    {
+        string dialog = dialogs[Random.Range(0, dialogs.Count)];
+        return dialog;
+    }
 
 
 
