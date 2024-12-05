@@ -1,7 +1,10 @@
+using System;
+using UnityEngine;
+
 public class GameManager : MonoSingleton<GameManager>
 {
+    public float playTime;
     private Player _player;
-
     public Player Player
     {
         get
@@ -12,5 +15,10 @@ public class GameManager : MonoSingleton<GameManager>
             }
             return _player;
         }
+    }
+
+    private void Update()
+    {
+        playTime += Time.deltaTime;
     }
 }

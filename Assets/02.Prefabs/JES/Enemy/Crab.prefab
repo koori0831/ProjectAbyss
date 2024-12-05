@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3874090989e4435a29c7fac5b52d581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _killEventChannel: {fileID: 11400000, guid: 9af87049df279714fa5fe8cdacdccaf0, type: 2}
   ditectRange: 6
   _whatIsTarget:
     serializedVersion: 2

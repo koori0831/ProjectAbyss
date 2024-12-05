@@ -9,6 +9,7 @@ public class DepthUI : PlayerCunnectUI, ISavable
     [SerializeField] private Image _depthBar;
     [SerializeField] private TextMeshProUGUI _depthText;
     [SerializeField] private float _startY=0, _endY=-1000;
+    public float Depth;
     private Transform _playerTrm;
     public override void AfterFindPlayer()
     {
@@ -32,6 +33,7 @@ public class DepthUI : PlayerCunnectUI, ISavable
             return;
         }
         yPos = Mathf.RoundToInt(Mathf.Abs(yPos));
+        Depth = yPos;
         _depthText.text = $"{yPos}m";
         yPos /= Mathf.Abs(_endY);
         _depthBar.DOFillAmount(yPos, 0.1f);
@@ -42,12 +44,11 @@ public class DepthUI : PlayerCunnectUI, ISavable
     public SaveIDSO IdData { get; }
     public string GetSaveData()
     {
-        throw new NotImplementedException();
+        return "a";
     }
 
     public void RestoreData(string data)
     {
-        throw new NotImplementedException();
     }
 
     #endregion
