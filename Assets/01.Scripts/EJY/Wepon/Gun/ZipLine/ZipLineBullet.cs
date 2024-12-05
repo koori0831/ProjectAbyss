@@ -33,9 +33,10 @@ public class ZipLineBullet : MonoBehaviour, IPoolable, IInteractionable
 
     private void Awake()
     {
-        _player = FindAnyObjectByType<Player>();
-        _zipLineGun = FindAnyObjectByType<ZipLineGun>();
+        _player = FindFirstObjectByType<Player>();
+        _zipLineGun = FindFirstObjectByType<ZipLineGun>();
         _rigidBody = GetComponent<Rigidbody2D>();
+        Debug.Log(_zipLineGun);
     }
 
     private void Update()
@@ -64,38 +65,38 @@ public class ZipLineBullet : MonoBehaviour, IPoolable, IInteractionable
 
     private void TryLink()
     {
-        if (_zipLineGun.beforeShootedBullet == null)
+        if (ZipLineManager.Instance.beforeShootedBullet == null)
         {
-            // 얘가 첫빠따
-            _zipLineGun.beforeShootedBullet = this;
+            // ?갡 ?????
+            ZipLineManager.Instance.beforeShootedBullet = this;
         }
         else
         {
-            // 두번째가 실행해줌
+            // ?ι?°?? ????????
             SetLinkBullet();
         }
     }
 
     public void SetLinkBullet()
     {
-        // 서로 링크
-        ZipLineManager.Instance.LinkBullet(this, _zipLineGun.beforeShootedBullet);
+        // ???? ???
+        ZipLineManager.Instance.LinkBullet(this, ZipLineManager.Instance.beforeShootedBullet);
 
         SetLinkPos();
         linkedBullet.SetLinkPos();
 
         if (ZipLineManager.Instance.CheckPathBetweenBullets(startPos, linkedBullet.startPos))
         {
-            Debug.Log("두 탄환 사이에 뭔가 있음");
-            ZipLineManager.Instance.UnlinkBullet(this, _zipLineGun.beforeShootedBullet);
-            _zipLineGun.ResetBefore(this);
-            Debug.Log(_zipLineGun.beforeShootedBullet);
+            Debug.Log("?? ?? ????? ???? ????");
+            ZipLineManager.Instance.UnlinkBullet(this, ZipLineManager.Instance.beforeShootedBullet);
+            ZipLineManager.Instance.ResetBefore(this);
+            Debug.Log(ZipLineManager.Instance.beforeShootedBullet);
             return;
         }
-        Debug.Log("두 탄환 사이에 뭔가 없음");
+        Debug.Log("?? ?? ????? ???? ????");
 
         ZipLineManager.Instance.Link(this, linkedBullet);
-        _zipLineGun.ResetBefore();
+        ZipLineManager.Instance.ResetBefore();
     }
 
     public void SetLinkPos()
