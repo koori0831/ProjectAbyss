@@ -12,8 +12,8 @@ public class BaseNpc : MonoBehaviour
     public void Refill(int price)
     {
         print("gg");
-      
-        ArtifactData[] artifacts = shopItemStorage.GetArtifactDatasRandom(shopItemInfoTriggers.Count);
+
+        ArtifactSO[] artifacts = shopItemStorage.GetArtifactDatasRandom(shopItemInfoTriggers.Count);
 
         if(MoneySample.Instance.Money >= price)
         {
@@ -22,7 +22,7 @@ public class BaseNpc : MonoBehaviour
             for (int i = 0; i < shopItemInfoTriggers.Count; i++)
             {
                 Shop itemInfo = shopItemInfoTriggers[i];
-                ArtifactData artifact = artifacts[i];
+                ArtifactSO artifact = artifacts[i];
 
                 itemInfo.artifact = artifact;
                 itemInfo.itemSprite.sprite = artifact.ItemImage;
