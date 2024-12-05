@@ -11,12 +11,27 @@ public class PlayerAttackState : PlayerState
     {
         base.Enter();
         _player.OnAttackEvent?.Invoke();
+
+        _entityMover.CanManualMove = false;
+        _entityMover.StopImmediately();
+        _entityMover.AddForceToEntity(new Vector2(_renderer.FacingDirection * 3, 0));
+        _player.canFlip = false;
     }
 
-    public override void StateFixedUpdate()
+    protected override void HandleAttackEvent()
     {
-        float movementX = _playerInput.InputDirection.x;
+    }
 
-        _entityMover.SetXMovement(movementX);
+    public override void StateUpdate()
+    {
+        if (_isTriggerCall)
+            _player.StateMachine.ChangeState(PlayerStateEnum.PlayerIdle);
+    }
+
+    public override void Exit()
+    {
+        _entityMover.CanManualMove = true;
+        _player.canFlip = true;
+        base.Exit();
     }
 }

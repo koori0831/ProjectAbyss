@@ -6,7 +6,6 @@ public class EntityRenderer : MonoBehaviour, IEntityComponent
     public event Action OnAnimationEnd;
     public event Action OnAttackTryEvent;
 
-
     public float FacingDirection { get; private set; } = 1;
 
     private Entity _entity;
