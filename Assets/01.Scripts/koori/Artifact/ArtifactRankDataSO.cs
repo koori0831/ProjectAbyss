@@ -9,3 +9,11 @@ public class ArtifactRankDataSO : ScriptableObject
     [Range(1, 100)]
     public int RankRarity = 1;
 }
+public enum ArtifactRank
+{
+    None,
+    Special,
+    High,
+    Normal,
+    Low
+}
