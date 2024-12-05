@@ -3,22 +3,22 @@ using System.Collections.Generic;
 
 public class ShopItemStorage : MonoBehaviour
 {
-    public List<ArtifactData> artifactDatas; // 전체 아티팩트 데이터 리스트
+    public List<ArtifactSO> artifactDatas; // 전체 아티팩트 데이터 리스트
     public List<ArtifactRankDataSO> artifactRankDatas; // 등급 데이터 (확률 포함)
 
-    private Dictionary<ArtifactRank, List<ArtifactData>> rankedArtifactLists; // ArtifactRank(enum) 기반으로 나눈 리스트
+    private Dictionary<ArtifactRank, List<ArtifactSO>> rankedArtifactLists; // ArtifactRank(enum) 기반으로 나눈 리스트
 
     void Start()
     {
         // ArtifactRank(enum) 기반 딕셔너리 초기화
-        rankedArtifactLists = new Dictionary<ArtifactRank, List<ArtifactData>>();
+        rankedArtifactLists = new Dictionary<ArtifactRank, List<ArtifactSO>>();
 
         // Enum 값들로 딕셔너리 초기화
         foreach (ArtifactRank rank in System.Enum.GetValues(typeof(ArtifactRank)))
         {
             if (rank != ArtifactRank.None) // None 제외
             {
-                rankedArtifactLists[rank] = new List<ArtifactData>();
+                rankedArtifactLists[rank] = new List<ArtifactSO>();
             }
         }
 
@@ -37,9 +37,9 @@ public class ShopItemStorage : MonoBehaviour
         }
     }
 
-    public ArtifactData[] GetArtifactDatasRandom(int amount)
+    public ArtifactSO[] GetArtifactDatasRandom(int amount)
     {
-        ArtifactData[] selectedArtifacts = new ArtifactData[amount];
+        ArtifactSO[] selectedArtifacts = new ArtifactSO[amount];
 
         // Enum 기반 확률 설정
         Dictionary<ArtifactRank, float> rankRarity = new Dictionary<ArtifactRank, float>();
@@ -76,9 +76,9 @@ public class ShopItemStorage : MonoBehaviour
             }
 
             // 선택된 랭크 리스트에서 랜덤으로 ArtifactData 추출
-            List<ArtifactData> selectedRankList = rankedArtifactLists[selectedRank];
+            List<ArtifactSO> selectedRankList = rankedArtifactLists[selectedRank];
             int artifactIndex = Random.Range(0, selectedRankList.Count);
-            ArtifactData chosenArtifact = selectedRankList[artifactIndex];
+            ArtifactSO chosenArtifact = selectedRankList[artifactIndex];
             selectedArtifacts[i] = chosenArtifact;
 
         }

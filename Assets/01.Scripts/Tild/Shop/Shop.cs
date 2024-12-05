@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
-    public ArtifactData artifact;
+    public ArtifactSO artifact;
     private Vector2 uiTargetPos;
     public SpriteRenderer itemSprite;
 
@@ -10,7 +10,7 @@ public class Shop : MonoBehaviour
 
     private void Awake()
     {
-        artifact = GetComponentInChildren<ArtifactData>();
+        artifact = GetComponentInChildren<ArtifactSO>();
         uiTargetPos = transform.Find("UITargetPos").GetComponent<Transform>().position;
         itemSprite = GetComponent<SpriteRenderer>();
     }
