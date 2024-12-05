@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoSingleton<GameManager>
 {
@@ -20,5 +21,10 @@ public class GameManager : MonoSingleton<GameManager>
     private void Update()
     {
         playTime += Time.deltaTime;
+
+        if (Keyboard.current.iKey.wasPressedThisFrame)
+        {
+            Player.GetCompo<EntityHealth>().ApplyDamage(10000,Vector2.zero, Vector2.zero, Player);
+        }
     }
 }
