@@ -526,7 +526,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 94a7d9ac68829714f85a96685430a5e3, type: 2}
   - {fileID: 11400000, guid: 8b921d4503e4c954b9720d09b4307aca, type: 2}
   - {fileID: 11400000, guid: ad2bdb44b3adc7f40a1ea20c64b53770, type: 2}
-  roomsBetweenSpace: 15
+  roomsBetweenSpace: 20
   lastGeneratedY: 0
 --- !u!1 &787505598
 GameObject:
