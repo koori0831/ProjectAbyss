@@ -11,7 +11,8 @@ public enum PlayerStateEnum
     PlayerJump,
     PlayerFall,
     PlayerZipLine,
-    PlayerAttack
+    PlayerAttack,
+    PlayerClimb
 }
 
 public class Player : Entity
