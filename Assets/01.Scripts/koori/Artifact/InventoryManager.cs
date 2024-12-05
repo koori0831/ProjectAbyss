@@ -7,7 +7,7 @@ public class InventoryManager : MonoSingleton<InventoryManager>
     public List<StatsArtifactSO> HaveStatArtifactList { get; private set; }
     public int HaveMagicStoneCount { get; private set; }
 
-    public void GetWeapon(WeaponArtifactSO item) { HaveWeaponList.Add(item); }
-    public void GetSkillArtifact(SkillArtifactSO item) { HaveSkillArtifactList.Add(item); }
-    public void GetStatArtifact(StatsArtifactSO item) { HaveStatArtifactList.Add(item); }
+    public void AddWeapon(WeaponArtifactSO item) { HaveWeaponList.Add(item); }
+    public void AddSkillArtifact(SkillArtifactSO item) { HaveSkillArtifactList.Add(item); }
+    public void AddStatArtifact(StatsArtifactSO item) { HaveStatArtifactList.Add(item); }
 }
