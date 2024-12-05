@@ -26,6 +26,8 @@ public abstract class Shooter : MonoBehaviour, IPlayerComponent
         _renderer = _player.GetCompo<EntityRenderer>();
 
         _input.AttackEvent += TryShooting;
+
+        gameObject.SetActive(false);
     }
 
     private void Update()
@@ -47,11 +49,12 @@ public abstract class Shooter : MonoBehaviour, IPlayerComponent
     {
         if (_availableFireTime < Time.time && _player.canAttack)
         {
-            FireBullet();
+            if(gameObject.activeSelf)
+            Attack();
         }
     }
 
-    protected abstract void FireBullet();
+    protected abstract void Attack();
 
     protected virtual void OnDestroy()
     {

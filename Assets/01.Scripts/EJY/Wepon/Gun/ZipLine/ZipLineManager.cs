@@ -11,6 +11,8 @@ public class ZipLineManager : MonoSingleton<ZipLineManager>
     private ZipLineBullet _startLinkBullet = null;
     private ZipLineBullet _endLinkBullet = null;
 
+    public ZipLineBullet beforeShootedBullet;
+
     protected override void Awake()
     {
         base.Awake();
@@ -66,5 +68,10 @@ public class ZipLineManager : MonoSingleton<ZipLineManager>
     public bool CheckPathBetweenBullets(Vector2 startPos, Vector2 endPos)
     {
         return Physics2D.Raycast(startPos, (endPos - startPos).normalized, (endPos - startPos).magnitude, _whatIsObstacle);
+    }
+
+    public void ResetBefore(ZipLineBullet bullet = null)
+    {
+        beforeShootedBullet = bullet;
     }
 }
