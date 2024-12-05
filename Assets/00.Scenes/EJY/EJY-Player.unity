@@ -399,17 +399,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDontDestroy: 0
   _poolList: {fileID: 11400000, guid: 470f5607fa6ccfe4e834f2994de95410, type: 2}
---- !u!114 &1603616419 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5753716166844297686, guid: 340afe36323072e4c92d455c1b5599b9, type: 3}
-  m_PrefabInstance: {fileID: 5850296652353146450}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1be43b9c08646214b9602be92bb3b0ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1628197822
 GameObject:
   m_ObjectHideFlags: 0
@@ -594,7 +583,6 @@ MonoBehaviour:
   _whatIsObstacle:
     serializedVersion: 2
     m_Bits: 512
-  beforeShootedBullet: {fileID: 0}
 --- !u!120 &1653877960
 LineRenderer:
   serializedVersion: 2
@@ -1191,7 +1179,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 1
+  m_RenderPostProcessing: 0
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -1254,42 +1242,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 648879398929763254, guid: 340afe36323072e4c92d455c1b5599b9, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 648879398929763254, guid: 340afe36323072e4c92d455c1b5599b9, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1216823909898335972, guid: 340afe36323072e4c92d455c1b5599b9, type: 3}
-      propertyPath: _groundCheckSize.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2725905515428396960, guid: 340afe36323072e4c92d455c1b5599b9, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2725905515428396960, guid: 340afe36323072e4c92d455c1b5599b9, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3205247906934854241, guid: 340afe36323072e4c92d455c1b5599b9, type: 3}
-      propertyPath: _startWeaponData
-      value: 
-      objectReference: {fileID: 11400000, guid: c5f2f90cc167c204687f6e0866d5d946, type: 2}
-    - target: {fileID: 3564592773031037637, guid: 340afe36323072e4c92d455c1b5599b9, type: 3}
-      propertyPath: ziplinegun
-      value: 
-      objectReference: {fileID: 1603616419}
-    - target: {fileID: 4919953971862934185, guid: 340afe36323072e4c92d455c1b5599b9, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5753716166844297686, guid: 340afe36323072e4c92d455c1b5599b9, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7234822644632717853, guid: 340afe36323072e4c92d455c1b5599b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
