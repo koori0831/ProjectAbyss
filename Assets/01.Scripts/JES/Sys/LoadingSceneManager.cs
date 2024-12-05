@@ -1,11 +1,13 @@
-using System;
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LoadingSceneManager : MonoBehaviour
 {
     private static string nextScene;
+    [SerializeField] private Image bar;
     public static void LoadScene(string sceneName)
     {
         nextScene = sceneName;
@@ -24,9 +26,12 @@ public class LoadingSceneManager : MonoBehaviour
 
         while (!op.isDone)
         {
-            //알아서 보여줄거 처리
+            if(op.progress >= 0.9f)
+                break;
+            bar.fillAmount = op.progress;
             yield return null;
         }
-        op.allowSceneActivation = true;
+
+        DOVirtual.DelayedCall(10f,() => op.allowSceneActivation = true);
     }
 }
