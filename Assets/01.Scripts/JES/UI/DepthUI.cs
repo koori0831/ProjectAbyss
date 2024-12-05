@@ -22,7 +22,15 @@ public class DepthUI : PlayerCunnectUI
         if(_playerTrm==null) return;
         DOTween.CompleteAll();
         
+        
         float yPos = _playerTrm.position.y;
+
+        if (yPos > _startY)
+        {
+            _depthBar.fillAmount = 0;
+            _depthText.text = "0m";
+            return;
+        }
         yPos = Mathf.RoundToInt(Mathf.Abs(yPos));
         _depthText.text = $"{yPos}m";
         yPos /= Mathf.Abs(_endY);
