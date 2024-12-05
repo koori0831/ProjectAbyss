@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DepthUI : PlayerCunnectUI
+public class DepthUI : PlayerCunnectUI, ISavable
 {
     [SerializeField] private Image _depthBar;
     [SerializeField] private TextMeshProUGUI _depthText;
@@ -36,4 +36,20 @@ public class DepthUI : PlayerCunnectUI
         yPos /= Mathf.Abs(_endY);
         _depthBar.DOFillAmount(yPos, 0.1f);
     }
+
+    #region Saving
+
+    public SaveIDSO IdData { get; }
+    public string GetSaveData()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void RestoreData(string data)
+    {
+        throw new NotImplementedException();
+    }
+
+    #endregion
+    
 }

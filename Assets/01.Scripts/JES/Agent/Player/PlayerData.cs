@@ -8,6 +8,7 @@ public class PlayerData : MonoBehaviour,IEntityComponent, ISavable
 
     private Player _player;
     [SerializeField] private int _currentCoin;
+    [SerializeField] private int _killCount;
     
     public void Initialize(Entity entity)
     {
@@ -26,13 +27,15 @@ public class PlayerData : MonoBehaviour,IEntityComponent, ISavable
     public struct PlayerDataSave
     {
         public int currentCoin;
+        public int killCount;
     }
     
     public string GetSaveData()
     {
         PlayerDataSave data = new PlayerDataSave
         {
-            currentCoin = _currentCoin
+            currentCoin = _currentCoin,
+            killCount = _killCount
         };
         return JsonUtility.ToJson(data);
     }
