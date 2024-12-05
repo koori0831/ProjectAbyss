@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: BaseShop
   m_EditorClassIdentifier: 
   JobDialogList:
-  - New Items!
-  - Brand New Item Stored!
-  - Item Added!
+  - "\uC7AC\uC785\uACE0\uB418\uC5C8\uC2B5\uB2C8\uB2E4!"
+  - "\uB530\uB048\uB530\uB048\uD569\uB2C8\uB2E4!"
+  - "\uC0C8\uC0C1\uD488\uB4E4\uC785\uB2C8\uB2E4!"
   ChatDialogList:
   - "\uC5B4\uC11C\uC624\uAC8C!"

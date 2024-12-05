@@ -1,45 +1,43 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
+
 public class ChatManager : MonoSingleton<ChatManager>
 {
-    public bool endText = false;
-    public AudioSource typeAudio;
-
-    private TMP_Text _baseNpcText;
-    private CanvasGroup _bubbleChat;
+    [SerializeField] private CanvasGroup _baseNpcText;
 
     private void Awake()
     {
-        _baseNpcText = GetComponentInChildren<TMP_Text>();
-        _bubbleChat = GetComponent<CanvasGroup>();
-
+        _baseNpcText.alpha = 0;
+        _baseNpcText.GetComponentInChildren<TMP_Text>().text = "";
     }
 
     public void StartChat(string text, float rate)
     {
-        StartCoroutine(Typing(text, rate, _baseNpcText));
-        endText = true;
+        // 이전 애니메이션을 취소
+        _baseNpcText.DOKill();
+
+        // 새 메시지 표시
+        StartCoroutine(DisplayMessage(text, rate));
     }
 
-    private IEnumerator Typing(string text, float rate, TMP_Text descText)
+    private IEnumerator DisplayMessage(string text, float rate)
     {
+        TMP_Text currentText = _baseNpcText.GetComponentInChildren<TMP_Text>();
 
-        _bubbleChat.DOFade(1, 1);
-        for (int i = 0; i <= text.Length; i++)
-        {
-            descText.text = text.Substring(0, i);
-            if (descText.text.Length > 0 && descText.text[descText.text.Length - 1] != ' ') ;// typeAudio.Play();
-            yield return new WaitForSecondsRealtime(rate);
-        }
-         
-        yield return new WaitForSeconds(1.5f);
-        endText = false;
-        _bubbleChat.DOFade(0, 1);
-        
-       
+        currentText.text = text;
+        _baseNpcText.alpha = 0;
+        _baseNpcText.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -135f);
+
+        _baseNpcText.DOFade(1, 0.5f);
+        _baseNpcText.GetComponent<RectTransform>().DOAnchorPosY(0, 0.3f).SetEase(Ease.OutBack);
+
+        yield return new WaitForSeconds(rate);
+
+        _baseNpcText.DOFade(0, 0.5f);
+        _baseNpcText.GetComponent<RectTransform>().DOAnchorPosY(-150f, 0.3f).SetEase(Ease.InBack);
+
+        yield return new WaitForSeconds(0.8f); // 애니메이션 시간을 맞추기 위한 대기 시간
     }
-
 }

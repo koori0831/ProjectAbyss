@@ -1,31 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RangeGroundEnemy : Enemy
 {
     private StateMachine<RangeGroundEnemyStateType> _stateMachine;
     
-    protected override void Awake()
-    {
-        base.Awake();
-        _stateMachine = new StateMachine<RangeGroundEnemyStateType>(this);
-        _stateMachine.InitState(RangeGroundEnemyStateType.RangeGroundEnemyFind);
-    }protected override void AfterInit()
+
+    protected override void AfterInit()
     {
         base.AfterInit();
-
-        GetCompo<EntityRenderer>().OnAnimationEnd += HandleAnimationEnd;
+        
+        _stateMachine = new StateMachine<RangeGroundEnemyStateType>(this);
+        _stateMachine.InitState(RangeGroundEnemyStateType.RangeGroundEnemyFind);
     }
 
-    private void HandleAnimationEnd()
+
+    protected override void HandleDead()
+    {
+        _stateMachine.ChangeState(RangeGroundEnemyStateType.RangeGroundEnemyDeath);
+    }
+
+    protected override void HandleHit(Entity dealer)
+    {
+        if (IsDead) return;
+        Target = dealer as Player;
+        _stateMachine.ChangeState(RangeGroundEnemyStateType.RangeGroundEnemyHit);
+    }
+
+    protected override void HandleAnimationEnd()
     {
         _stateMachine.CurrentState().AnimationEndTrigger();
-    }
-
-    private void OnDestroy()
-    {
-        GetCompo<EntityRenderer>().OnAnimationEnd -= HandleAnimationEnd;
     }
 
     private void Update()
@@ -47,17 +50,6 @@ public class RangeGroundEnemy : Enemy
         }
         return false;
     }
-    
-    #if UNITY_EDITOR
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, ditectRange);
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position,attackRange);
-        Gizmos.color = Color.white;
-    }
-    #endif
 }
 
 

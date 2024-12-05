@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public abstract class Shooter : MonoBehaviour, IPlayerComponent
 {
@@ -8,15 +7,14 @@ public abstract class Shooter : MonoBehaviour, IPlayerComponent
     [SerializeField] protected Transform _firePosTrm;
 
     [SerializeField] private float _availableFireTime = 0.2f;
-
+    [SerializeField] private float _rotateLimitMinValue = -30;
+    [SerializeField] private float _rotateLimitMaxValue = 50;
     [SerializeField] protected float _shootPoewr = 15;
 
     protected PlayerInputSO _input;
     protected EntityRenderer _renderer;
 
     protected Player _player;
-
-    protected Vector2 _mousePos;
 
     public event Action OnFireEvent;
 
@@ -27,8 +25,9 @@ public abstract class Shooter : MonoBehaviour, IPlayerComponent
         _input = _player.GetPlayerCompo<PlayerInputSO>();
         _renderer = _player.GetCompo<EntityRenderer>();
 
-        _input.AttackEvent += HandleGunFlipShootEvent;
         _input.AttackEvent += TryShooting;
+
+        gameObject.SetActive(false);
     }
 
     private void Update()
@@ -36,36 +35,29 @@ public abstract class Shooter : MonoBehaviour, IPlayerComponent
         RotateGun();
     }
 
-    private void HandleGunFlipShootEvent()
-    {
-        Vector2 mousePos = _player.transform.InverseTransformPoint(_mousePos);
-        _renderer.FlipController(MathF.Sign(mousePos.x * _renderer.FacingDirection));
-    }
-
     private void RotateGun()
     {
-        _mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.value);
-        Vector2 mouseDirection = _player.transform.InverseTransformPoint(_mousePos);
+        Vector2 mouseDirection = _player.transform.InverseTransformPoint(_input.MousePos);
 
         float currentAngle = Mathf.Atan2(mouseDirection.y, mouseDirection.x) * Mathf.Rad2Deg;
 
-        transform.localRotation = Quaternion.Euler(0, 0, Mathf.Clamp(currentAngle, -30, 50));
+        transform.localRotation = Quaternion.Euler(0, 0, Mathf.Clamp(currentAngle, _rotateLimitMinValue, _rotateLimitMaxValue));
     }
 
 
-    protected virtual void TryShooting()
+    public virtual void TryShooting()
     {
-        if (_availableFireTime < Time.time)
+        if (_availableFireTime < Time.time && _player.canAttack)
         {
-            FireBullet();
+            if (gameObject.activeSelf)
+                Attack();
         }
     }
 
-    protected abstract void FireBullet();
+    protected abstract void Attack();
 
     protected virtual void OnDestroy()
     {
-        _input.AttackEvent -= HandleGunFlipShootEvent;
         _input.AttackEvent -= TryShooting;
     }
 }

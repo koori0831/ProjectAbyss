@@ -13,8 +13,8 @@ public abstract class PlayerCunnectUI : MonoBehaviour
 
     private IEnumerator FindPlayerCoroutine()
     {
-       // yield return new WaitUntil(() => GameManager.Instance.Player != null); 플레이어 찾아와야함
-       // _player = GameManager.Instance.Player;
+        yield return new WaitUntil(() => GameManager.Instance.Player != null);
+        _player = GameManager.Instance.Player;
         AfterFindPlayer();
         yield return null;
     }

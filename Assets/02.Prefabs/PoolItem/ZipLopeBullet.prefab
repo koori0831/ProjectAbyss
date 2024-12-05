@@ -110,11 +110,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07d25147d18720a4dad0c6b38f0a22f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _poolName: ZipLineBullet
-  _lifeTime: 15
   linkedBullet: {fileID: 0}
-  zipLineMat: {fileID: 2100000, guid: 6b84c5c5b0a47ab4a8d7ebe61250c3cc, type: 2}
+  _whatIsObstacle:
+    serializedVersion: 2
+    m_Bits: 512
+  _moveSpeed: 6
+  _placeLifeTime: 20
+  _actLifeTime: 30
+  currentLifeTime: 0
+  _isPlaced: 0
   isLinked: 0
+  _poolName: ZipLineBullet
 --- !u!1 &7650455657276026853
 GameObject:
   m_ObjectHideFlags: 0
