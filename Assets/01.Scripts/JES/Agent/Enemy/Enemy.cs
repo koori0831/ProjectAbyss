@@ -4,6 +4,8 @@ using UnityEngine.Events;
 
 public abstract class Enemy : Entity,IPoolable
 {
+    [SerializeField] private IntEventChannelSO _killEventChannel;
+    
     [Header("Direct")] 
     public float ditectRange;
     [SerializeField] protected LayerMask _whatIsTarget,_whatIsObstacle;
@@ -58,6 +60,7 @@ public abstract class Enemy : Entity,IPoolable
     {
         OnDeadEndEvent?.Invoke();
         IsDead = true;
+        _killEventChannel.RaiseEvent(1);
         PoolManager.Instance.Push(this);
     }
     public string PoolName => _poolName;
