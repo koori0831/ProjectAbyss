@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem.Interactions;
 
 public class Weapon : MonoBehaviour
 {
@@ -11,6 +12,14 @@ public class Weapon : MonoBehaviour
     public float attackDeleay;
 
     public WeaponType WeaponType { get; private set; }
+    [field: Header("Attack Info")]
+
+    [field: SerializeField]
+    public bool CanAttack { get; private set; } = false;
+
+    [SerializeField] private Transform _attackCheckTrm;
+    [SerializeField] private Vector2 _attackCheckSize;
+    [SerializeField] private LayerMask _whatIsEnemy;
 
     public void Intialize(Player player)
     {
@@ -40,6 +49,24 @@ public class Weapon : MonoBehaviour
 
     public virtual void Attack()
     {
+        Debug.Log("공격");
+        Collider2D attackEntity = Physics2D.OverlapBox(_attackCheckTrm.position, _attackCheckSize, 0, _whatIsEnemy);
 
+        CanAttack = attackEntity;
+
+        if (attackEntity == null) return;
+
+        if (attackEntity.TryGetComponent(out IDamageable target))
+        {
+            Debug.Log("데미지 전달 시도");
+            Vector2 knockBack = new Vector2(transform.right.x * currentWeaponData.Value.KnockBackPower, 0);
+            target.ApplyDamage(currentWeaponData.Value.WeaponAtk,transform.right,knockBack,_player);
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(_attackCheckTrm.position, _attackCheckSize);
     }
 }
