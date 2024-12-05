@@ -29,11 +29,10 @@ public class ResultUI : MonoBehaviour
     
     public void RestartGame()
     {
-        //상점으로 ㄱㄱ
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void GoTitle()
     {
-        //타이틀로 ㄱㄱ
-        SceneManager.LoadScene("Title");
+        SceneManager.LoadScene("PrototypeTitle");
     }
 }
