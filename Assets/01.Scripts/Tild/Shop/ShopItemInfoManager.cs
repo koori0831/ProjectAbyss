@@ -15,7 +15,7 @@ public class ShopItemInfoManager : MonoSingleton<ShopItemInfoManager>
     [SerializeField] private TMP_Text _sellPrice;
     [SerializeField] private TMP_Text _itemDesc;
     [SerializeField] private Image _rankDeco;
-
+    [SerializeField] private Image _rankDeco2;
 
     private bool _isOpen;
 
@@ -52,6 +52,7 @@ public class ShopItemInfoManager : MonoSingleton<ShopItemInfoManager>
         _itemRank.SetText(artifact.ArtifactRank.RankName);
         _itemRank.DOColor(artifact.ArtifactRank.RankColor, 0.1f);
         _rankDeco.DOColor(artifact.ArtifactRank.RankColor, 0.1f);
+        _rankDeco2.DOColor(artifact.ArtifactRank.RankColor, 0.1f);
     }
 
     public void CloseInfo()
@@ -62,6 +63,7 @@ public class ShopItemInfoManager : MonoSingleton<ShopItemInfoManager>
         _itemRank.DOColor(new Color32(255, 255, 255, 255), 0.1f);
 
         _rankDeco.DOColor(new Color32(255, 255, 255, 255), 0.1f);
+        _rankDeco2.DOColor(new Color32(255, 255, 255, 255), 0.1f);
     }
 
 
