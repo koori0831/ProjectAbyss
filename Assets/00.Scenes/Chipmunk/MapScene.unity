@@ -826,12 +826,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomCreater: {fileID: 765871011}
-  abyssWidth: 200
-  abyssHoleWidth: 10
-  abyssHeight: 1000
   abyssTile: {fileID: 11400000, guid: 575d89afd85e53d46aaaab24edaba334, type: 2}
   <AbyssTilemap>k__BackingField: {fileID: 787505601}
   <AbyssPlatformTilemap>k__BackingField: {fileID: 683850106}
+  <AbyssData>k__BackingField:
+    abyssWidth: 200
+    abyssHoleWidth: 10
+    abyssHeight: 400
+  onAbyssCreateStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onAbyssCreateEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &765871009
 GameObject:
   m_ObjectHideFlags: 0

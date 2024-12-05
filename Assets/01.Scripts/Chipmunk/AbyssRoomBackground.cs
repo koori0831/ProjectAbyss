@@ -46,6 +46,8 @@ public class AbyssRoomBackground : MonoBehaviour
     {
         float xPos = followTarget.position.x;
         AbyssRoom nearRoom = abyssRoomCreater.GetNearRoomByYPos(followTarget.position.y);
+        if (nearRoom == null) return;
+
         float yPos = nearRoom.Position.y + nearRoom.RoomSO.mapSize.y + 2;
 
         Size = nearRoom.RoomSO.mapSize.y + 2;
