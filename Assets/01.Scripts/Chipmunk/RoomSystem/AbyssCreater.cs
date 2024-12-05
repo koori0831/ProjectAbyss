@@ -16,14 +16,15 @@ public class AbyssCreater : MonoBehaviour
     private int lastGeneratedY = 0;
     void Awake()
     {
+        while (lastGeneratedY > -abyssHeight)
+            CreateAbyss(lastGeneratedY - 1);
     }
     public void Update()
     {
     }
     void FixedUpdate()
     {
-        if (lastGeneratedY > -abyssHeight)
-            CreateAbyss(lastGeneratedY - 1);
+
     }
     public void CreateAbyss(int yPos)
     {
