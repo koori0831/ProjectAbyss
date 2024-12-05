@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7778e78c4f9005848874f98be2a43b18, type: 3}
-  m_Name: Lemon_Theme1_Enemy1
+  m_Name: Lemon_Artifact_Room
   m_EditorClassIdentifier: 
-  mapSize: {x: 9, y: 64}
+  mapSize: {x: 10, y: 7}
   blockDatas:
     serializableItems:
     - key: {x: 0, y: 27}
@@ -77,4 +77,68 @@ MonoBehaviour:
       value: {fileID: 188635659283054476, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
     - key: {x: 1, y: 37}
       value: {fileID: 188635659283054476, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 0, y: 0}
+      value: {fileID: -5305738406222640774, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 1, y: 0}
+      value: {fileID: -5305738406222640774, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 2, y: 0}
+      value: {fileID: -5305738406222640774, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 4, y: 0}
+      value: {fileID: -5305738406222640774, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 3, y: 0}
+      value: {fileID: -5305738406222640774, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 5, y: 0}
+      value: {fileID: -5305738406222640774, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 6, y: 0}
+      value: {fileID: -5305738406222640774, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 7, y: 0}
+      value: {fileID: -5305738406222640774, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 8, y: 0}
+      value: {fileID: -5305738406222640774, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 9, y: 2}
+      value: {fileID: -5305738406222640774, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 9, y: 5}
+      value: {fileID: -5305738406222640774, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 9, y: 3}
+      value: {fileID: -5305738406222640774, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 9, y: 4}
+      value: {fileID: -5305738406222640774, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 9, y: 0}
+      value: {fileID: -5305738406222640774, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 9, y: 1}
+      value: {fileID: -5305738406222640774, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 9, y: 6}
+      value: {fileID: -5305738406222640774, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 7, y: 6}
+      value: {fileID: -5305738406222640774, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 6, y: 6}
+      value: {fileID: -5305738406222640774, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 3, y: 6}
+      value: {fileID: -5305738406222640774, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 1, y: 6}
+      value: {fileID: -5305738406222640774, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 0, y: 6}
+      value: {fileID: -5305738406222640774, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 2, y: 6}
+      value: {fileID: -5305738406222640774, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 4, y: 6}
+      value: {fileID: -5305738406222640774, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 5, y: 6}
+      value: {fileID: -5305738406222640774, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 8, y: 6}
+      value: {fileID: -5305738406222640774, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 6, y: 1}
+      value: {fileID: -5305738406222640774, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 7, y: 1}
+      value: {fileID: -5305738406222640774, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 8, y: 2}
+      value: {fileID: -5305738406222640774, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 8, y: 1}
+      value: {fileID: -5305738406222640774, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 8, y: 3}
+      value: {fileID: -5305738406222640774, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 8, y: 4}
+      value: {fileID: -5305738406222640774, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 8, y: 5}
+      value: {fileID: -5305738406222640774, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
   childRoomDatas: []
