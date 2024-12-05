@@ -1,6 +1,11 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
+public enum WeaponType
+{
+    Melee,
+    Ranged
+}
 public class WeaponArtifactSO : ArtifactSO
 {
     [Header ("Weapon Info")]

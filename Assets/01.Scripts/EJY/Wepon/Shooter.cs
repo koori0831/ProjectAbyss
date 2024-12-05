@@ -45,7 +45,7 @@ public abstract class Shooter : MonoBehaviour, IPlayerComponent
 
     public virtual void TryShooting()
     {
-        if (_availableFireTime < Time.time && _player.canFire)
+        if (_availableFireTime < Time.time && _player.canAttack)
         {
             FireBullet();
         }

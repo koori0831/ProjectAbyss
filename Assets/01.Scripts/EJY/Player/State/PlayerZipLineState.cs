@@ -9,13 +9,13 @@ public class PlayerZipLineState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        _player.canFire = false;
+        _player.canAttack = false;
         _entityMover.SetGravityScale(0);
     }
 
     public override void Exit()
     {
-        _player.canFire = true;
+        _player.canAttack = true;
         _entityMover.SetGravityScale(1);
         base.Exit();
 
