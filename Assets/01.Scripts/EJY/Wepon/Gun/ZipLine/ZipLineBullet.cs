@@ -4,9 +4,11 @@ using UnityEngine;
 public class ZipLineBullet : MonoBehaviour, IPoolable, IInteractionable
 {
     private Player _player;
-    private ZipLine _zipLine;
     private ZipLineGun _zipLineGun;
     private Rigidbody2D _rigidBody;
+
+    private Vector2 startPos;
+    private Vector2 _endPos;
 
     public ZipLineBullet linkedBullet;
 
@@ -32,7 +34,6 @@ public class ZipLineBullet : MonoBehaviour, IPoolable, IInteractionable
     private void Awake()
     {
         _player = FindAnyObjectByType<Player>();
-        _zipLine = FindAnyObjectByType<ZipLine>();
         _zipLineGun = FindAnyObjectByType<ZipLineGun>();
         _rigidBody = GetComponent<Rigidbody2D>();
     }
@@ -45,9 +46,8 @@ public class ZipLineBullet : MonoBehaviour, IPoolable, IInteractionable
         {
             PoolManager.Instance.Push(this);
             if (isLinked)
-                _zipLine.ResetLineRenderer();
+                ZipLineManager.Instance.ResetLineRenderer();
         }
-
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -66,19 +66,42 @@ public class ZipLineBullet : MonoBehaviour, IPoolable, IInteractionable
     {
         if (_zipLineGun.beforeShootedBullet == null)
         {
+            // 얘가 첫빠따
             _zipLineGun.beforeShootedBullet = this;
         }
         else
         {
+            // 두번째가 실행해줌
             SetLinkBullet();
         }
     }
 
     public void SetLinkBullet()
     {
-        _zipLineGun.LinkBullet(this, _zipLineGun.beforeShootedBullet);
-        _zipLine.Link(this, linkedBullet);
+        // 서로 링크
+        ZipLineManager.Instance.LinkBullet(this, _zipLineGun.beforeShootedBullet);
+
+        SetLinkPos();
+        linkedBullet.SetLinkPos();
+
+        if (ZipLineManager.Instance.CheckPathBetweenBullets(startPos, linkedBullet.startPos))
+        {
+            Debug.Log("두 탄환 사이에 뭔가 있음");
+            ZipLineManager.Instance.UnlinkBullet(this, _zipLineGun.beforeShootedBullet);
+            _zipLineGun.ResetBefore(this);
+            Debug.Log(_zipLineGun.beforeShootedBullet);
+            return;
+        }
+        Debug.Log("두 탄환 사이에 뭔가 없음");
+
+        ZipLineManager.Instance.Link(this, linkedBullet);
         _zipLineGun.ResetBefore();
+    }
+
+    public void SetLinkPos()
+    {
+        startPos = transform.position;
+        _endPos = linkedBullet.transform.position;
     }
 
     public void Interaction()
@@ -90,19 +113,29 @@ public class ZipLineBullet : MonoBehaviour, IPoolable, IInteractionable
     {
         if (linkedBullet != null)
         {
+            BoxCollider2D playerCollider = _player.GetComponent<BoxCollider2D>();
+
             float time = 0;
 
-            Vector2 startPos = transform.position;
-            Vector2 endPos = linkedBullet.transform.position;
+            /*float offsetX = playerCollider.size.x / 2;
+            float offsetY = playerCollider.size.y / 2;
 
-            float dis = Vector2.Distance(startPos, endPos);
+            if (_startPos.x > _endPos.x)
+            {
+                _startPos.x -= offsetX;
+                _endPos.x += offsetX;
+            }
+            else
+            {
+                _startPos.x += offsetX;
+                _endPos.x -= offsetX;
+            }*/
 
-            //float offset = new Vector2(); 
+            float dis = Vector2.Distance(startPos, _endPos);
 
             float moveTime = dis / _moveSpeed;
 
             _player.StateMachine.ChangeState(PlayerStateEnum.PlayerZipLine);
-            _player.canFire = false;
 
             while (time < moveTime)
             {
@@ -110,11 +143,11 @@ public class ZipLineBullet : MonoBehaviour, IPoolable, IInteractionable
 
                 time += Time.deltaTime;
 
-                _player.transform.position = Vector2.Lerp(startPos, endPos, time / moveTime);
+                _player.transform.position = Vector2.Lerp(startPos, _endPos, time / moveTime);
                 yield return null;
             }
+
             _player.StateMachine.ChangeState(PlayerStateEnum.PlayerIdle);
-            _player.canFire = true;
         }
     }
 

@@ -16,6 +16,8 @@ public enum PlayerStateEnum
 
 public class Player : Entity
 {
+    public Action OnAttackEvent;
+
     [field: SerializeField]
     public PlayerInputSO InputCompo { get; private set; }
     public StateMachine<PlayerStateEnum> StateMachine{ get; private set; }
@@ -25,7 +27,8 @@ public class Player : Entity
     public EntityMover MoveCompo { get; private set; }
     public EntityRenderer RenderCompo { get; private set; }
 
-    public bool canFire;
+    public bool canAttack;
+    public bool canFlip;
 
     [field : Header("Interaction Catch")]
 
@@ -53,7 +56,8 @@ public class Player : Entity
         StateMachine = new StateMachine<PlayerStateEnum>(this);
         StateMachine.InitState(PlayerStateEnum.PlayerIdle);
 
-        canFire = true;
+        canAttack = true;
+        canFlip = true;
     } 
 
     private void Update()
@@ -64,7 +68,10 @@ public class Player : Entity
 
     private void PlayerFlip()
     {
-        RenderCompo.FlipController(InputCompo.MousePos.x - transform.position.x);
+        if(canFlip)
+        {
+        RenderCompo.FlipController(Mathf.Sign(InputCompo.MousePos.x - transform.position.x));
+        }
     }
 
     private void FixedUpdate()
@@ -108,8 +115,6 @@ public class Player : Entity
     {
         _playerComponents.Values.ToList().ForEach(component => component.Initialize(this));
     }
-
-
 
     public T GetPlayerCompo<T>(bool isDerived = false) where T : IPlayerComponent
     {

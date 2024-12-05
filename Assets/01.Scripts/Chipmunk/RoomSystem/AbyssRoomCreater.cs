@@ -4,7 +4,9 @@ using UnityEngine.Tilemaps;
 
 public class AbyssRoomCreater : MonoBehaviour
 {
-    [field: SerializeField] public Tilemap AbyssTilemap { get; private set; }
+    [field: SerializeField] AbyssCreater abyssCreater { get; set; }
+    public Tilemap AbyssTilemap => abyssCreater.AbyssTilemap;
+    public Tilemap AbyssPlatformTilemap => abyssCreater.AbyssPlatformTilemap;
     [field: SerializeField] List<AbyssRoomSO> abyssRooms { get; set; }
     [SerializeField] int roomsBetweenSpace = 30;
     [SerializeField] int lastGeneratedY = 0;
