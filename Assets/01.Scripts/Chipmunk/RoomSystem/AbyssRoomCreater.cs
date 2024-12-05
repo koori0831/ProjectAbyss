@@ -10,13 +10,22 @@ public class AbyssRoomCreater : MonoBehaviour
     [field: SerializeField] List<AbyssRoomSO> abyssRooms { get; set; }
     [SerializeField] int roomsBetweenSpace = 30;
     [SerializeField] int lastGeneratedY = 0;
+    [HideInInspector] public Dictionary<Vector2Int, AbyssRoom> abyssRoomList = new();
+
+    [SerializeField] private TileBase testTile;
     public void CreateRoom(int yPos, int holeWidth)
     {
-        if (yPos >= lastGeneratedY - roomsBetweenSpace)
+        if (Mathf.Abs(yPos - lastGeneratedY) < roomsBetweenSpace)
             return;
 
         AbyssRoomSO room = abyssRooms[Random.Range(0, abyssRooms.Count)];
         bool isLeft = Random.Range(0, 2) == 0;
+
+        {
+            Vector2Int generatedPos = new Vector2Int(isLeft ? -holeWidth / 2 : holeWidth / 2, yPos);
+            AbyssRoom abyssRoom = new AbyssRoom(room, generatedPos);
+            abyssRoomList.Add(generatedPos, abyssRoom);
+        }
 
         for (int x = 0; x < room.mapSize.x; x++)
         {
@@ -41,6 +50,7 @@ public class AbyssRoomCreater : MonoBehaviour
             }
         }
         lastGeneratedY = yPos;
+        AbyssTilemap.SetTile(new Vector3Int(holeWidth / 2, yPos + room.mapSize.y, 0), testTile);
     }
 
 #if UNITY_EDITOR
@@ -57,4 +67,20 @@ public class AbyssRoomCreater : MonoBehaviour
         }
     }
 #endif
+    public AbyssRoom GetNearRoomByYPos(float y)
+    {
+        int yPos = Mathf.RoundToInt(y);
+        int minDistance = int.MaxValue;
+        AbyssRoom nearRoom = null;
+        foreach (var room in abyssRoomList)
+        {
+            int distance = Mathf.Abs(room.Key.y - yPos);
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                nearRoom = room.Value;
+            }
+        }
+        return nearRoom;
+    }
 }
