@@ -10,7 +10,7 @@ public abstract class Enemy : Entity,IPoolable
     
     [Header("Combat")] 
     public float attackRange;
-    public Player Target { get; protected set; }
+    public Player Target { get; set; }
 
     public UnityEvent OnDeadEndEvent;
 
@@ -70,7 +70,7 @@ public abstract class Enemy : Entity,IPoolable
     }
     
 #if UNITY_EDITOR
-    private void OnDrawGizmos()
+    protected virtual void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, ditectRange);
