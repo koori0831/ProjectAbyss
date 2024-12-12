@@ -16,7 +16,7 @@ MonoBehaviour:
   <ArtifactDesc>k__BackingField: "\uAD49\uC7A5\uD788 \uD3ED\uB825\uC801\uC73C\uB85C
     \uC0DD\uAE34 \uBB34\uAE30\uC774\uB2E4."
   <ArtifactRank>k__BackingField: {fileID: 11400000, guid: 80bc15aeed10fe14e90cafc3cde9d611, type: 2}
-  <ItemImage>k__BackingField: {fileID: -2064859774160998932, guid: b2966ba035ea3d34297787fd6f381dc0, type: 3}
+  <ItemImage>k__BackingField: {fileID: -1881366281, guid: b2966ba035ea3d34297787fd6f381dc0, type: 3}
   <ResaleValue>k__BackingField: 450
   <SaleValue>k__BackingField: 500
   WeaponType: 1

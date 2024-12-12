@@ -12,7 +12,9 @@ public enum PlayerStateEnum
     PlayerFall,
     PlayerZipLine,
     PlayerAttack,
-    PlayerClimb
+    PlayerClimb,
+    PlayerHit,
+    PlayerDead
 }
 
 public class Player : Entity
@@ -134,6 +136,15 @@ public class Player : Entity
         return default;
     }
 
+    public void GetHit()
+    {
+        StateMachine.ChangeState(PlayerStateEnum.PlayerHit);
+    }
+
+    public void SetDead()
+    {
+        StateMachine.ChangeState(PlayerStateEnum.PlayerDead);
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
