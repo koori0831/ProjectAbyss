@@ -64,15 +64,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ZipLineShooter"",
-                    ""type"": ""Button"",
-                    ""id"": ""59ccc32f-c5d9-4aef-89bb-a8c43beb6b8e"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Mouse"",
                     ""type"": ""Value"",
                     ""id"": ""444c6789-13f2-4588-acab-b12d6554ba8d"",
@@ -80,6 +71,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Tab"",
+                    ""type"": ""Button"",
+                    ""id"": ""042667c9-54c6-4ead-80c9-1f94249c27a0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -294,23 +294,91 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e0840e96-411a-4e82-a3b7-2594e292b161"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ZipLineShooter"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""5f5498de-eff7-4f78-933f-71b166143c72"",
                     ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Mouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0d82cbad-64c2-4cdb-bfa5-5e13544cb6e5"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Tab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""TabUI"",
+            ""id"": ""91487734-6710-4db1-8cc7-2332863b87ce"",
+            ""actions"": [
+                {
+                    ""name"": ""Tab"",
+                    ""type"": ""Button"",
+                    ""id"": ""19300a14-cae9-4273-a6ef-711a259d5749"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""A"",
+                    ""type"": ""Button"",
+                    ""id"": ""7959e7c5-4570-4bca-ac52-d694e5150251"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""D"",
+                    ""type"": ""Button"",
+                    ""id"": ""6bf0dba1-b79b-45bc-81de-081f9ebb2231"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""dce5b208-1126-40c4-9658-aa555aefd123"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Tab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cfad0676-d576-4f19-8b54-9c7aa62acfcc"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""A"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""63dcccbc-8a5e-4704-8e53-ea411d829d64"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""D"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -386,13 +454,19 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_ZipLineShooter = m_Player.FindAction("ZipLineShooter", throwIfNotFound: true);
         m_Player_Mouse = m_Player.FindAction("Mouse", throwIfNotFound: true);
+        m_Player_Tab = m_Player.FindAction("Tab", throwIfNotFound: true);
+        // TabUI
+        m_TabUI = asset.FindActionMap("TabUI", throwIfNotFound: true);
+        m_TabUI_Tab = m_TabUI.FindAction("Tab", throwIfNotFound: true);
+        m_TabUI_A = m_TabUI.FindAction("A", throwIfNotFound: true);
+        m_TabUI_D = m_TabUI.FindAction("D", throwIfNotFound: true);
     }
 
     ~@Controls()
     {
         UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, Controls.Player.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_TabUI.enabled, "This will cause a leak and performance issues, Controls.TabUI.Disable() has not been called.");
     }
 
     public void Dispose()
@@ -458,8 +532,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_ZipLineShooter;
     private readonly InputAction m_Player_Mouse;
+    private readonly InputAction m_Player_Tab;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -468,8 +542,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        public InputAction @ZipLineShooter => m_Wrapper.m_Player_ZipLineShooter;
         public InputAction @Mouse => m_Wrapper.m_Player_Mouse;
+        public InputAction @Tab => m_Wrapper.m_Player_Tab;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -491,12 +565,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
-            @ZipLineShooter.started += instance.OnZipLineShooter;
-            @ZipLineShooter.performed += instance.OnZipLineShooter;
-            @ZipLineShooter.canceled += instance.OnZipLineShooter;
             @Mouse.started += instance.OnMouse;
             @Mouse.performed += instance.OnMouse;
             @Mouse.canceled += instance.OnMouse;
+            @Tab.started += instance.OnTab;
+            @Tab.performed += instance.OnTab;
+            @Tab.canceled += instance.OnTab;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -513,12 +587,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
-            @ZipLineShooter.started -= instance.OnZipLineShooter;
-            @ZipLineShooter.performed -= instance.OnZipLineShooter;
-            @ZipLineShooter.canceled -= instance.OnZipLineShooter;
             @Mouse.started -= instance.OnMouse;
             @Mouse.performed -= instance.OnMouse;
             @Mouse.canceled -= instance.OnMouse;
+            @Tab.started -= instance.OnTab;
+            @Tab.performed -= instance.OnTab;
+            @Tab.canceled -= instance.OnTab;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -536,6 +610,68 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // TabUI
+    private readonly InputActionMap m_TabUI;
+    private List<ITabUIActions> m_TabUIActionsCallbackInterfaces = new List<ITabUIActions>();
+    private readonly InputAction m_TabUI_Tab;
+    private readonly InputAction m_TabUI_A;
+    private readonly InputAction m_TabUI_D;
+    public struct TabUIActions
+    {
+        private @Controls m_Wrapper;
+        public TabUIActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Tab => m_Wrapper.m_TabUI_Tab;
+        public InputAction @A => m_Wrapper.m_TabUI_A;
+        public InputAction @D => m_Wrapper.m_TabUI_D;
+        public InputActionMap Get() { return m_Wrapper.m_TabUI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(TabUIActions set) { return set.Get(); }
+        public void AddCallbacks(ITabUIActions instance)
+        {
+            if (instance == null || m_Wrapper.m_TabUIActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_TabUIActionsCallbackInterfaces.Add(instance);
+            @Tab.started += instance.OnTab;
+            @Tab.performed += instance.OnTab;
+            @Tab.canceled += instance.OnTab;
+            @A.started += instance.OnA;
+            @A.performed += instance.OnA;
+            @A.canceled += instance.OnA;
+            @D.started += instance.OnD;
+            @D.performed += instance.OnD;
+            @D.canceled += instance.OnD;
+        }
+
+        private void UnregisterCallbacks(ITabUIActions instance)
+        {
+            @Tab.started -= instance.OnTab;
+            @Tab.performed -= instance.OnTab;
+            @Tab.canceled -= instance.OnTab;
+            @A.started -= instance.OnA;
+            @A.performed -= instance.OnA;
+            @A.canceled -= instance.OnA;
+            @D.started -= instance.OnD;
+            @D.performed -= instance.OnD;
+            @D.canceled -= instance.OnD;
+        }
+
+        public void RemoveCallbacks(ITabUIActions instance)
+        {
+            if (m_Wrapper.m_TabUIActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(ITabUIActions instance)
+        {
+            foreach (var item in m_Wrapper.m_TabUIActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_TabUIActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public TabUIActions @TabUI => new TabUIActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -587,7 +723,13 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnZipLineShooter(InputAction.CallbackContext context);
         void OnMouse(InputAction.CallbackContext context);
+        void OnTab(InputAction.CallbackContext context);
+    }
+    public interface ITabUIActions
+    {
+        void OnTab(InputAction.CallbackContext context);
+        void OnA(InputAction.CallbackContext context);
+        void OnD(InputAction.CallbackContext context);
     }
 }

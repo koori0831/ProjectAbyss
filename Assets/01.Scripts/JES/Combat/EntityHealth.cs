@@ -31,6 +31,11 @@ public class EntityHealth : MonoBehaviour, IEntityComponent, IDamageable
             OnDeathEvent?.Invoke();
     }
 
+    public void HealHP(float value)
+    {
+        _currentHealth += value;
+    }
+
     private IEnumerator ApplyKnockBack(Vector2 knockBack)
     {
         _mover.CanManualMove = false;
