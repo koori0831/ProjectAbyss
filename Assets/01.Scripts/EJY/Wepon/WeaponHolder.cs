@@ -1,4 +1,5 @@
 using System;
+using Chipmunk.ZipLineSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,7 +13,7 @@ public class WeaponHolder : MonoBehaviour, IPlayerComponent
 
     public Weapon Weapon { get; private set; }
 
-    public ZipLineGun ziplinegun;
+    public PlayerZipLineGun ziplinegun;
 
     public void Initialize(Player player)
     {
