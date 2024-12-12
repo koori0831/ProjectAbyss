@@ -197,7 +197,7 @@ TextureImporter:
         width: 17
         height: 41
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -219,7 +219,7 @@ TextureImporter:
         width: 23
         height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -236,12 +236,12 @@ TextureImporter:
       name: 5. Attack 131 x 56_2
       rect:
         serializedVersion: 2
-        x: 267
+        x: 343
         y: 2
-        width: 99
+        width: 23
         height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -258,12 +258,12 @@ TextureImporter:
       name: 5. Attack 131 x 56_3
       rect:
         serializedVersion: 2
-        x: 452
+        x: 475
         y: 2
-        width: 45
+        width: 22
         height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -280,12 +280,12 @@ TextureImporter:
       name: 5. Attack 131 x 56_4
       rect:
         serializedVersion: 2
-        x: 538
+        x: 603
         y: 2
-        width: 103
+        width: 33
         height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -304,10 +304,10 @@ TextureImporter:
         serializedVersion: 2
         x: 742
         y: 2
-        width: 31
+        width: 23
         height: 36
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -326,10 +326,10 @@ TextureImporter:
         serializedVersion: 2
         x: 877
         y: 2
-        width: 35
+        width: 22
         height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -346,12 +346,12 @@ TextureImporter:
       name: 5. Attack 131 x 56_7
       rect:
         serializedVersion: 2
-        x: 968
+        x: 997
         y: 2
-        width: 76
-        height: 48
+        width: 33
+        height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -365,37 +365,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 5. Attack 131 x 56_8
-      rect:
-        serializedVersion: 2
-        x: 1100
-        y: 37
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4293119bbc5870040800000000000000
-      internalID: 4613803453294131492
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: 5. Attack 131 x 56_9
       rect:
         serializedVersion: 2
-        x: 1118
+        x: 1132
         y: 2
-        width: 47
-        height: 49
+        width: 26
+        height: 41
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -409,37 +387,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 5. Attack 131 x 56_10
-      rect:
-        serializedVersion: 2
-        x: 1231
-        y: 3
-        width: 37
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f0559b2887851c510800000000000000
-      internalID: 1567631419914147087
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: 5. Attack 131 x 56_11
       rect:
         serializedVersion: 2
         x: 1269
         y: 2
         width: 27
-        height: 50
+        height: 38
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -456,12 +412,12 @@ TextureImporter:
       name: 5. Attack 131 x 56_12
       rect:
         serializedVersion: 2
-        x: 1381
+        x: 1398
         y: 2
-        width: 36
+        width: 19
         height: 41
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -483,7 +439,7 @@ TextureImporter:
         width: 23
         height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -502,10 +458,10 @@ TextureImporter:
         serializedVersion: 2
         x: 1583
         y: 2
-        width: 99
+        width: 23
         height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -524,10 +480,10 @@ TextureImporter:
         serializedVersion: 2
         x: 1714
         y: 2
-        width: 45
+        width: 23
         height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -546,10 +502,10 @@ TextureImporter:
         serializedVersion: 2
         x: 1842
         y: 2
-        width: 75
+        width: 19
         height: 41
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -562,121 +518,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: 5. Attack 131 x 56_17
-      rect:
-        serializedVersion: 2
-        x: 420
-        y: 2
-        width: 46
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6440be2dee195e7b0800000000000000
-      internalID: -5195586140175137722
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 5. Attack 131 x 56_18
-      rect:
-        serializedVersion: 2
-        x: 668
-        y: 8
-        width: 25
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a9297bc61846e9e40800000000000000
-      internalID: 5665075888316191386
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 5. Attack 131 x 56_19
-      rect:
-        serializedVersion: 2
-        x: 1100
-        y: 9
-        width: 7
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cb35d0ff8b31288f0800000000000000
-      internalID: -539847320057064516
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 5. Attack 131 x 56_20
-      rect:
-        serializedVersion: 2
-        x: 1251
-        y: 4
-        width: 6
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3cb402df4fbe07e90800000000000000
-      internalID: -7029859580874044477
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 5. Attack 131 x 56_21
-      rect:
-        serializedVersion: 2
-        x: 1745
-        y: 2
-        width: 46
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4b68cbe06d4d180b0800000000000000
-      internalID: -5728063235203234124
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: bd91449cdf7dcc04ea308cdbd71af465
     internalID: 0
     vertices: []
     indices: 
