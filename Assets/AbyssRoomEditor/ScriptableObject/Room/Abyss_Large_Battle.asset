@@ -501,4 +501,8 @@ MonoBehaviour:
       value: {fileID: 8700108314049232941, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
     - key: {x: 21, y: 5}
       value: {fileID: 8700108314049232941, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 32, y: 8}
+      value: {fileID: 7430963717068574213, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
+    - key: {x: 32, y: 7}
+      value: {fileID: 7430963717068574213, guid: 29e0b2c386fbf63459df4bd56c05650f, type: 2}
   childRoomDatas: []
