@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01674f4c514b9984eb4728f555449595, type: 3}
+  m_Name: "\uC6B0\uC720"
+  m_EditorClassIdentifier: 
+  <ArtifactName>k__BackingField: "\uC6B0\uC720"
+  <ArtifactDesc>k__BackingField: "\uB530\uB73B\uD55C \uC6B0\uC720\uC774\uB2E4."
+  <ArtifactRank>k__BackingField: {fileID: 11400000, guid: a18a0cb88c1607b409fc766a1922551c, type: 2}
+  <ItemImage>k__BackingField: {fileID: -2601098512575542242, guid: b2966ba035ea3d34297787fd6f381dc0, type: 3}
+  <ResaleValue>k__BackingField: 85
+  <SaleValue>k__BackingField: 100
+  WeaponType: 1
+  WeaponAtk: 5
+  AtkRange: 5
+  AtkSpeed: 5
+  KnockBackPower: 5
+  <SkillSO>k__BackingField: {fileID: 0}
