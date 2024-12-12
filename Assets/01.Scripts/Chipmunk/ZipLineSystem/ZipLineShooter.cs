@@ -24,7 +24,6 @@ namespace Chipmunk.ZipLineSystem
 
         void Update()
         {
-            Debug.Log(Rope);
             if (Rope != null)
             {
                 Rope.UpdateRope();

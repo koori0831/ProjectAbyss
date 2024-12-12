@@ -18,7 +18,7 @@ namespace Chipmunk.ZipLineSystem
 
         private void ShootZipline()
         {
-            Vector2 dir = player.InputCompo.MousePos;
+            Vector2 dir = player.InputCompo.MousePos - (Vector2)transform.position;
             Shoot(dir);
         }
     }

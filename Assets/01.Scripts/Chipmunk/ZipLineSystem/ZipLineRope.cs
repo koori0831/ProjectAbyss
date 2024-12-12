@@ -7,7 +7,7 @@ namespace Chipmunk.ZipLineSystem
     public class ZipLineRope : MonoBehaviour
     {
         public static List<ZipLineRope> ropes = new List<ZipLineRope>();
-        [SerializeField] public SliderJoint2D sliderJoint2D { get; private set; }
+        [field: SerializeField] public SliderJoint2D sliderJoint2D { get; private set; }
         [SerializeField] public IZiplineRopeLinkable linkerA { get; private set; }
         [SerializeField] public IZiplineRopeLinkable linkerB { get; private set; }
         private LineRenderer lineRenderer;
@@ -39,12 +39,43 @@ namespace Chipmunk.ZipLineSystem
             lineRenderer.SetPosition(0, linkerA.LinkTransform.position);
             lineRenderer.SetPosition(1, linkerB.LinkTransform.position);
         }
+        public void ConnectToThis(IZipLineRideable rideable)
+        {
+            Vector3 betweenVector = linkerB.LinkTransform.position - linkerA.LinkTransform.position;
+            Vector3 halfBetweenVector = betweenVector / 2;
+            float angle = Mathf.Atan2(betweenVector.y, betweenVector.x) * Mathf.Rad2Deg;
+
+            transform.position = halfBetweenVector + linkerA.LinkTransform.position;
+
+            {
+                sliderJoint2D.connectedBody = rideable.rigidCompo;
+                sliderJoint2D.angle = angle;
+
+                sliderJoint2D.limits = new JointTranslationLimits2D
+                {
+                    min = -halfBetweenVector.magnitude,
+                    max = halfBetweenVector.magnitude
+                };
+
+                sliderJoint2D.enabled = true;
+            }
+
+            rideable.connectingRope = this;
+        }
+        public void Disconnect(IZipLineRideable rideable)
+        {
+            sliderJoint2D.enabled = false;
+            rideable.connectingRope = null;
+        }
         public bool CheckCollision(IZipLineRideable rideable)
         {
+            if (!linkerA.CanRide || !linkerB.CanRide)
+                return false;
+
             float distance = Vector2.Distance(linkerA.LinkTransform.position, linkerB.LinkTransform.position);
             Vector2 direction = (linkerB.LinkTransform.position - linkerA.LinkTransform.position).normalized;
             RaycastHit2D[] hits = Physics2D.RaycastAll(linkerA.LinkTransform.position, direction, distance);
-
+            Debug.DrawRay(linkerA.LinkTransform.position, direction * distance, Color.red, 1f);
             foreach (RaycastHit2D hit in hits)
             {
                 if (hit.collider.gameObject == rideable.gameObject)
@@ -58,9 +89,10 @@ namespace Chipmunk.ZipLineSystem
         {
             foreach (var rope in ropes)
             {
-                if(rope.CheckCollision(rideable))
+                if (rope.CheckCollision(rideable))
                 {
-                    return rope;
+                    if (rideable.connectingRope != rope)
+                        return rope;
                 }
             }
             return null;

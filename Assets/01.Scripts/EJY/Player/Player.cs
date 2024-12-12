@@ -37,7 +37,7 @@ public class Player : Entity, IZipLineRideable
     public bool CanInteraction { get; private set; } = false;
 
     [field: SerializeField] public Rigidbody2D rigidCompo { get; private set; }
-
+    public ZipLineRope connectingRope { get; set; }
 
     [SerializeField] private Transform _interactionCheckTrm;
     [SerializeField] private Vector2 _interactionCheckSize;
@@ -94,6 +94,9 @@ public class Player : Entity, IZipLineRideable
 
     private void Interaction()
     {
+        IZipLineRideable rideable = this as IZipLineRideable;
+        rideable.TryRideRope();
+        
         Collider2D interactionObj = Physics2D.OverlapBox(_interactionCheckTrm.position, _interactionCheckSize, 0, _whatIsInteraction);
 
         CanInteraction = interactionObj;
@@ -105,8 +108,6 @@ public class Player : Entity, IZipLineRideable
             interaction.Interaction();
         }
 
-        IZipLineRideable rideable = this as IZipLineRideable;
-        rideable.TryRideRope();
     }
 
     protected override void AfterInit()
