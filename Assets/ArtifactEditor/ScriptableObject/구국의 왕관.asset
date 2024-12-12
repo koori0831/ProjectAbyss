@@ -17,7 +17,7 @@ MonoBehaviour:
     \uAD8C\uB825\uC758 \uC0C1\uC9D5\uC73C\uB85C\uC368 \uADF8 \uBE5B\uC744 \uBC1C\uD588\uC744
     \uAC83\uC774\uB2E4."
   <ArtifactRank>k__BackingField: {fileID: 11400000, guid: be5682eb2c3def34db169a1f72392b6a, type: 2}
-  <ItemImage>k__BackingField: {fileID: -2230846602583954849, guid: b2966ba035ea3d34297787fd6f381dc0, type: 3}
+  <ItemImage>k__BackingField: {fileID: 1257934501, guid: b2966ba035ea3d34297787fd6f381dc0, type: 3}
   <ResaleValue>k__BackingField: 200
   <SaleValue>k__BackingField: 500
   ATK: 30
