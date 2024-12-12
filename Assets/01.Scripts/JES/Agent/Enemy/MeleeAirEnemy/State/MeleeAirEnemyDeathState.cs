@@ -6,16 +6,13 @@ public class MeleeAirEnemyDeathState : State<MeleeAirEnemyStateType>
     {
         _enemy = entity as Enemy;
     }
-    public override void Enter()
-    {
-        base.Enter();
-        _enemy.IsDead = true;
-    }
-
     public override void StateUpdate()
     {
         base.StateUpdate();
-        if(_isTriggerCall)
+        if (_isTriggerCall)
+        {
+            _stateMachine.ChangeState(MeleeAirEnemyStateType.MeleeAirEnemyIdle);
             _enemy.DestroyEnemy();
+        }
     }
 }

@@ -21,8 +21,8 @@ public class MeleeGroundEnemyFindState : State<MeleeGroundEnemyStateType>
             _stateMachine.ChangeState(MeleeGroundEnemyStateType.MeleeGroundEnemyWait);
             return; 
         }
-        var ray = Physics2D.Raycast(new Vector3(_entity.transform.position.x,_entity.transform.position.y+0.2f,0), 
-            _entity.transform.right, 0.6f,_entityMover._whatIsGround);
+        var ray = Physics2D.Raycast(new Vector2(_enemy.transform.position.x,_enemy.transform.position.y+0.2f), 
+            new Vector2(_renderer.FacingDirection,0), 0.6f,_entityMover._whatIsGround);
         if (ray.collider != null||!_entityMover.isGround.Value)
         {
             _renderer.Flip();

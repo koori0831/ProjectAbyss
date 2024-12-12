@@ -14,7 +14,10 @@ public class RangeGroundEnemyDeathState : State<RangeGroundEnemyStateType>
     public override void StateUpdate()
     {
         base.StateUpdate();
-        if(_isTriggerCall)
+        if (_isTriggerCall)
+        {
+            _stateMachine.ChangeState(RangeGroundEnemyStateType.RangeGroundEnemyFind);
             _enemy.DestroyEnemy();
+        }
     }
 }

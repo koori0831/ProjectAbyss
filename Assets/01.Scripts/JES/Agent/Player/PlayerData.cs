@@ -29,7 +29,7 @@ public class PlayerData : MonoBehaviour,IEntityComponent, ISavable
     {
         _killCount += obj;
     }
-    public void AddCoin(int coin)
+    private void AddCoin(int coin)
     {
         earnCoin += coin;
         _currentCoin.Value += coin;
