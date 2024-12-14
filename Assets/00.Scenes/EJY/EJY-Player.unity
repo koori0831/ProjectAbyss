@@ -1669,6 +1669,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5707785935517736891, guid: 6605a5750844cdc43a4c2ba2c95e4b05, type: 3}
+      propertyPath: m_Parameters.textureMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5707785935517736891, guid: 6605a5750844cdc43a4c2ba2c95e4b05, type: 3}
+      propertyPath: m_Positions.Array.data[1].x
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7365298228588647271, guid: 6605a5750844cdc43a4c2ba2c95e4b05, type: 3}
       propertyPath: m_Name
       value: ZiplineRope
