@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Chipmunk.ZipLineSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,13 +18,13 @@ public enum PlayerStateEnum
     PlayerDead
 }
 
-public class Player : Entity
+public class Player : Entity, IZipLineRideable
 {
     public Action OnAttackEvent;
 
     [field: SerializeField]
     public PlayerInputSO InputCompo { get; private set; }
-    public StateMachine<PlayerStateEnum> StateMachine{ get; private set; }
+    public StateMachine<PlayerStateEnum> StateMachine { get; private set; }
 
     private Dictionary<Type, IPlayerComponent> _playerComponents = new Dictionary<Type, IPlayerComponent>();
 
@@ -33,12 +34,15 @@ public class Player : Entity
     public bool canAttack;
     public bool canFlip;
 
-    [field : Header("Interaction Catch")]
+    [field: Header("Interaction Catch")]
 
-    [field : SerializeField]
+    [field: SerializeField]
     public bool CanInteraction { get; private set; } = false;
 
-    [SerializeField] private Transform _interactionCheckTrm; 
+    [field: SerializeField] public Rigidbody2D rigidCompo { get; private set; }
+    public ZipLineRope connectingRope { get; set; }
+
+    [SerializeField] private Transform _interactionCheckTrm;
     [SerializeField] private Vector2 _interactionCheckSize;
     [SerializeField] private LayerMask _whatIsInteraction;
 
@@ -61,7 +65,8 @@ public class Player : Entity
 
         canAttack = true;
         canFlip = true;
-    } 
+
+    }
 
     private void Update()
     {
@@ -71,9 +76,9 @@ public class Player : Entity
 
     private void PlayerFlip()
     {
-        if(canFlip)
+        if (canFlip)
         {
-        RenderCompo.FlipController(Mathf.Sign(InputCompo.MousePos.x - transform.position.x));
+            RenderCompo.FlipController(Mathf.Sign(InputCompo.MousePos.x - transform.position.x));
         }
     }
 
@@ -92,6 +97,9 @@ public class Player : Entity
 
     private void Interaction()
     {
+        IZipLineRideable rideable = this as IZipLineRideable;
+        rideable.TryRideRope();
+        
         Collider2D interactionObj = Physics2D.OverlapBox(_interactionCheckTrm.position, _interactionCheckSize, 0, _whatIsInteraction);
 
         CanInteraction = interactionObj;
@@ -102,6 +110,7 @@ public class Player : Entity
         {
             interaction.Interaction();
         }
+
     }
 
     protected override void AfterInit()
@@ -150,4 +159,9 @@ public class Player : Entity
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(_interactionCheckTrm.position, _interactionCheckSize);
     }
+
+    public void OnRide(ZipLineRope rope)
+    {
+    }
+
 }
