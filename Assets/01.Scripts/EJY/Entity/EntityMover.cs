@@ -56,6 +56,11 @@ public class EntityMover : MonoBehaviour, IEntityComponent
     {
         _xMovement = xMovement;
     }
+    
+    public void SetVelocity(Vector2 velocity)
+    {
+        _rbCompo.linearVelocity = velocity;
+    }
 
     private void FixedUpdate()
     {
