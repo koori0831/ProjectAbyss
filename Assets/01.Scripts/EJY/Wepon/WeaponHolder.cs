@@ -12,6 +12,7 @@ public class WeaponHolder : MonoBehaviour, IPlayerComponent
     private float _attackDelay;
 
     public Weapon Weapon { get; private set; }
+    public TrailRenderer TrailRenderer { get; private set; }
 
     public PlayerZipLineGun ziplinegun;
 
@@ -20,6 +21,9 @@ public class WeaponHolder : MonoBehaviour, IPlayerComponent
         _player = player;
         _entityRenderer = _player.GetCompo<EntityRenderer>();
         _playerInput = _player.GetPlayerCompo<PlayerInputSO>();
+
+        TrailRenderer = GetComponentInChildren<TrailRenderer>();
+        TrailRenderer.enabled = false;
 
         Weapon = GetComponentInChildren<Weapon>();
         Weapon.Intialize(_player);

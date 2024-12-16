@@ -14,8 +14,9 @@ public class PlayerAttackState : PlayerState
 
         _entityMover.CanManualMove = false;
         _entityMover.StopImmediately();
-        _entityMover.AddForceToEntity(new Vector2(_renderer.FacingDirection * 3, 0));
+        _entityMover.AddForceToEntity(new Vector2(_renderer.FacingDirection * 15, 0));
         _player.canFlip = false;
+        _weaponHolder.TrailRenderer.enabled = true;
     }
 
     protected override void HandleAttackEvent()
@@ -32,6 +33,7 @@ public class PlayerAttackState : PlayerState
     {
         _entityMover.CanManualMove = true;
         _player.canFlip = true;
+        _weaponHolder.TrailRenderer.enabled = false;
         base.Exit();
     }
 }

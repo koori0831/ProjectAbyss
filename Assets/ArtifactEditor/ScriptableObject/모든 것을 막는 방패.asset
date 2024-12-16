@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e37a69fa03b436241b1d50c34bbc7ebb, type: 3}
-  m_Name: "\uBCD1\uC2E0"
+  m_Name: "\uBAA8\uB4E0 \uAC83\uC744 \uB9C9\uB294 \uBC29\uD328"
   m_EditorClassIdentifier: 
-  <ArtifactName>k__BackingField: "\uBCD1\uC2E0"
-  <ArtifactDesc>k__BackingField: "\uB098\uB294 \uBCD1\uC2E0\uC774\uB2E4"
+  <ArtifactName>k__BackingField: "\uBAA8\uB4E0 \uAC83\uC744 \uB9C9\uB294 \uBC29\uD328"
+  <ArtifactDesc>k__BackingField: "\uBAA8\uB4E0 \uAC83\uC744 \uB9C9\uC744 \uC218 \uC788\uB2E4."
   <ArtifactRank>k__BackingField: {fileID: 11400000, guid: be5682eb2c3def34db169a1f72392b6a, type: 2}
-  <ItemImage>k__BackingField: {fileID: 935848093, guid: 65a46ad6e9bad884c8d55bc7756b5099, type: 3}
-  <ResaleValue>k__BackingField: 9999
-  <SaleValue>k__BackingField: 0
+  <ItemImage>k__BackingField: {fileID: -2062617331, guid: b2966ba035ea3d34297787fd6f381dc0, type: 3}
+  <ResaleValue>k__BackingField: 450
+  <SaleValue>k__BackingField: 500

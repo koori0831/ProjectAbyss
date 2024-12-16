@@ -98,13 +98,11 @@ public class ZipLineBullet : MonoBehaviour, IPoolable, IInteractionable
 
         if (ZipLineManager.Instance.CheckPathBetweenBullets(startPos, linkedBullet.startPos))
         {
-            Debug.Log("?? ?? ????? ???? ????");
             ZipLineManager.Instance.UnlinkBullet(this, ZipLineManager.Instance.beforeShootedBullet);
             ZipLineManager.Instance.ResetBefore(this);
             Debug.Log(ZipLineManager.Instance.beforeShootedBullet);
             return;
         }
-        Debug.Log("?? ?? ????? ???? ????");
 
         ZipLineManager.Instance.Link(this, linkedBullet);
         ZipLineManager.Instance.ResetBefore();
@@ -159,7 +157,7 @@ public class ZipLineBullet : MonoBehaviour, IPoolable, IInteractionable
                 yield return null;
             }
 
-            _player.StateMachine.ChangeState(PlayerStateEnum.PlayerIdle);
+            _player.StateMachine.ChangeState(PlayerStateEnum.PlayerClimb);
         }
     }
 
