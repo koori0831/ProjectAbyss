@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ZipLineBullet : MonoBehaviour, IPoolable, IInteractionable
 {
@@ -31,6 +32,8 @@ public class ZipLineBullet : MonoBehaviour, IPoolable, IInteractionable
     [SerializeField] private string _poolName = "ZipLineBullet";
     public GameObject ObjectPrefab => gameObject;
 
+    public UnityEvent onPlaced;
+
     private void Awake()
     {
         _player = FindFirstObjectByType<Player>();
@@ -55,24 +58,32 @@ public class ZipLineBullet : MonoBehaviour, IPoolable, IInteractionable
     {
         if (_isPlaced) return;
 
+        Place();
+    }
+
+    private void Place()
+    {
         _isPlaced = true;
         currentLifeTime = 0;
 
         _rigidBody.linearVelocity = Vector2.zero;
 
         TryLink();
+
+        onPlaced?.Invoke();
     }
+
 
     private void TryLink()
     {
         if (ZipLineManager.Instance.beforeShootedBullet == null)
         {
-            // ?ÅM ?????
+            // ?ÔøΩM ?????
             ZipLineManager.Instance.beforeShootedBullet = this;
         }
         else
         {
-            // ?•È?°∆?? ????????
+            // ?ÔøΩÔøΩ?ÔøΩÔøΩ?? ????????
             SetLinkBullet();
         }
     }
