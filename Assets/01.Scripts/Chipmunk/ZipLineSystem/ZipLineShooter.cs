@@ -20,9 +20,9 @@ namespace Chipmunk.ZipLineSystem
 
         public bool CanRide => false;
 
-        public ZipLineRope Rope {get; set;}
+        public ZipLineRope Rope { get; set; }
 
-        void Update()
+        void FixedUpdate()
         {
             if (Rope != null)
             {
@@ -62,7 +62,7 @@ namespace Chipmunk.ZipLineSystem
             bullet.Initialize(settingSO);
             bullet.Shoot(direction);
 
-            if(currentRope == null)
+            if (currentRope == null)
             {
                 currentRope = Instantiate(settingSO.ropePrefab);
                 currentRope.Initialize(bullet, this);

@@ -6,14 +6,23 @@ namespace Chipmunk.ZipLineSystem
     public class PlayerZipLineGun : ZipLineShooter, IPlayerComponent
     {
         Player player;
+        [Header("Prototype")]
+        [SerializeField] KeyCode shootKey = KeyCode.Z;
         public void Initialize(Player player)
         {
             this.player = player;
-            player.InputCompo.ZipShootEvent += ShootZipline;
+            // player.InputCompo.ZipShootEvent += ShootZipline;
         }
         void OnDestroy()
         {
-            player.InputCompo.ZipShootEvent -= ShootZipline;
+            // player.InputCompo.ZipShootEvent -= ShootZipline;
+        }
+        void Update()
+        {
+            if(Input.GetKeyDown(shootKey))
+            {
+                ShootZipline();
+            }
         }
 
         private void ShootZipline()

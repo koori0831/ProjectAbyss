@@ -64,6 +64,7 @@ namespace Chipmunk.ZipLineSystem
 
         private void PlaceZipLine()
         {
+            Rope.UpdateRope();
             isPlaced = true;
             rigidCompo.bodyType = RigidbodyType2D.Static;
         }
