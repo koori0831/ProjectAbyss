@@ -15,6 +15,6 @@ MonoBehaviour:
   maxAmmo: 5
   reloadTime: 3
   bulletPrefab: {fileID: 7275392226626265095, guid: ab7787c1ee36998428622f9b801e446c, type: 3}
-  bulletSpeed: 0.1
+  bulletSpeed: 3
   ropePrefab: {fileID: 4140196694834687845, guid: 6605a5750844cdc43a4c2ba2c95e4b05, type: 3}
   ropeMaxDistance: 8
